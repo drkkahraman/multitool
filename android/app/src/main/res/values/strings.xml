@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">multitool</string>
+    <string name="title_activity_main">multitool</string>
+    <string name="package_name">com.doruk.multitool</string>
+    <string name="custom_url_scheme">com.doruk.multitool</string>
+</resources>
