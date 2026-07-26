@@ -57,11 +57,11 @@ app.get('/api/models', (req, res) => {
       try {
         res.json(JSON.parse(data));
       } catch (e) {
-        res.status(500).json({ error: 'Failed to parse Ollama response' });
+        res.status(500).json({ error: 'Ollama yanıtı ayrıştırılamadı' });
       }
     });
   }).on('error', (err) => {
-    res.status(500).json({ error: 'Ollama not running or unreachable: ' + err.message });
+    res.status(500).json({ error: 'Ollama çalışmıyor veya erişilemiyor: ' + err.message });
   });
 });
 
@@ -93,7 +93,7 @@ app.post('/api/chat', (req, res) => {
   });
 
   ollamaReq.on('error', (err) => {
-    res.status(500).json({ error: 'Error calling Ollama: ' + err.message });
+    res.status(500).json({ error: 'Ollama çağrısında hata: ' + err.message });
   });
 
   ollamaReq.write(postData);
@@ -109,7 +109,7 @@ app.get('/api/calendar', (req, res) => {
 app.post('/api/calendar', (req, res) => {
   const { title, date, time = '', description = '' } = req.body;
   if (!title || !date) {
-    return res.status(400).json({ error: 'Title and Date are required' });
+    return res.status(400).json({ error: 'Başlık ve Tarih zorunludur' });
   }
 
   const events = readJSON(CALENDAR_FILE);
@@ -134,11 +134,11 @@ app.delete('/api/calendar/:id', (req, res) => {
   events = events.filter(e => e.id !== id);
   
   if (events.length === initialLength) {
-    return res.status(404).json({ error: 'Event not found' });
+    return res.status(404).json({ error: 'Etkinlik bulunamadı' });
   }
-  
+
   writeJSON(CALENDAR_FILE, events);
-  res.json({ success: true, message: 'Event deleted successfully' });
+  res.json({ success: true, message: 'Etkinlik başarıyla silindi' });
 });
 
 
@@ -150,7 +150,7 @@ app.get('/api/todos', (req, res) => {
 app.post('/api/todos', (req, res) => {
   const { task, priority = 'medium', dueDate = '', completed = false } = req.body;
   if (!task) {
-    return res.status(400).json({ error: 'Task content is required' });
+    return res.status(400).json({ error: 'Görev içeriği zorunludur' });
   }
 
   const todos = readJSON(TODOS_FILE);
@@ -176,7 +176,7 @@ app.put('/api/todos/:id', (req, res) => {
   const index = todos.findIndex(t => t.id === id);
   
   if (index === -1) {
-    return res.status(404).json({ error: 'To-do item not found' });
+    return res.status(404).json({ error: 'Yapılacak öğesi bulunamadı' });
   }
 
   todos[index] = { ...todos[index], ...updates };
@@ -191,11 +191,11 @@ app.delete('/api/todos/:id', (req, res) => {
   todos = todos.filter(t => t.id !== id);
   
   if (todos.length === initialLength) {
-    return res.status(404).json({ error: 'To-do item not found' });
+    return res.status(404).json({ error: 'Yapılacak öğesi bulunamadı' });
   }
-  
+
   writeJSON(TODOS_FILE, todos);
-  res.json({ success: true, message: 'To-do deleted successfully' });
+  res.json({ success: true, message: 'Yapılacak öğesi başarıyla silindi' });
 });
 
 
@@ -214,68 +214,68 @@ app.get('/api/sandbox/files', (req, res) => {
     });
     res.json(fileList);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to list sandbox files: ' + err.message });
+    res.status(500).json({ error: 'Sandbox dosyaları listelenemedi: ' + err.message });
   }
 });
 
 app.get('/api/sandbox/file', (req, res) => {
   const { filename } = req.query;
   if (!filename) {
-    return res.status(400).json({ error: 'Filename query param is required' });
+    return res.status(400).json({ error: 'Dosya adı parametresi zorunludur' });
   }
 
   const safePath = path.join(SANDBOX_DIR, path.basename(filename));
   if (!fs.existsSync(safePath)) {
-    return res.status(404).json({ error: `File '${filename}' not found` });
+    return res.status(404).json({ error: `'${filename}' dosyası bulunamadı` });
   }
 
   try {
     const content = fs.readFileSync(safePath, 'utf8');
     res.json({ filename, content });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to read file: ' + err.message });
+    res.status(500).json({ error: 'Dosya okunamadı: ' + err.message });
   }
 });
 
 app.post('/api/sandbox/file', (req, res) => {
   const { filename, content } = req.body;
   if (!filename || content === undefined) {
-    return res.status(400).json({ error: 'Filename and Content are required' });
+    return res.status(400).json({ error: 'Dosya adı ve İçerik zorunludur' });
   }
 
   const safePath = path.join(SANDBOX_DIR, path.basename(filename));
 
   try {
     fs.writeFileSync(safePath, content, 'utf8');
-    res.json({ success: true, message: `File '${filename}' written successfully` });
+    res.json({ success: true, message: `'${filename}' dosyası başarıyla yazıldı` });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to write file: ' + err.message });
+    res.status(500).json({ error: 'Dosya yazılamadı: ' + err.message });
   }
 });
 
 app.delete('/api/sandbox/file', (req, res) => {
   const { filename } = req.query;
   if (!filename) {
-    return res.status(400).json({ error: 'Filename query param is required' });
+    return res.status(400).json({ error: 'Dosya adı parametresi zorunludur' });
   }
 
   const safePath = path.join(SANDBOX_DIR, path.basename(filename));
   if (!fs.existsSync(safePath)) {
-    return res.status(404).json({ error: `File '${filename}' not found` });
+    return res.status(404).json({ error: `'${filename}' dosyası bulunamadı` });
   }
 
   try {
     fs.unlinkSync(safePath);
-    res.json({ success: true, message: `File '${filename}' deleted successfully` });
+    res.json({ success: true, message: `'${filename}' dosyası başarıyla silindi` });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to delete file: ' + err.message });
+    res.status(500).json({ error: 'Dosya silinemedi: ' + err.message });
   }
 });
 
 app.post('/api/sandbox/execute', (req, res) => {
   const { language, code, filename } = req.body;
   if (!language || !code) {
-    return res.status(400).json({ error: 'Language and Code are required' });
+    return res.status(400).json({ error: 'Dil ve Kod zorunludur' });
   }
 
   const fileExt = language.toLowerCase() === 'python' ? 'py' : 'js';
@@ -291,7 +291,7 @@ app.post('/api/sandbox/execute', (req, res) => {
     } else if (language.toLowerCase() === 'javascript' || language.toLowerCase() === 'node') {
       command = `node "${safePath}"`;
     } else {
-      return res.status(400).json({ error: 'Unsupported language. Choose javascript or python' });
+      return res.status(400).json({ error: 'Desteklenmeyen dil. javascript veya python seçin' });
     }
 
     exec(command, { timeout: 10000 }, (error, stdout, stderr) => {
@@ -303,7 +303,7 @@ app.post('/api/sandbox/execute', (req, res) => {
         return res.json({
           success: false,
           stdout,
-          stderr: 'Execution timed out (10s limit).',
+          stderr: 'Yürütme zaman aşımına uğradı (10sn sınırı).',
           exitCode: null
         });
       }
@@ -317,7 +317,7 @@ app.post('/api/sandbox/execute', (req, res) => {
     });
 
   } catch (err) {
-    res.status(500).json({ error: 'Failed to execute code: ' + err.message });
+    res.status(500).json({ error: 'Kod yürütülemedi: ' + err.message });
   }
 });
 
@@ -329,19 +329,60 @@ app.get('/api/chat/history', (req, res) => {
 app.post('/api/chat/history', (req, res) => {
   const { messages } = req.body;
   if (!Array.isArray(messages)) {
-    return res.status(400).json({ error: 'Messages array is required' });
+    return res.status(400).json({ error: 'Mesaj dizisi zorunludur' });
   }
   writeJSON(CHATS_FILE, messages);
   res.json({ success: true });
 });
 
-app.get('/download/multitool.apk', (req, res) => {
-  const apkPath = path.join('/home/doruk/Desktop', 'multitool.apk');
-  if (fs.existsSync(apkPath)) {
+app.get(['/download/multitool.apk', '/multitool.apk', '/apk', '/api/download-apk'], (req, res) => {
+  const desktopApk = path.join('/home/doruk/Desktop', 'multitool.apk');
+  const rootApk = path.join(__dirname, 'multitool.apk');
+  const apkPath = fs.existsSync(desktopApk) ? desktopApk : (fs.existsSync(rootApk) ? rootApk : null);
+
+  if (apkPath) {
     res.download(apkPath, 'multitool.apk');
   } else {
     res.status(404).json({ error: 'multitool.apk bulunamadı. Lütfen önce derleme yapın.' });
   }
+});
+
+const AGENDA_DIR = path.join(DATA_DIR, 'agenda-images');
+if (!fs.existsSync(AGENDA_DIR)) {
+  fs.mkdirSync(AGENDA_DIR, { recursive: true });
+}
+
+app.post('/api/save-agenda', (req, res) => {
+  try {
+    const { filename, dataUrl } = req.body || {};
+    if (!filename || !dataUrl || typeof dataUrl !== 'string') {
+      return res.status(400).json({ error: 'filename ve dataUrl gerekli' });
+    }
+    // sanitize filename: keep only safe chars
+    const safe = String(filename).replace(/[^a-zA-Z0-9._-]/g, '_');
+    if (!safe.endsWith('.jpg') && !safe.endsWith('.jpeg')) {
+      return res.status(400).json({ error: 'Geçersiz dosya adı' });
+    }
+    const m = dataUrl.match(/^data:image\/jpeg;base64,(.+)$/);
+    if (!m) {
+      return res.status(400).json({ error: 'Geçersiz JPEG dataUrl' });
+    }
+    const buf = Buffer.from(m[1], 'base64');
+    const targetPath = path.join(AGENDA_DIR, safe);
+    fs.writeFileSync(targetPath, buf);
+    res.json({ success: true, url: '/download/agenda/' + encodeURIComponent(safe), filename: safe });
+  } catch (err) {
+    res.status(500).json({ error: 'Kaydetme hatası: ' + err.message });
+  }
+});
+
+app.get('/download/agenda/:filename', (req, res) => {
+  const safe = String(req.params.filename).replace(/[^a-zA-Z0-9._-]/g, '_');
+  const targetPath = path.join(AGENDA_DIR, safe);
+  if (!fs.existsSync(targetPath)) {
+    return res.status(404).json({ error: 'Görsel bulunamadı' });
+  }
+  res.download(targetPath, safe);
 });
 
 app.post('/api/build-apk', (req, res) => {

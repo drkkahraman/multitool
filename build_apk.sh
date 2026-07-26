@@ -5,6 +5,7 @@ echo "=== Android APK Build ve SDK Kurulum Scripti ==="
 
 SDK_DIR="/home/doruk/android-sdk"
 TMP_DIR="/home/doruk/Desktop/multitool/tmp_sdk"
+PROJECT_DIR="/home/doruk/Desktop/multitool"
 desktop_apk="/home/doruk/Desktop/multitool.apk"
 
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
@@ -39,11 +40,16 @@ echo "[2/4] Gerekli Android Platform paketleri (Android 34, Build-Tools) kuruluy
 
 echo "[2/4] SDK Kurulumu tamamlandı!"
 
-echo "[3/4] local.properties oluşturuluyor..."
-echo "sdk.dir=$SDK_DIR" > "/home/doruk/Desktop/multitool/android/local.properties"
+echo "[3/4] Web assets derleniyor ve Capacitor senkronize ediliyor..."
+cd "$PROJECT_DIR"
+npm run build
+npx cap sync android
+
+echo "[4/4] local.properties oluşturuluyor..."
+echo "sdk.dir=$SDK_DIR" > "$PROJECT_DIR/android/local.properties"
 
 echo "[4/4] Gradle ile APK derleme başlatılıyor..."
-cd "/home/doruk/Desktop/multitool/android"
+cd "$PROJECT_DIR/android"
 chmod +x gradlew
 export ANDROID_HOME="$SDK_DIR"
 ./gradlew assembleDebug
