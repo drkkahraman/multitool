@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
@@ -30,4 +33,9 @@ android/build
 android/local.properties
 android/captures
 *.apk
+
+# Cloud server node_modules & data
+cloud-server/node_modules
+cloud-server/data*.json
+
 

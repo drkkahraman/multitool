@@ -1,0 +1,15 @@
+{
+  "name": "multitool-cloud",
+  "version": "1.0.0",
+  "description": "Multitool Cloud backend — friends, requests and shared calendar API",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5"
+  }
+}

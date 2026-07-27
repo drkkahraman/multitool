@@ -40,8 +40,14 @@ import {
   CheckCircle2,
   PartyPopper,
   Volume2,
-  VolumeX
+  VolumeX,
+  Cloud
 } from 'lucide-react';
+import { CloudAuthModal } from './components/CloudAuthModal';
+import { authService, type UserAccount } from './services/auth';
+import { friendsService } from './services/friends';
+
+
 
 interface Model {
   name: string;
@@ -125,6 +131,7 @@ const TRANSLATIONS = {
     discoverFeatures: "Select Language & Start 🚀",
     exploreBtn: "Explore Features & Begin 🚀",
     setupSkip: "Skip Setup ⏭️",
+    setupLoginBtn: "🔑 Already have a Cloud account? Log In",
     featuresTitle: "What Can You Do? ⚡",
     featuresSub: "Core capabilities of the Multitool platform:",
     feat1Title: "🛠️ Self-Coding & Localhost Sandbox",
@@ -285,7 +292,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Download & Install Update",
     btnDismissUpdate: "Later",
     updateCheckFailed: "Could not check for updates. Please check your network connection.",
-    upToDateMsg: "Your app is up to date (v1.1.0).",
+    upToDateMsg: "Your app is up to date (v1.2.0).",
     releaseNotesLabel: "Release Notes:",
     aboutDesc: "This app is a mobile assistant with Self-Coding AI and Localhost Node.js support (Multitool).",
     versionLabel: "Version",
@@ -423,8 +430,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Mint Emerald",
     themeOled: "✨ OLED Gold",
     themeDefaultLight: "☀️ Pure Light",
-    versionFullLabel: "Multitool AI • Version v1.1.0",
-    versionFooterLabel: "Multitool AI • Version 1.1.0",
+    versionFullLabel: "Multitool AI • Version v1.2.0",
+    versionFooterLabel: "Multitool AI • Version 1.2.0",
     prevMonthTitle: "Previous Month",
     nextMonthTitle: "Next Month",
     todayBtn: "Today",
@@ -553,6 +560,7 @@ const TRANSLATIONS = {
     discoverFeatures: "Dil Seçin & Başlayın 🚀",
     exploreBtn: "Yetenekleri Keşfet & Başla 🚀",
     setupSkip: "Kurulumu Atla ⏭️",
+    setupLoginBtn: "🔑 Zaten bir bulut hesabın var mı? Giriş Yap",
     featuresTitle: "Neler Yapabilirsiniz? ⚡",
     featuresSub: "Multitool platformunun sunduğu temel yetenekler:",
     feat1Title: "🛠️ Self-Coding & Localhost Sandbox",
@@ -713,7 +721,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Güncellemeyi İndir ve Kur",
     btnDismissUpdate: "Daha Sonra",
     updateCheckFailed: "Güncelleme kontrolü başarısız oldu. İnternet bağlantınızı kontrol edin.",
-    upToDateMsg: "Uygulamanız güncel (v1.1.0).",
+    upToDateMsg: "Uygulamanız güncel (v1.2.0).",
     releaseNotesLabel: "Yayın Notları:",
     aboutDesc: "Bu uygulama Self-Coding AI ve Localhost Node.js destekli mobil asistandır (Multitool).",
     versionLabel: "Sürüm",
@@ -851,8 +859,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Nane Zümrüt",
     themeOled: "✨ OLED Altın",
     themeDefaultLight: "☀️ Saf Aydınlık",
-    versionFullLabel: "Multitool AI • Sürüm v1.1.0",
-    versionFooterLabel: "Multitool AI • Sürüm 1.1.0",
+    versionFullLabel: "Multitool AI • Sürüm v1.2.0",
+    versionFooterLabel: "Multitool AI • Sürüm 1.2.0",
     prevMonthTitle: "Önceki Ay",
     nextMonthTitle: "Sonraki Ay",
     todayBtn: "Bugün",
@@ -1035,6 +1043,7 @@ const TRANSLATIONS = {
     backBtn: "Zurück",
     setupRestart: "Setup-Assistenten neustarten",
     setupSkip: "Einrichtung überspringen ⏭️",
+    setupLoginBtn: "🔑 Bereits ein Cloud-Konto? Anmelden",
     notes: "Notizen",
     notesTitle: "📝 Meine Notizen",
     newNoteHeader: "Neue Notiz erstellen",
@@ -1141,7 +1150,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Update herunterladen & installieren",
     btnDismissUpdate: "Später",
     updateCheckFailed: "Update-Prüfung fehlgeschlagen. Bitte Netzverbindung prüfen.",
-    upToDateMsg: "Ihre App ist auf dem neuesten Stand (v1.1.0).",
+    upToDateMsg: "Ihre App ist auf dem neuesten Stand (v1.2.0).",
     releaseNotesLabel: "Versionshinweise:",
     aboutDesc: "Diese App ist ein mobiler Assistent mit Self-Coding KI und Localhost Node.js-Unterstützung (Multitool).",
     versionLabel: "Version",
@@ -1279,8 +1288,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Minz-Smaragd",
     themeOled: "✨ OLED Gold",
     themeDefaultLight: "☀️ Reines Licht",
-    versionFullLabel: "Multitool AI • Version v1.1.0",
-    versionFooterLabel: "Multitool AI • Version 1.1.0",
+    versionFullLabel: "Multitool AI • Version v1.2.0",
+    versionFooterLabel: "Multitool AI • Version 1.2.0",
     prevMonthTitle: "Vorheriger Monat",
     nextMonthTitle: "Nächster Monat",
     todayBtn: "Heute",
@@ -1463,6 +1472,7 @@ const TRANSLATIONS = {
     backBtn: "Atrás",
     setupRestart: "Reiniciar asistente de configuración",
     setupSkip: "Omitir configuración ⏭️",
+    setupLoginBtn: "🔑 ¿Ya tienes una cuenta Cloud? Iniciar sesión",
     notes: "Notas",
     notesTitle: "📝 Mis Notas",
     newNoteHeader: "Crear nueva nota",
@@ -1569,7 +1579,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Descargar e instalar actualización",
     btnDismissUpdate: "Más tarde",
     updateCheckFailed: "Error al buscar actualizaciones. Compruebe su conexión a Internet.",
-    upToDateMsg: "Su aplicación está actualizada (v1.1.0).",
+    upToDateMsg: "Su aplicación está actualizada (v1.2.0).",
     releaseNotesLabel: "Notas de la versión:",
     aboutDesc: "Esta app es un asistente móvil con IA de Auto-Código y soporte Localhost Node.js (Multitool).",
     versionLabel: "Versión",
@@ -1707,8 +1717,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menta Esmeralda",
     themeOled: "✨ OLED Oro",
     themeDefaultLight: "☀️ Luz Pura",
-    versionFullLabel: "Multitool AI : Versión v1.1.0",
-    versionFooterLabel: "Multitool AI : Versión 1.1.0",
+    versionFullLabel: "Multitool AI : Versión v1.2.0",
+    versionFooterLabel: "Multitool AI : Versión 1.2.0",
     prevMonthTitle: "Mes anterior",
     nextMonthTitle: "Mes siguiente",
     todayBtn: "Hoy",
@@ -1891,6 +1901,7 @@ const TRANSLATIONS = {
     backBtn: "Retour",
     setupRestart: "Redémarrer l'assistant de configuration",
     setupSkip: "Passer la configuration ⏭️",
+    setupLoginBtn: "🔑 Vous avez déjà un compte Cloud ? Se connecter",
     notes: "Notes",
     notesTitle: "📝 Mes Notes",
     newNoteHeader: "Créer une nouvelle note",
@@ -1997,7 +2008,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Télécharger et installer la mise à jour",
     btnDismissUpdate: "Plus tard",
     updateCheckFailed: "Impossible de vérifier les mises à jour. Vérifiez votre connexion Internet.",
-    upToDateMsg: "Votre application est à jour (v1.1.0).",
+    upToDateMsg: "Votre application est à jour (v1.2.0).",
     releaseNotesLabel: "Notes de mise à jour :",
     aboutDesc: "Cette app est un assistant mobile avec IA Self-Coding et support Localhost Node.js (Multitool).",
     versionLabel: "Version",
@@ -2135,8 +2146,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menthe Émeraude",
     themeOled: "✨ OLED Or",
     themeDefaultLight: "☀️ Lumière Pure",
-    versionFullLabel: "Multitool AI : Version v1.1.0",
-    versionFooterLabel: "Multitool AI : Version 1.1.0",
+    versionFullLabel: "Multitool AI : Version v1.2.0",
+    versionFooterLabel: "Multitool AI : Version 1.2.0",
     prevMonthTitle: "Mois précédent",
     nextMonthTitle: "Mois suivant",
     todayBtn: "Aujourd'hui",
@@ -2268,12 +2279,24 @@ const TRANSLATIONS = {
     featuresSub: "Funzionalità principali della piattaforma Multitool:",
     feat1Title: "🛠️ Self-Coding e Sandbox Web in tempo reale",
     feat1Desc: "Genera codice con l'IA, avvia server Express e testa immediatamente online.",
-    feat2Title: "✔️ Attività e Routine",
-    feat2Desc: "Gestisci facilmente i tuoi compiti e le routine quotidiane.",
-    feat3Title: "📅 Agenda intelligente e Notifiche",
-    feat3Desc: "Gestisci eventi e ricevi notifiche di promemoria tempestive.",
-    feat4Title: "💬 Chat IA e Modelli di Linguaggio",
-    feat4Desc: "Chatta con i modelli Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter e Ollama.",
+    feat1Bullet1: "⚡ Compilazione istantanea di APK mobile con Vite + Capacitor",
+    feat1Bullet2: "🖥 Avvia e testa server Express/Node.js in locale",
+    feat1Bullet3: "🌐 Ambiente sandbox con anteprima web HTML/JS in tempo reale",
+    feat2Title: "🎤 Multi-IA e Assistente Vocale",
+    feat2Desc: "Riconoscimento vocale e risposte vocali con Groq, DeepSeek, OpenAI, Gemini e OpenRouter.",
+    feat2Bullet1: "🎤 Riconoscimento vocale e risposte IA parlate",
+    feat2Bullet2: "🧠 Supporto per Groq, DeepSeek, OpenAI, Gemini & OpenRouter",
+    feat2Bullet3: "🎭 Modalità Coder, Assistente e Personalizzabili",
+    feat3Title: "📅 Agenda Intelligente ed Esportazione in Galleria",
+    feat3Desc: "Viste Timeline, Settimanale e Lista, con esportazione JPEG e promemoria.",
+    feat3Bullet1: "📅 Viste Timeline, Settimanale e Lista",
+    feat3Bullet2: "🖼 Esporta agenda giornaliera e settimanale come JPEG nella Galleria",
+    feat3Bullet3: "🔔 Promemoria eventi e notifiche locali intelligenti",
+    feat4Title: "📝 Attività, Note e Analisi",
+    feat4Desc: "Salva le note nella Galleria, analizza la produttività e le routine. Archiviazione 100% locale.",
+    feat4Bullet1: "📝 Salva tutte le note nella Galleria come JPEG con un tocco",
+    feat4Bullet2: "📊 Analisi di produttività e statistiche di completamento routine",
+    feat4Bullet3: "🔒 Archiviazione 100% locale e orientata alla privacy sul dispositivo",
     aiProviderTitle: "Configurazione provider IA 🔑",
     aiProviderSub: "Configura il tuo motore IA e la chiave API.",
     nameLabel: "👤 Il tuo nome",
@@ -2412,7 +2435,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Scarica e installa aggiornamento",
     btnDismissUpdate: "Più tardi",
     updateCheckFailed: "Impossibile controllare gli aggiornamenti. Verifica la connessione.",
-    upToDateMsg: "La tua app è aggiornata (v1.1.0).",
+    upToDateMsg: "La tua app è aggiornata (v1.2.0).",
     releaseNotesLabel: "Note di rilascio:",
     aboutDesc: "Questa app è un assistente mobile con IA Self-Coding e supporto Localhost Node.js (Multitool).",
     versionLabel: "Versione",
@@ -2550,8 +2573,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menta Smeraldo",
     themeOled: "✨ OLED Oro",
     themeDefaultLight: "☀️ Luce Pura",
-    versionFullLabel: "Multitool AI • Versione v1.1.0",
-    versionFooterLabel: "Multitool AI • Versione 1.1.0",
+    versionFullLabel: "Multitool AI • Versione v1.2.0",
+    versionFooterLabel: "Multitool AI • Versione 1.2.0",
     prevMonthTitle: "Mese precedente",
     nextMonthTitle: "Mese successivo",
     todayBtn: "Oggi",
@@ -2640,6 +2663,7 @@ const TRANSLATIONS = {
     setupIntroTagline: "Il tuo compagno di sviluppo IA tascabile: programma, chatta, automatizza e compila APK dal telefono.",
     setupIntroCta: "Iniziamo 🚀",
     setupSkip: "Salta per ora",
+    setupLoginBtn: "🔑 Hai già un account Cloud? Accedi",
     setupStepLabel: "Passo {n} di {total}",
     setupStepIntro: "Benvenuto",
     setupStepPersonalize: "Personalizza",
@@ -2800,7 +2824,7 @@ export default function App() {
     releaseNotes: string;
     releaseUrl: string;
   }
-  const CURRENT_VERSION = '1.1.0';
+  const CURRENT_VERSION = '1.2.0';
   const [availableUpdate, setAvailableUpdate] = useState<UpdateInfo | null>(null);
   const [isCheckingUpdate, setIsCheckingUpdate] = useState<boolean>(false);
 
@@ -3065,6 +3089,14 @@ export default function App() {
   });
 
   const [isChatHistoryModalOpen, setIsChatHistoryModalOpen] = useState<boolean>(false);
+  const [isCloudModalOpen, setIsCloudModalOpen] = useState<boolean>(false);
+  const [cloudModalInitialMode, setCloudModalInitialMode] = useState<'login' | 'register'>('login');
+  const [cloudUser, setCloudUser] = useState<UserAccount | null>(null);
+
+  useEffect(() => {
+    authService.getCurrentUser().then(user => setCloudUser(user)).catch(() => setCloudUser(null));
+  }, []);
+
 
   const [newNoteTitle, setNewNoteTitle] = useState<string>('');
   const [newNoteContent, setNewNoteContent] = useState<string>('');
@@ -3827,15 +3859,22 @@ export default function App() {
   const fetchCalendarEvents = async () => {
     try {
       const localEvents = localStorage.getItem('multitool_calendar');
-      if (localEvents) {
-        setEvents(JSON.parse(localEvents));
-      } else {
-        setEvents([]);
+      const parsedEvents = localEvents ? JSON.parse(localEvents) : [];
+      setEvents(parsedEvents);
+      if (cloudUser) {
+        friendsService.publishMyCalendarEvents(cloudUser.email, cloudUser.name || cloudUser.email.split('@')[0], parsedEvents);
       }
     } catch (err: any) {
       addLog(`${t.logCalendarFetchError} ${err.message}`);
     }
   };
+
+  // Giriş yapılınca/çıkış yapılınca takvimi buluta senkronize et
+  useEffect(() => {
+    if (cloudUser) {
+      fetchCalendarEvents();
+    }
+  }, [cloudUser]);
 
   const fetchTodos = async () => {
     try {
@@ -5166,7 +5205,7 @@ Araçlar:
     // footer
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
     const countText = t.agendaEventsCount.replace('{n}', String(dayEvents.length));
-    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.1.0`, W / 2, H - 50);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.2.0`, W / 2, H - 50);
     ctx.textAlign = 'left';
 
     const filename = `multitool-agenda-${selectedCalendarDate}.jpg`;
@@ -5359,7 +5398,7 @@ Araçlar:
     // footer
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
     const countText = t.agendaEventsCount.replace('{n}', String(totalEventsInWeek.length));
-    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.1.0`, W / 2, H - 40);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.2.0`, W / 2, H - 40);
     ctx.textAlign = 'left';
 
     const filename = `multitool-weekly-agenda-${selectedCalendarDate}.jpg`;
@@ -5585,7 +5624,7 @@ Araçlar:
     }
 
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
-    ctx.fillText(`${t.agendaGeneratedBy} • ${t.notesTitle || 'Notlar'} • v1.1.0`, W / 2, H - 50);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${t.notesTitle || 'Notlar'} • v1.2.0`, W / 2, H - 50);
     ctx.textAlign = 'left';
 
     const cleanTitle = (note.title || 'note').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 20);
@@ -5753,7 +5792,7 @@ Araçlar:
     }
 
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
-    ctx.fillText(`${t.agendaGeneratedBy} • ${notesToExport.length} ${t.notesTitle || 'Notlar'} • v1.1.0`, W / 2, H - 40);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${notesToExport.length} ${t.notesTitle || 'Notlar'} • v1.2.0`, W / 2, H - 40);
     ctx.textAlign = 'left';
 
     const filename = `multitool-all-notes-${Date.now()}.jpg`;
@@ -7898,7 +7937,7 @@ Araçlar:
                 {t.aboutDesc}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: 'var(--radius-xs)', marginBottom: '10px' }}>
-                <span>• {t.versionLabel}: <strong>v1.1.0</strong></span>
+                <span>• {t.versionLabel}: <strong>v1.2.0</strong></span>
                 <span>• {t.architectureLabel}: <strong>Self-Coding AI & Localhost Node.js</strong></span>
                 <span>• {t.buildLabel}: <strong>Vite + Capacitor</strong></span>
                 <span>• {t.databaseLabel}: <strong>LocalStorage & Express API</strong></span>
@@ -8036,6 +8075,23 @@ Araçlar:
             </div>
             <button className="btn-primary setup-gradient-btn" style={{ width: '100%', maxWidth: '320px', padding: '15px', fontSize: '16px', fontWeight: '800', borderRadius: '16px', marginTop: '6px' }} onClick={() => setSetupStep(2)}>
               {t.setupIntroCta}
+            </button>
+            <button
+              className="btn-secondary"
+              style={{
+                width: '100%',
+                maxWidth: '320px',
+                padding: '11px',
+                fontSize: '13.5px',
+                fontWeight: '700',
+                borderRadius: '14px',
+                marginTop: '8px',
+                borderColor: 'rgba(99, 102, 241, 0.4)',
+                color: 'var(--primary)'
+              }}
+              onClick={() => { setCloudModalInitialMode('login'); setIsCloudModalOpen(true); }}
+            >
+              {t.setupLoginBtn}
             </button>
             <button className="setup-skip-link" onClick={finishSetup}>{t.setupSkip}</button>
           </div>
@@ -8707,7 +8763,19 @@ Araçlar:
       {renderSetupModal()}
       {renderChatHistoryModal()}
       {renderUpdateModal()}
-      { }
+      <CloudAuthModal
+        isOpen={isCloudModalOpen}
+        onClose={() => setIsCloudModalOpen(false)}
+        language={language}
+        onUserChanged={(user) => {
+          setCloudUser(user);
+          if (user && isSetupOpen) {
+            localStorage.setItem('multitool_setup_completed', 'true');
+            setIsSetupOpen(false);
+          }
+        }}
+        initialMode={cloudModalInitialMode}
+      />
       {usePhoneFrame && (
         <div className="phone-status-bar">
           <span className="status-time">{currentTime}</span>
@@ -8739,6 +8807,39 @@ Araçlar:
           <span className="app-title">Multitool Agent</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            className="btn-icon"
+            onClick={() => setIsCloudModalOpen(true)}
+            style={{
+              color: cloudUser ? 'var(--primary)' : 'var(--text-secondary)',
+              position: 'relative'
+            }}
+            title={cloudUser ? `Multitool Cloud: ${cloudUser.name || cloudUser.email}` : "Multitool Cloud Hesabı"}
+          >
+            <Cloud size={18} />
+            {friendsService.getPendingRequestsSync(cloudUser?.email).length > 0 ? (
+              <span style={{
+                position: 'absolute',
+                top: '2px',
+                right: '2px',
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--danger)',
+                boxShadow: '0 0 6px var(--danger)'
+              }} />
+            ) : cloudUser ? (
+              <span style={{
+                position: 'absolute',
+                top: '4px',
+                right: '4px',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--success)'
+              }} />
+            ) : null}
+          </button>
           <a
             href="http://localhost:3001/download/multitool.apk"
             download="multitool.apk"
@@ -8768,6 +8869,7 @@ Araçlar:
           </button>
         </div>
       </div>
+
 
       { }
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
