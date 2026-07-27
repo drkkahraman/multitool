@@ -38,7 +38,9 @@ import {
   User,
   Rocket,
   CheckCircle2,
-  PartyPopper
+  PartyPopper,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 
 interface Model {
@@ -89,6 +91,7 @@ interface TodoItem {
   completedAt?: number;
   isRoutine?: boolean;
   routineFrequency?: 'daily' | 'weekly' | 'monthly';
+  audioUrl?: string;
 }
 
 interface ChatSession {
@@ -163,6 +166,11 @@ const TRANSLATIONS = {
     apiKeyGemini: "Google Gemini API Key",
     apiKeyOpenRouter: "OpenRouter API Key",
     ollamaUrlLabel: "Ollama Server URL",
+    promptWeightLabel: "System Prompt Complexity (Model Speed)",
+    promptWeightHelp: "Reduce system prompt length and tool definitions to significantly speed up local models (Ollama).",
+    promptWeightFull: "⚡⚡⚡ Full / Advanced (All 17 Tools & Detailed Persona)",
+    promptWeightBalanced: "⚡⚡ Balanced (Essential Notes, Calendar & Todo Tools)",
+    promptWeightMinimal: "⚡ Fast / Minimal (Ultra-Fast Response - Lightweight)",
     personaTitle: "Choose Assistant Persona 🎭",
     personaSub: "Select your assistant's primary focus domain:",
     completeTitle: "All Set! 🎉",
@@ -277,7 +285,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Download & Install Update",
     btnDismissUpdate: "Later",
     updateCheckFailed: "Could not check for updates. Please check your network connection.",
-    upToDateMsg: "Your app is up to date (v1.0.2).",
+    upToDateMsg: "Your app is up to date (v1.1.0).",
     releaseNotesLabel: "Release Notes:",
     aboutDesc: "This app is a mobile assistant with Self-Coding AI and Localhost Node.js support (Multitool).",
     versionLabel: "Version",
@@ -415,8 +423,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Mint Emerald",
     themeOled: "✨ OLED Gold",
     themeDefaultLight: "☀️ Pure Light",
-    versionFullLabel: "Multitool AI • Version v1.0.2",
-    versionFooterLabel: "Multitool AI • Version 1.0.2",
+    versionFullLabel: "Multitool AI • Version v1.1.0",
+    versionFooterLabel: "Multitool AI • Version 1.1.0",
     prevMonthTitle: "Previous Month",
     nextMonthTitle: "Next Month",
     todayBtn: "Today",
@@ -424,6 +432,10 @@ const TRANSLATIONS = {
     notifTasks: "Tasks",
     notifRoutines: "Routines",
     chatPlaceholder: "Type your message or speak...",
+    autoTtsLabel: "Auto-read AI Responses (TTS)",
+    autoTtsHelp: "Automatically convert AI responses to speech using Text-to-Speech.",
+    listenBtn: "Listen",
+    stopListenBtn: "Stop",
     tipsCardTitle: "📌 Multitool AI Usage Tips",
     tipsCardContent: "While chatting with the AI, you can ask it to add events to your calendar, update your to-do list, or write notes for you!",
     thinkingProcess: "🧠 Thinking Process",
@@ -582,6 +594,11 @@ const TRANSLATIONS = {
     apiKeyGemini: "Google Gemini API Key",
     apiKeyOpenRouter: "OpenRouter API Key",
     ollamaUrlLabel: "Ollama Sunucu URL",
+    promptWeightLabel: "Sistem Prompt Ağırlığı (Model Hızı)",
+    promptWeightHelp: "Yerel modellerin (Ollama) yanıt hızını artırmak için sistem promptunu ve araç tanımlarını hafifletebilirsiniz.",
+    promptWeightFull: "⚡⚡⚡ Tam / Gelişmiş (Tüm 17 Araç & Detaylı Rol)",
+    promptWeightBalanced: "⚡⚡ Dengeli (Temel Not, Takvim & Görev Araçları)",
+    promptWeightMinimal: "⚡ Hızlı / Minimal (Çok Hızlı Yanıt - Hafif Prompt)",
     personaTitle: "Asistan Kişiliğinizi Seçin 🎭",
     personaSub: "Asistanın varsayılan odak alanını belirleyin:",
     completeTitle: "Her Şey Hazır! 🎉",
@@ -696,7 +713,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Güncellemeyi İndir ve Kur",
     btnDismissUpdate: "Daha Sonra",
     updateCheckFailed: "Güncelleme kontrolü başarısız oldu. İnternet bağlantınızı kontrol edin.",
-    upToDateMsg: "Uygulamanız güncel (v1.0.2).",
+    upToDateMsg: "Uygulamanız güncel (v1.1.0).",
     releaseNotesLabel: "Yayın Notları:",
     aboutDesc: "Bu uygulama Self-Coding AI ve Localhost Node.js destekli mobil asistandır (Multitool).",
     versionLabel: "Sürüm",
@@ -834,8 +851,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Nane Zümrüt",
     themeOled: "✨ OLED Altın",
     themeDefaultLight: "☀️ Saf Aydınlık",
-    versionFullLabel: "Multitool AI • Sürüm v1.0.2",
-    versionFooterLabel: "Multitool AI • Sürüm 1.0.2",
+    versionFullLabel: "Multitool AI • Sürüm v1.1.0",
+    versionFooterLabel: "Multitool AI • Sürüm 1.1.0",
     prevMonthTitle: "Önceki Ay",
     nextMonthTitle: "Sonraki Ay",
     todayBtn: "Bugün",
@@ -843,6 +860,10 @@ const TRANSLATIONS = {
     notifTasks: "Görev",
     notifRoutines: "Rutin",
     chatPlaceholder: "Mesajınızı yazın veya konuşun...",
+    autoTtsLabel: "AI Yanıtlarını Otomatik Seslendir (TTS)",
+    autoTtsHelp: "Yapay zeka yanıtlarını metinden sese (TTS) dönüştürerek otomatik oku.",
+    listenBtn: "Seslendir",
+    stopListenBtn: "Durdur",
     tipsCardTitle: "📌 Multitool AI Kullanım İpuçları",
     tipsCardContent: "Yapay zeka ile sohbet ederken takviminize etkinlik ekletebilir, yapılacaklar listenizi güncellettirebilir veya not yazdırabilirsiniz!",
     thinkingProcess: "🧠 Düşünme Süreci",
@@ -1000,6 +1021,11 @@ const TRANSLATIONS = {
     apiKeyGemini: "Google Gemini API-Schlüssel",
     apiKeyOpenRouter: "OpenRouter API-Schlüssel",
     ollamaUrlLabel: "Ollama Server URL",
+    promptWeightLabel: "System-Prompt-Komplexität (Modellgeschwindigkeit)",
+    promptWeightHelp: "Reduzieren Sie die Prompt-Länge, um lokale Modelle (Ollama) deutlich zu beschleunigen.",
+    promptWeightFull: "⚡⚡⚡ Vollständig (Alle 17 Werkzeuge & Detaillierte Persona)",
+    promptWeightBalanced: "⚡⚡ Ausgewogen (Notizen-, Kalender- & Aufgaben-Werkzeuge)",
+    promptWeightMinimal: "⚡ Schnell / Minimal (Ultra-Schnelle Antwort - Leicht)",
     personaTitle: "Assistenten-Persona wählen 🎭",
     personaSub: "Wählen Sie den primären Fokus Ihres Assistenten:",
     completeTitle: "Alles bereit! 🎉",
@@ -1115,7 +1141,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Update herunterladen & installieren",
     btnDismissUpdate: "Später",
     updateCheckFailed: "Update-Prüfung fehlgeschlagen. Bitte Netzverbindung prüfen.",
-    upToDateMsg: "Ihre App ist auf dem neuesten Stand (v1.0.2).",
+    upToDateMsg: "Ihre App ist auf dem neuesten Stand (v1.1.0).",
     releaseNotesLabel: "Versionshinweise:",
     aboutDesc: "Diese App ist ein mobiler Assistent mit Self-Coding KI und Localhost Node.js-Unterstützung (Multitool).",
     versionLabel: "Version",
@@ -1253,8 +1279,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Minz-Smaragd",
     themeOled: "✨ OLED Gold",
     themeDefaultLight: "☀️ Reines Licht",
-    versionFullLabel: "Multitool AI • Version v1.0.2",
-    versionFooterLabel: "Multitool AI • Version 1.0.2",
+    versionFullLabel: "Multitool AI • Version v1.1.0",
+    versionFooterLabel: "Multitool AI • Version 1.1.0",
     prevMonthTitle: "Vorheriger Monat",
     nextMonthTitle: "Nächster Monat",
     todayBtn: "Heute",
@@ -1262,6 +1288,10 @@ const TRANSLATIONS = {
     notifTasks: "Aufgaben",
     notifRoutines: "Routinen",
     chatPlaceholder: "Nachricht eingeben oder sprechen...",
+    autoTtsLabel: "KI-Antworten vorlesen (TTS)",
+    autoTtsHelp: "KI-Antworten automatisch per Sprachausgabe vorlesen.",
+    listenBtn: "Anhören",
+    stopListenBtn: "Stoppen",
     tipsCardTitle: "📌 Multitool AI Nutzungstipps",
     tipsCardContent: "Beim Chatten mit der KI können Sie Ereignisse zum Kalender hinzufügen, Ihre To-Do-Liste aktualisieren oder Notizen schreiben lassen!",
     thinkingProcess: "🧠 Denkprozess",
@@ -1419,6 +1449,11 @@ const TRANSLATIONS = {
     apiKeyGemini: "Clave API de Google Gemini",
     apiKeyOpenRouter: "Clave API de OpenRouter",
     ollamaUrlLabel: "URL del servidor Ollama",
+    promptWeightLabel: "Complejidad del Prompt del Sistema (Velocidad)",
+    promptWeightHelp: "Reduce la longitud del prompt para acelerar significativamente los modelos locales (Ollama).",
+    promptWeightFull: "⚡⚡⚡ Completo (Todas las 17 Herramientas y Persona Detallada)",
+    promptWeightBalanced: "⚡⚡ Equilibrado (Notas, Calendario y Tareas Esenciales)",
+    promptWeightMinimal: "⚡ Rápido / Mínimo (Respuesta Ultra-Rápida - Ligero)",
     personaTitle: "Elige la personalidad del asistente 🎭",
     personaSub: "Selecciona el dominio de enfoque principal:",
     completeTitle: "¡Todo listo! 🎉",
@@ -1534,7 +1569,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Descargar e instalar actualización",
     btnDismissUpdate: "Más tarde",
     updateCheckFailed: "Error al buscar actualizaciones. Compruebe su conexión a Internet.",
-    upToDateMsg: "Su aplicación está actualizada (v1.0.2).",
+    upToDateMsg: "Su aplicación está actualizada (v1.1.0).",
     releaseNotesLabel: "Notas de la versión:",
     aboutDesc: "Esta app es un asistente móvil con IA de Auto-Código y soporte Localhost Node.js (Multitool).",
     versionLabel: "Versión",
@@ -1672,8 +1707,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menta Esmeralda",
     themeOled: "✨ OLED Oro",
     themeDefaultLight: "☀️ Luz Pura",
-    versionFullLabel: "Multitool AI : Versión v1.0.2",
-    versionFooterLabel: "Multitool AI : Versión 1.0.2",
+    versionFullLabel: "Multitool AI : Versión v1.1.0",
+    versionFooterLabel: "Multitool AI : Versión 1.1.0",
     prevMonthTitle: "Mes anterior",
     nextMonthTitle: "Mes siguiente",
     todayBtn: "Hoy",
@@ -1681,6 +1716,10 @@ const TRANSLATIONS = {
     notifTasks: "Tareas",
     notifRoutines: "Rutinas",
     chatPlaceholder: "Escribe tu mensaje o habla...",
+    autoTtsLabel: "Leer respuestas de IA (TTS)",
+    autoTtsHelp: "Convertir automáticamente las respuestas de la IA a voz.",
+    listenBtn: "Escuchar",
+    stopListenBtn: "Detener",
     tipsCardTitle: "📌 Consejos de uso de Multitool AI",
     tipsCardContent: "¡Al chatear con la IA puedes pedirle que añada eventos a tu calendario, actualice tu lista de tareas o escriba notas!",
     thinkingProcess: "🧠 Proceso de pensamiento",
@@ -1838,6 +1877,11 @@ const TRANSLATIONS = {
     apiKeyGemini: "Clé API Google Gemini",
     apiKeyOpenRouter: "Clé API OpenRouter",
     ollamaUrlLabel: "URL du serveur Ollama",
+    promptWeightLabel: "Complexité du Prompt Système (Vitesse du Modèle)",
+    promptWeightHelp: "Réduisez la longueur du prompt pour accélérer considérablement les modèles locaux (Ollama).",
+    promptWeightFull: "⚡⚡⚡ Complet (Tous les 17 Outils et Persona Détaillé)",
+    promptWeightBalanced: "⚡⚡ Équilibré (Notes, Calendrier et Tâches Essentiels)",
+    promptWeightMinimal: "⚡ Rapide / Minimal (Réponse Ultra-Rapide - Léger)",
     personaTitle: "Choisissez le rôle de l'assistant 🎭",
     personaSub: "Sélectionnez le domaine d'expertise principal :",
     completeTitle: "Tout est prêt ! 🎉",
@@ -1953,7 +1997,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Télécharger et installer la mise à jour",
     btnDismissUpdate: "Plus tard",
     updateCheckFailed: "Impossible de vérifier les mises à jour. Vérifiez votre connexion Internet.",
-    upToDateMsg: "Votre application est à jour (v1.0.2).",
+    upToDateMsg: "Votre application est à jour (v1.1.0).",
     releaseNotesLabel: "Notes de mise à jour :",
     aboutDesc: "Cette app est un assistant mobile avec IA Self-Coding et support Localhost Node.js (Multitool).",
     versionLabel: "Version",
@@ -2091,8 +2135,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menthe Émeraude",
     themeOled: "✨ OLED Or",
     themeDefaultLight: "☀️ Lumière Pure",
-    versionFullLabel: "Multitool AI : Version v1.0.2",
-    versionFooterLabel: "Multitool AI : Version 1.0.2",
+    versionFullLabel: "Multitool AI : Version v1.1.0",
+    versionFooterLabel: "Multitool AI : Version 1.1.0",
     prevMonthTitle: "Mois précédent",
     nextMonthTitle: "Mois suivant",
     todayBtn: "Aujourd'hui",
@@ -2100,6 +2144,10 @@ const TRANSLATIONS = {
     notifTasks: "Tâches",
     notifRoutines: "Routines",
     chatPlaceholder: "Saisissez votre message ou parlez...",
+    autoTtsLabel: "Lecture vocale des réponses IA (TTS)",
+    autoTtsHelp: "Lire automatiquement les réponses de l'IA par synthèse vocale.",
+    listenBtn: "Écouter",
+    stopListenBtn: "Arrêter",
     tipsCardTitle: "📌 Conseils d'utilisation Multitool AI",
     tipsCardContent: "En discutant avec l'IA, vous pouvez lui demander d'ajouter des événements à votre calendrier, mettre à jour votre liste de tâches ou écrire des notes !",
     thinkingProcess: "🧠 Processus de réflexion",
@@ -2245,6 +2293,11 @@ const TRANSLATIONS = {
     apiKeyGemini: "Chiave API Google Gemini",
     apiKeyOpenRouter: "Chiave API OpenRouter",
     ollamaUrlLabel: "URL del server Ollama",
+    promptWeightLabel: "Complessità del Prompt di Sistema (Velocità)",
+    promptWeightHelp: "Riduci la lunghezza del prompt per velocizzare notevolmente i modelli locali (Ollama).",
+    promptWeightFull: "⚡⚡⚡ Completo (Tutti i 17 Strumenti e Persona Dettagliata)",
+    promptWeightBalanced: "⚡⚡ Bilanciato (Note, Calendario e Attività Essenziali)",
+    promptWeightMinimal: "⚡ Veloce / Minimo (Risposta Ultra-Veloce - Leggero)",
     personaTitle: "Scegli il ruolo dell'assistente 🎭",
     personaSub: "Seleziona il settore di competenza principale:",
     completeTitle: "Tutto pronto! 🎉",
@@ -2359,7 +2412,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Scarica e installa aggiornamento",
     btnDismissUpdate: "Più tardi",
     updateCheckFailed: "Impossibile controllare gli aggiornamenti. Verifica la connessione.",
-    upToDateMsg: "La tua app è aggiornata (v1.0.2).",
+    upToDateMsg: "La tua app è aggiornata (v1.1.0).",
     releaseNotesLabel: "Note di rilascio:",
     aboutDesc: "Questa app è un assistente mobile con IA Self-Coding e supporto Localhost Node.js (Multitool).",
     versionLabel: "Versione",
@@ -2497,8 +2550,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menta Smeraldo",
     themeOled: "✨ OLED Oro",
     themeDefaultLight: "☀️ Luce Pura",
-    versionFullLabel: "Multitool AI • Versione v1.0.2",
-    versionFooterLabel: "Multitool AI • Versione 1.0.2",
+    versionFullLabel: "Multitool AI • Versione v1.1.0",
+    versionFooterLabel: "Multitool AI • Versione 1.1.0",
     prevMonthTitle: "Mese precedente",
     nextMonthTitle: "Mese successivo",
     todayBtn: "Oggi",
@@ -2506,6 +2559,10 @@ const TRANSLATIONS = {
     notifTasks: "Attività",
     notifRoutines: "Routine",
     chatPlaceholder: "Scrivi il tuo messaggio o parla...",
+    autoTtsLabel: "Leggi risposte IA (TTS)",
+    autoTtsHelp: "Converti automaticamente le risposte dell'IA in sintesi vocale.",
+    listenBtn: "Ascolta",
+    stopListenBtn: "Ferma",
     tipsCardTitle: "📌 Consigli d'uso di Multitool AI",
     tipsCardContent: "Mentre chatti con l'IA puoi chiederle di aggiungere eventi al calendario, aggiornare la lista delle attività o scrivere note!",
     thinkingProcess: "🧠 Processo di pensiero",
@@ -2743,7 +2800,7 @@ export default function App() {
     releaseNotes: string;
     releaseUrl: string;
   }
-  const CURRENT_VERSION = '1.0.2';
+  const CURRENT_VERSION = '1.1.0';
   const [availableUpdate, setAvailableUpdate] = useState<UpdateInfo | null>(null);
   const [isCheckingUpdate, setIsCheckingUpdate] = useState<boolean>(false);
 
@@ -2872,6 +2929,10 @@ export default function App() {
   const [openrouterApiKey, setOpenrouterApiKey] = useState<string>(() => localStorage.getItem('multitool_openrouter_api_key') || '');
   const [openrouterModel, setOpenrouterModel] = useState<string>(() => localStorage.getItem('multitool_openrouter_model') || '');
 
+  const [promptWeight, setPromptWeight] = useState<'full' | 'balanced' | 'minimal'>(() => {
+    return (localStorage.getItem('multitool_prompt_weight') as any) || 'full';
+  });
+
   const [models, setModels] = useState<Model[]>(() => {
     const p = (localStorage.getItem('multitool_provider') as any) || 'groq';
     return BUILTIN_MODELS[p] || [];
@@ -2893,7 +2954,8 @@ export default function App() {
     localStorage.setItem('multitool_gemini_model', geminiModel);
     localStorage.setItem('multitool_openrouter_api_key', openrouterApiKey);
     localStorage.setItem('multitool_openrouter_model', openrouterModel);
-  }, [provider, ollamaUrl, groqApiKey, groqModel, deepseekApiKey, deepseekModel, openaiApiKey, openaiModel, geminiApiKey, geminiModel, openrouterApiKey, openrouterModel]);
+    localStorage.setItem('multitool_prompt_weight', promptWeight);
+  }, [provider, ollamaUrl, groqApiKey, groqModel, deepseekApiKey, deepseekModel, openaiApiKey, openaiModel, geminiApiKey, geminiModel, openrouterApiKey, openrouterModel, promptWeight]);
 
   // Multiple Chat Sessions
   const [chatSessions, setChatSessions] = useState<ChatSession[]>(() => {
@@ -3034,6 +3096,70 @@ export default function App() {
 
   const t = (TRANSLATIONS as any)[language] || TRANSLATIONS.tr;
 
+  const [autoTtsEnabled, setAutoTtsEnabled] = useState<boolean>(() => localStorage.getItem('multitool_auto_tts') === 'true');
+  const [speakingMessageId, setSpeakingMessageId] = useState<string | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem('multitool_auto_tts', String(autoTtsEnabled));
+  }, [autoTtsEnabled]);
+
+  useEffect(() => {
+    (window as any).onNativeSpeechEnd = () => {
+      setSpeakingMessageId(null);
+    };
+  }, []);
+
+  const speakText = (text: string, messageId?: string) => {
+    if (speakingMessageId && messageId && speakingMessageId === messageId) {
+      if ((window as any).AndroidNative?.stopSpeech) {
+        (window as any).AndroidNative.stopSpeech();
+      } else if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      setSpeakingMessageId(null);
+      return;
+    }
+
+    let cleanText = text
+      .replace(/```[\s\S]*?```/g, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/#{1,6}\s?/g, '')
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/<[^>]*>/g, '')
+      .trim();
+
+    if (!cleanText) return;
+
+    const langCode = language === 'tr' ? 'tr-TR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'fr' ? 'fr-FR' : language === 'it' ? 'it-IT' : 'en-US';
+
+    const activeId = messageId || 'active';
+    setSpeakingMessageId(activeId);
+
+    // 1. Android Native TTS Engine (Works guaranteed on Samsung Galaxy S26+, S25, S24 & all Androids)
+    if ((window as any).AndroidNative?.speakText) {
+      (window as any).AndroidNative.speakText(cleanText, langCode);
+      return;
+    }
+
+    // 2. Web SpeechSynthesis Fallback (For Browsers)
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = langCode;
+      utterance.rate = 0.7;
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => setSpeakingMessageId(null);
+      utterance.onerror = () => setSpeakingMessageId(null);
+
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert(t.speechNotSupported || 'Cihazınız ses sentezleme (TTS) desteklemiyor.');
+      setSpeakingMessageId(null);
+    }
+  };
+
   const [isSetupOpen, setIsSetupOpen] = useState<boolean>(() => localStorage.getItem('multitool_setup_completed') !== 'true');
   const [setupStep, setSetupStep] = useState<number>(1);
 
@@ -3058,30 +3184,83 @@ export default function App() {
     }
   };
 
-  const handleVoiceNoteToTask = () => {
-    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      alert(t.speechNotSupported);
-      return;
-    }
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = language === 'tr' ? 'tr-TR' : 'en-US';
-    recognition.start();
+  const [isRecordingAudioTask, setIsRecordingAudioTask] = useState<boolean>(false);
+  const [audioRecordTimer, setAudioRecordTimer] = useState<number>(0);
+  const audioTaskRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioTaskChunksRef = useRef<Blob[]>([]);
+  const audioTaskTimerRef = useRef<any>(null);
 
-    recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      if (transcript && transcript.trim()) {
-        const newTodo: TodoItem = {
-          id: Date.now().toString(),
-          task: `🎙️ ${transcript.trim()}`,
-          completed: false,
-          priority: 'medium'
-        };
-        setTodos(prev => [newTodo, ...prev]);
-        sendNotification(t.newVoiceTaskNotifTitle, `${t.newVoiceTaskNotifBody}: "${transcript.trim()}"`);
-        alert(`${t.voiceTaskRecorded}: "${transcript.trim()}"`);
+  const startAudioTaskRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioTaskChunksRef.current = [];
+
+      let mimeType = 'audio/webm';
+      if (typeof MediaRecorder !== 'undefined') {
+        if (!MediaRecorder.isTypeSupported('audio/webm')) {
+          if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
+          else if (MediaRecorder.isTypeSupported('audio/aac')) mimeType = 'audio/aac';
+          else mimeType = '';
+        }
       }
-    };
+
+      const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
+      audioTaskRecorderRef.current = recorder;
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) {
+          audioTaskChunksRef.current.push(e.data);
+        }
+      };
+
+      recorder.onstop = () => {
+        stream.getTracks().forEach(track => track.stop());
+
+        const audioBlob = new Blob(audioTaskChunksRef.current, { type: recorder.mimeType || 'audio/webm' });
+        const reader = new FileReader();
+        reader.readAsDataURL(audioBlob);
+        reader.onloadend = () => {
+          const base64Audio = reader.result as string;
+          const now = new Date();
+          const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const dateStr = now.toLocaleDateString();
+
+          const newTodo: TodoItem = {
+            id: Date.now().toString(),
+            task: `🎙️ Sesli Not (${dateStr} ${timeStr})`,
+            completed: false,
+            priority: 'medium',
+            audioUrl: base64Audio
+          };
+          setTodos(prev => [newTodo, ...prev]);
+          sendNotification(t.newVoiceTaskNotifTitle || 'Yeni Sesli Not', 'Sesli kayıt göreve eklendi.');
+        };
+      };
+
+      recorder.start(100);
+      setIsRecordingAudioTask(true);
+      setAudioRecordTimer(0);
+
+      if (audioTaskTimerRef.current) clearInterval(audioTaskTimerRef.current);
+      audioTaskTimerRef.current = setInterval(() => {
+        setAudioRecordTimer(prev => prev + 1);
+      }, 1000);
+
+    } catch (err: any) {
+      alert('Mikrofon erişim izni alınamadı: ' + err.message);
+      setIsRecordingAudioTask(false);
+    }
+  };
+
+  const stopAudioTaskRecording = () => {
+    if (audioTaskRecorderRef.current && audioTaskRecorderRef.current.state !== 'inactive') {
+      audioTaskRecorderRef.current.stop();
+    }
+    setIsRecordingAudioTask(false);
+    if (audioTaskTimerRef.current) {
+      clearInterval(audioTaskTimerRef.current);
+      audioTaskTimerRef.current = null;
+    }
   };
 
   const baseInputRef = useRef<string>('');
@@ -3089,6 +3268,20 @@ export default function App() {
   const recognitionRef = useRef<any>(null);
 
   const toggleVoiceRecognition = () => {
+    const langCode = language === 'tr' ? 'tr-TR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'fr' ? 'fr-FR' : language === 'it' ? 'it-IT' : 'en-US';
+
+    if ((window as any).AndroidNative?.startSpeechRecognition) {
+      (window as any).onNativeSpeechResult = (text: string) => {
+        if (text && text.trim()) {
+          setInputMessage(prev => prev ? `${prev.trim()} ${text.trim()}` : text.trim());
+        }
+        setIsListening(false);
+      };
+      setIsListening(true);
+      (window as any).AndroidNative.startSpeechRecognition(langCode);
+      return;
+    }
+
     if (isListening && recognitionRef.current) {
       try {
         recognitionRef.current.stop();
@@ -3106,7 +3299,7 @@ export default function App() {
       }
       try {
         const rec = new SpeechRecognition();
-        rec.lang = language === 'tr' ? 'tr-TR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'fr' ? 'fr-FR' : language === 'it' ? 'it-IT' : 'en-US';
+        rec.lang = langCode;
         rec.continuous = false;
         rec.interimResults = true;
 
@@ -4161,7 +4354,46 @@ Bugünün GERÇEK yerel tarihi: ${localDateStr} (${localDayName}).
 Şu anki GERÇEK yerel saat: ${localTimeStr}.
 Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${localDateStr}) ve şu anki yerel saati (${localTimeStr}) KESİNLİKLE esas al. Kullanıcı "saat kaç" veya "bugün günlerden ne" diye sorarsa tam olarak ${localTimeStr} ve ${localDateStr} (${localDayName}) bilgisini ver.`;
 
-    const fullSystemPrompt = `${SYSTEM_PROMPT}${dynamicTimeContext}\n\nAKTİF ROL TALİMATI:\n${PERSONAS[agentPersona].promptExtra}`;
+    let activeSystemPrompt = SYSTEM_PROMPT;
+    if (promptWeight === 'minimal') {
+      activeSystemPrompt = `Sen Multitool Asistanısın. Yanıtları ${aiLangName} dilinde ver. Kısa ve net ol.
+Kullanıcının notları, takvimi, görevleri ve dosyalarıyla ilgili isteklerinde sadece şu JSON formatında araç çağrısı yap:
+\`\`\`json
+{"tool": "araç_adı", "parameters": {...}}
+\`\`\`
+Mevcut Araçlar:
+- add_note, get_notes, delete_note
+- add_calendar_event, get_calendar_events, delete_calendar_event
+- add_todo_item, get_todo_items, complete_todo_item
+- read_file, write_file, execute_code, list_files, delete_file`;
+    } else if (promptWeight === 'balanced') {
+      activeSystemPrompt = `Sen Multitool Asistanısın. Kullanıcıya ${aiLangName} dilinde yardımcı olan pratik bir AI'sın.
+Notlar, takvim, görevler ve dosya işlemleri için aşağıdaki araçları kullanabilirsin.
+Araç çağrısı yapmak için tek bir JSON bloğu dön:
+\`\`\`json
+{
+  "tool": "araç_adı",
+  "parameters": { ... }
+}
+\`\`\`
+Araçlar:
+1. "add_calendar_event": {"title": "str", "date": "YYYY-MM-DD", "time": "HH:MM", "description": "str"}
+2. "get_calendar_events": {}
+3. "delete_calendar_event": {"id": "str"}
+4. "add_todo_item": {"task": "str", "priority": "low"|"medium"|"high", "dueDate": "YYYY-MM-DD"}
+5. "get_todo_items": {}
+6. "complete_todo_item": {"id": "str"}
+7. "add_note": {"title": "str", "content": "str", "category": "str"}
+8. "get_notes": {}
+9. "delete_note": {"id": "str"}
+10. "write_file": {"filename": "str", "content": "str"}
+11. "read_file": {"filename": "str"}
+12. "list_files": {}
+13. "execute_code": {"code": "str"}`;
+    }
+
+    const personaExtra = promptWeight === 'minimal' ? '' : `\n\nAKTİF ROL TALİMATI:\n${PERSONAS[agentPersona].promptExtra}`;
+    const fullSystemPrompt = `${activeSystemPrompt}${dynamicTimeContext}${personaExtra}`;
 
     const formattedHistory = [
       { role: 'system', content: fullSystemPrompt },
@@ -4369,6 +4601,9 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
         };
 
         setMessages(prev => [...prev, assistantFinalMsg]);
+        if (autoTtsEnabled) {
+          speakText(responseText, assistantFinalMsg.id);
+        }
         break;
 
       } catch (err: any) {
@@ -4931,7 +5166,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     // footer
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
     const countText = t.agendaEventsCount.replace('{n}', String(dayEvents.length));
-    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.0.2`, W / 2, H - 50);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.1.0`, W / 2, H - 50);
     ctx.textAlign = 'left';
 
     const filename = `multitool-agenda-${selectedCalendarDate}.jpg`;
@@ -5124,7 +5359,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     // footer
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
     const countText = t.agendaEventsCount.replace('{n}', String(totalEventsInWeek.length));
-    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.0.2`, W / 2, H - 40);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.1.0`, W / 2, H - 40);
     ctx.textAlign = 'left';
 
     const filename = `multitool-weekly-agenda-${selectedCalendarDate}.jpg`;
@@ -5350,7 +5585,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     }
 
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
-    ctx.fillText(`${t.agendaGeneratedBy} • ${t.notesTitle || 'Notlar'} • v1.0.2`, W / 2, H - 50);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${t.notesTitle || 'Notlar'} • v1.1.0`, W / 2, H - 50);
     ctx.textAlign = 'left';
 
     const cleanTitle = (note.title || 'note').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 20);
@@ -5518,7 +5753,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     }
 
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
-    ctx.fillText(`${t.agendaGeneratedBy} • ${notesToExport.length} ${t.notesTitle || 'Notlar'} • v1.0.2`, W / 2, H - 40);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${notesToExport.length} ${t.notesTitle || 'Notlar'} • v1.1.0`, W / 2, H - 40);
     ctx.textAlign = 'left';
 
     const filename = `multitool-all-notes-${Date.now()}.jpg`;
@@ -5663,12 +5898,22 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               >
                 <CalendarIcon size={13} /> {t.quickAddEvent || 'Etkinlik Ekle'}
               </button>
-              <button
-                onClick={handleVoiceNoteToTask}
-                style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 10px', fontSize: '11px', fontWeight: '700', borderRadius: 'var(--radius-pill)', background: 'rgba(217, 119, 6, 0.15)', border: '1px solid var(--accent-amber)', color: 'var(--accent-amber)', cursor: 'pointer', whiteSpace: 'nowrap' }}
-              >
-                <Mic size={13} /> {t.quickVoiceNote || 'Sesli Not'}
-              </button>
+              {!isRecordingAudioTask ? (
+                <button
+                  onClick={startAudioTaskRecording}
+                  style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 10px', fontSize: '11px', fontWeight: '700', borderRadius: 'var(--radius-pill)', background: 'rgba(217, 119, 6, 0.15)', border: '1px solid var(--accent-amber)', color: 'var(--accent-amber)', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                >
+                  <Mic size={13} /> {t.quickVoiceNote || 'Sesli Not'}
+                </button>
+              ) : (
+                <button
+                  onClick={stopAudioTaskRecording}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '5px 10px', fontSize: '11px', fontWeight: '800', borderRadius: 'var(--radius-pill)', background: '#ef4444', color: '#ffffff', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                >
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ffffff', display: 'inline-block' }}></span>
+                  Bitir (00:{(audioRecordTimer % 60).toString().padStart(2, '0')})
+                </button>
+              )}
               <button
                 onClick={() => setActiveTab('dashboard')}
                 style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 10px', fontSize: '11px', fontWeight: '700', borderRadius: 'var(--radius-pill)', background: 'rgba(14, 165, 233, 0.15)', border: '1px solid var(--accent-cyan)', color: 'var(--accent-cyan)', cursor: 'pointer', whiteSpace: 'nowrap' }}
@@ -5754,6 +5999,29 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                 }}
               >
                 <MessageCirclePlus size={13} /> {t.newChat || 'Yeni Sohbet'}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setAutoTtsEnabled(!autoTtsEnabled)}
+                title={t.autoTtsHelp}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '4px 10px',
+                  borderRadius: 'var(--radius-pill)',
+                  fontSize: '11px',
+                  fontWeight: '800',
+                  background: autoTtsEnabled ? 'rgba(59, 130, 246, 0.15)' : 'var(--bg-card)',
+                  border: autoTtsEnabled ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                  color: autoTtsEnabled ? 'var(--primary)' : 'var(--text-muted)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {autoTtsEnabled ? <Volume2 size={13} /> : <VolumeX size={13} />}
+                <span>TTS: {autoTtsEnabled ? 'ON' : 'OFF'}</span>
               </button>
             </div>
 
@@ -5841,7 +6109,31 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                   return (
                     <div key={m.id} className={`message-bubble ${m.role}`}>
                       {renderMessageContent(m.content)}
-                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', fontSize: '9px', opacity: 0.7, marginTop: '4px' }}>
+                      <div style={{ display: 'flex', justifyContent: m.role === 'assistant' ? 'space-between' : 'flex-end', alignItems: 'center', fontSize: '9px', opacity: 0.85, marginTop: '6px', gap: '8px' }}>
+                        {m.role === 'assistant' && (
+                          <button
+                            type="button"
+                            onClick={() => speakText(m.content, m.id)}
+                            title={speakingMessageId === m.id ? (t.stopListenBtn || 'Durdur') : (t.listenBtn || 'Seslendir')}
+                            style={{
+                              background: speakingMessageId === m.id ? 'var(--primary)' : 'rgba(255,255,255,0.06)',
+                              border: speakingMessageId === m.id ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                              color: speakingMessageId === m.id ? '#ffffff' : 'var(--text-secondary)',
+                              cursor: 'pointer',
+                              padding: '2px 8px',
+                              borderRadius: '12px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              fontSize: '10px',
+                              fontWeight: '700',
+                              transition: 'all 0.2s ease'
+                            }}
+                          >
+                            {speakingMessageId === m.id ? <VolumeX size={12} /> : <Volume2 size={12} />}
+                            <span>{speakingMessageId === m.id ? (t.stopListenBtn || 'Durdur') : (t.listenBtn || 'Seslendir')}</span>
+                          </button>
+                        )}
                         <span>{m.timestamp}</span>
                       </div>
                     </div>
@@ -6517,14 +6809,25 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                 <button type="submit" className="btn-primary" style={{ flex: 2 }}>
                   <Plus size={16} /> {t.addTaskBtn || 'Görev Ekle'}
                 </button>
-                <button
-                  type="button"
-                  className="btn-secondary"
-                  style={{ flex: 1, fontSize: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}
-                  onClick={handleVoiceNoteToTask}
-                >
-                  <Mic size={14} color="var(--primary)" /> {t.voiceNoteBtn || 'Sesli Not'}
-                </button>
+                  {!isRecordingAudioTask ? (
+                    <button
+                      type="button"
+                      className="btn-secondary"
+                      style={{ flex: 1, fontSize: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}
+                      onClick={startAudioTaskRecording}
+                    >
+                      <Mic size={14} color="var(--primary)" /> {t.voiceNoteBtn || 'Sesli Not'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      style={{ flex: 1, fontSize: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', background: '#ef4444', color: '#ffffff', border: 'none', borderRadius: 'var(--radius-md)', fontWeight: '800', cursor: 'pointer', boxShadow: '0 0 10px rgba(239, 68, 68, 0.5)' }}
+                      onClick={stopAudioTaskRecording}
+                    >
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffffff', display: 'inline-block' }}></span>
+                      🔴 Bitir (00:{(audioRecordTimer % 60).toString().padStart(2, '0')})
+                    </button>
+                  )}
               </div>
             </form>
 
@@ -6544,6 +6847,11 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                     </div>
                     <div className="todo-content">
                       <span className="todo-text">{todo.task}</span>
+                      {todo.audioUrl && (
+                        <div style={{ marginTop: '6px' }}>
+                          <audio controls src={todo.audioUrl} style={{ height: '36px', width: '100%', maxWidth: '280px', borderRadius: '18px' }} />
+                        </div>
+                      )}
                       <div className="todo-meta">
                         <span className={`todo-priority ${todo.priority}`}>{todo.priority}</span>
                         {todo.dueDate && <span>📅 {t.dueDateLabel}: {todo.dueDate}</span>}
@@ -6590,6 +6898,11 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                       </div>
                       <div className="todo-content">
                         <span className="todo-text" style={{ textDecoration: 'line-through' }}>{todo.task}</span>
+                        {todo.audioUrl && (
+                          <div style={{ marginTop: '6px' }}>
+                            <audio controls src={todo.audioUrl} style={{ height: '36px', width: '100%', maxWidth: '280px', borderRadius: '18px' }} />
+                          </div>
+                        )}
                         <div className="todo-meta">
                           <span style={{ color: 'var(--text-muted)', fontSize: '10px' }}>📦 {t.archived}</span>
                         </div>
@@ -7538,7 +7851,43 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                 </>
               )}
 
-              <button className="btn-primary" onClick={fetchModels} style={{ marginTop: '6px' }}>
+              <div className="form-group" style={{ marginTop: '12px', borderTop: '1px solid var(--border-color)', paddingTop: '12px' }}>
+                <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Cpu size={14} style={{ color: 'var(--accent)' }} /> {t.promptWeightLabel || 'Sistem Prompt Ağırlığı'}
+                </label>
+                <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                  {t.promptWeightHelp}
+                </p>
+                <select
+                  className="form-select"
+                  value={promptWeight}
+                  onChange={(e) => setPromptWeight(e.target.value as any)}
+                >
+                  <option value="minimal">{t.promptWeightMinimal}</option>
+                  <option value="balanced">{t.promptWeightBalanced}</option>
+                  <option value="full">{t.promptWeightFull}</option>
+                </select>
+              </div>
+
+              <div className="form-group" style={{ marginTop: '12px', borderTop: '1px solid var(--border-color)', paddingTop: '12px' }}>
+                <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Volume2 size={14} style={{ color: 'var(--primary)' }} /> {t.autoTtsLabel || 'AI Yanıtlarını Seslendir (TTS)'}
+                </label>
+                <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                  {t.autoTtsHelp}
+                </p>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold', color: 'var(--text-primary)' }}>
+                  <input
+                    type="checkbox"
+                    checked={autoTtsEnabled}
+                    onChange={(e) => setAutoTtsEnabled(e.target.checked)}
+                    style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
+                  />
+                  <span>{autoTtsEnabled ? 'Açık (Otomatik Oku)' : 'Kapalı'}</span>
+                </label>
+              </div>
+
+              <button className="btn-primary" onClick={fetchModels} style={{ marginTop: '10px' }}>
                 <Check size={14} /> {t.saveAndTestBtn}
               </button>
             </div>
@@ -7549,7 +7898,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                 {t.aboutDesc}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: 'var(--radius-xs)', marginBottom: '10px' }}>
-                <span>• {t.versionLabel}: <strong>v1.0.2</strong></span>
+                <span>• {t.versionLabel}: <strong>v1.1.0</strong></span>
                 <span>• {t.architectureLabel}: <strong>Self-Coding AI & Localhost Node.js</strong></span>
                 <span>• {t.buildLabel}: <strong>Vite + Capacitor</strong></span>
                 <span>• {t.databaseLabel}: <strong>LocalStorage & Express API</strong></span>
@@ -7991,6 +8340,21 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                   />
                 </div>
               )}
+
+              <div className="form-group" style={{ marginTop: '8px' }}>
+                <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Cpu size={14} style={{ color: 'var(--accent)' }} /> {t.promptWeightLabel || 'Sistem Prompt Ağırlığı'}
+                </label>
+                <select
+                  className="form-select"
+                  value={promptWeight}
+                  onChange={(e) => setPromptWeight(e.target.value as any)}
+                >
+                  <option value="minimal">{t.promptWeightMinimal}</option>
+                  <option value="balanced">{t.promptWeightBalanced}</option>
+                  <option value="full">{t.promptWeightFull}</option>
+                </select>
+              </div>
             </div>
 
             <div style={{ display: 'flex', gap: '10px', width: '100%', marginTop: '10px' }}>

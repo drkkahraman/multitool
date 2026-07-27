@@ -11,19 +11,118 @@ import android.webkit.JavascriptInterface;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import android.speech.tts.TextToSpeech;
+import java.util.Locale;
+import org.json.JSONObject;
 import com.getcapacitor.BridgeActivity;
 
-public class MainActivity extends BridgeActivity {
+public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitListener {
+
+    private static final int SPEECH_REQUEST_CODE = 102;
+    private TextToSpeech tts;
+    private boolean ttsReady = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize Android Native TextToSpeech engine
+        tts = new TextToSpeech(this, this);
+
         // Expose AndroidNative interface to JS
         this.bridge.getWebView().addJavascriptInterface(new WebAppInterface(this), "AndroidNative");
 
+        // Grant WebChromeClient permissions for audio/media capture
+        this.bridge.getWebView().setWebChromeClient(new android.webkit.WebChromeClient() {
+            @Override
+            public void onPermissionRequest(final android.webkit.PermissionRequest request) {
+                request.grant(request.getResources());
+            }
+        });
+
         // Request Notification Permission on Android 13+ (API 33+)
         requestNotificationPermissionNative();
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            ttsReady = true;
+            tts.setLanguage(new Locale("tr", "TR"));
+            tts.setOnUtteranceProgressListener(new android.speech.tts.UtteranceProgressListener() {
+                @Override
+                public void onStart(String utteranceId) {}
+
+                @Override
+                public void onDone(String utteranceId) {
+                    if (bridge != null && bridge.getWebView() != null) {
+                        bridge.getWebView().post(() -> {
+                            bridge.getWebView().evaluateJavascript(
+                                "window.onNativeSpeechEnd && window.onNativeSpeechEnd();",
+                                null
+                            );
+                        });
+                    }
+                }
+
+                @Override
+                public void onError(String utteranceId) {
+                    if (bridge != null && bridge.getWebView() != null) {
+                        bridge.getWebView().post(() -> {
+                            bridge.getWebView().evaluateJavascript(
+                                "window.onNativeSpeechEnd && window.onNativeSpeechEnd();",
+                                null
+                            );
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    public void speakInternal(String text, String lang) {
+        if (tts != null) {
+            Locale locale = new Locale("tr", "TR");
+            if ("en-US".equalsIgnoreCase(lang) || "en".equalsIgnoreCase(lang)) locale = Locale.US;
+            else if ("de-DE".equalsIgnoreCase(lang) || "de".equalsIgnoreCase(lang)) locale = Locale.GERMANY;
+            else if ("es-ES".equalsIgnoreCase(lang) || "es".equalsIgnoreCase(lang)) locale = new Locale("es", "ES");
+            else if ("fr-FR".equalsIgnoreCase(lang) || "fr".equalsIgnoreCase(lang)) locale = Locale.FRANCE;
+            else if ("it-IT".equalsIgnoreCase(lang) || "it".equalsIgnoreCase(lang)) locale = Locale.ITALY;
+
+            tts.setLanguage(locale);
+            tts.setSpeechRate(0.7f);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "multitool_tts");
+            } else {
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            java.util.ArrayList<String> results = data.getStringArrayListExtra(android.speech.RecognizerIntent.EXTRA_RESULTS);
+            if (results != null && !results.isEmpty()) {
+                String spokenText = results.get(0);
+                this.bridge.getWebView().post(() -> {
+                    this.bridge.getWebView().evaluateJavascript(
+                        "window.onNativeSpeechResult && window.onNativeSpeechResult(" + JSONObject.quote(spokenText) + ");",
+                        null
+                    );
+                });
+            }
+        }
     }
 
     public void requestNotificationPermissionNative() {
@@ -133,6 +232,57 @@ public class MainActivity extends BridgeActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                     android.widget.Toast.makeText(mContext, "Görsel kaydedilemedi: " + e.getMessage(), android.widget.Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void startSpeechRecognition(String lang) {
+            MainActivity.this.runOnUiThread(() -> {
+                try {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, 103);
+                    }
+
+                    android.content.Intent intent = new android.content.Intent(android.speech.RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                    intent.putExtra(android.speech.RecognizerIntent.EXTRA_LANGUAGE_MODEL, android.speech.RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                    intent.putExtra(android.speech.RecognizerIntent.EXTRA_LANGUAGE, (lang != null && !lang.isEmpty()) ? lang : "tr-TR");
+                    intent.putExtra(android.speech.RecognizerIntent.EXTRA_PROMPT, "Multitool - Konuşun...");
+
+                    MainActivity.this.startActivityForResult(intent, SPEECH_REQUEST_CODE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    android.widget.Toast.makeText(mContext, "Ses tanıma başlatılamadı: " + e.getMessage(), android.widget.Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void speakText(String text, String lang) {
+            MainActivity.this.runOnUiThread(() -> {
+                try {
+                    if (tts == null || !ttsReady) {
+                        tts = new TextToSpeech(mContext, status -> {
+                            if (status == TextToSpeech.SUCCESS) {
+                                ttsReady = true;
+                                speakInternal(text, lang);
+                            }
+                        });
+                    } else {
+                        speakInternal(text, lang);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void stopSpeech() {
+            MainActivity.this.runOnUiThread(() -> {
+                if (tts != null) {
+                    tts.stop();
                 }
             });
         }

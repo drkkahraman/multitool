@@ -1,6 +1,6 @@
-# 🛠️ Multitool AI Agent (v1.0.2)
+# 🛠️ Multitool AI Agent (v1.1.0)
 
-[![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/drkkahraman/multitool)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
 [![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
@@ -12,7 +12,7 @@
 ## ✨ Key Features
 
 ### 🚀 1. Automated GitHub Release Updates
-* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.0.2`.
+* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.1.0`.
 * **In-App Release Modal**: Displays version release notes and a direct *"⚡ Download & Install Update"* button.
 * **Native Android Installer Bridge**: Direct `openUrl` Java bridge to open APK download links directly in the native browser/download manager.
 
@@ -59,6 +59,19 @@
 ### 🎙️ 8. Multi-AI Provider Support & Voice Dictation (STT)
 * Supports Groq Cloud, DeepSeek API, OpenAI (GPT-4o), Google Gemini API, OpenRouter, and Ollama (Local).
 * Hands-free voice typing in your preferred language by tapping the microphone button.
+
+### 🗣️ 9. Android Native Text-to-Speech (TTS) & Speed Tuning (0.7x)
+* **Audible AI Responses**: Per-message playback buttons and auto-read toggle for assistant responses across 6 supported languages.
+* **Android Native Engine Bridge**: Integrated `android.speech.tts.TextToSpeech` with `UtteranceProgressListener` for smooth, uninterrupted speech playback on modern devices.
+* **Calibrated 0.7x Speed**: Speech rate tuned to 0.7x for clear, articulate voice playback.
+
+### 📼 10. Direct Audio Voice Notes & In-Task Audio Player
+* **Live Recording Indicator**: Interactive recording status with live duration timer (`🔴 Kaydı Bitir (00:05)`).
+* **Direct Audio Capture**: Record high-quality audio notes stored directly as audio files on task items without relying on text conversion.
+* **Embedded Playable Audio**: Play back recorded audio notes anytime using built-in HTML5 audio players in active and archived tasks.
+
+### ⚡ 11. System Prompt Weight Customization for Local LLMs
+* **Ollama Speed Tuning**: Adjustable System Prompt Weight presets (Light / Balanced / Detailed) in settings to accelerate response speed for local models.
 
 ---
 
