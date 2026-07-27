@@ -1,33 +1,42 @@
-# 🛠️ Multitool AI Agent (v1.0.1)
+# 🛠️ Multitool AI Agent (v1.0.2)
 
-[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/drkkahraman/multitool)
+[![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
 [![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
 
-**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, automated agenda and task management, automated GitHub releases update detection, and self-compiling Android APK capabilities directly on-device.
+**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, automated agenda and task management, automated GitHub releases update detection, modular setup wizard, gallery JPEG note exports, and self-compiling Android APK capabilities directly on-device.
 
 ---
 
 ## ✨ Key Features
 
 ### 🚀 1. Automated GitHub Release Updates
-* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.0.1`.
+* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.0.2`.
 * **In-App Release Modal**: Displays version release notes and a direct *"⚡ Download & Install Update"* button.
 * **Native Android Installer Bridge**: Direct `openUrl` Java bridge to open APK download links directly in the native browser/download manager.
 
-### 📥 2. High-Resolution JPEG Agenda Exports (Daily & Weekly)
-* **Daily Agenda Export**: Export single-day agendas as JPEG graphics directly to gallery.
-* **Weekly Agenda Export**: Generate a comprehensive 7-day weekly schedule poster (1200x1600) with event counts and date ranges.
+### 📥 2. High-Resolution JPEG Agenda & Note Exports to Gallery
+* **Daily & Weekly Agenda Export**: Export single-day agendas and 7-day weekly schedule posters (1200x1600) as high-res JPEG graphics directly to gallery.
+* **Personal Notes Gallery Export**: Export individual notes or all notes simultaneously as branded JPEG image cards with one tap.
 * **App Branding & Multilingual**: Embeds the official application logo mark and localizes all graphics across 6 supported languages.
 
-### 🤖 3. Self-Coding AI & Live Web Sandbox
+### 🧙‍♂️ 3. Modular Multi-Section Setup Wizard & Fast Skip
+* **Interactive 11-Step Flow**: Guided onboarding workflow with separate, detailed capability slides for:
+  - 🛠️ *Self-Coding & Localhost Sandbox*
+  - 🎤 *Multi-AI & Voice Assistant*
+  - 📅 *Smart Calendar & Gallery Export*
+  - 📝 *Todos, Notes & Analytics*
+* **Skip Setup Mechanism**: Option to skip onboarding instantly on any slide and launch directly into the application.
+* **Full Multilingual Setup**: Complete localization for setup titles, bullets, personas, and controls across all 6 languages.
+
+### 🤖 4. Self-Coding AI & Localhost Sandbox
 * **Code Generation & Editing**: Write and edit JavaScript, Node.js, and HTML/CSS code directly on your mobile device powered by AI.
 * **Localhost Server Runner**: Launch live Express/Node.js backend servers running locally on `http://localhost:3005`.
+* **Responsive 2x2 Grid Sandbox Controls**: Optimized mobile action button layout for running, serving, exporting, and compiling code without layout clipping.
 * **Automated APK Builder**: Update the application's own source code with a single command and trigger the Vite + Capacitor + Gradle build workflow to generate a new downloadable Android APK.
 
-### 🌍 4. Multi-Language Support & Onboarding Wizard (Setup UI)
-* **Onboarding Setup Wizard**: Animated full-screen setup experience on initial launch.
+### 🌍 5. Multi-Language Support
 * **6 Supported Languages**:
   - 🇹🇷 Turkish
   - 🇬🇧 English
@@ -37,19 +46,19 @@
   - 🇮🇹 Italian
 * Language preferences are automatically persisted in local storage and applied instantly across the entire application interface.
 
-### 📅 5. Smart Agenda & Calendar
+### 📅 6. Smart Agenda & Calendar
 * **Month Navigation**: Easily browse previous and upcoming months.
 * **Timeline & List Views**: View scheduled events in chronological timeline format or structured list view.
 * **Local Device Notifications**: Receive instant push notifications for upcoming meetings and deadlines.
 
-### ✔️ 6. Todo Management & 24-Hour Auto-Archiving
+### ✔️ 7. Todo Management & 24-Hour Auto-Archiving
 * **Completion Rate Statistics (%):** Real-time percentage calculation of task productivity.
 * **24-Hour Smart Auto-Archive**: Completed tasks are automatically moved to the **Archived Tasks** section after 24 hours.
 * **Preserved Productivity Stats**: Archived tasks continue to contribute 100% to your overall completion rate percentage.
 
-### 🎙️ 7. Voice Dictation (STT)
+### 🎙️ 8. Multi-AI Provider Support & Voice Dictation (STT)
+* Supports Groq Cloud, DeepSeek API, OpenAI (GPT-4o), Google Gemini API, OpenRouter, and Ollama (Local).
 * Hands-free voice typing in your preferred language by tapping the microphone button.
-* Advanced real-time transcription merging eliminates duplicate word repetitions.
 
 ---
 
@@ -59,9 +68,9 @@
 | :--- | :--- |
 | **Frontend Framework** | React 19 + TypeScript + Vite |
 | **Mobile Runtime** | Capacitor v8 (Native Android Bridge) |
-| **Styling & UI** | Vanilla CSS (Glassmorphism & Custom Tokens) |
+| **Styling & UI** | Vanilla CSS (Theme Tokens & Mobile Grid Constraints) |
 | **Icon Set** | Lucide React |
-| **AI Backend Engines** | Groq Cloud API & Ollama (Local Server) |
+| **AI Backend Engines** | Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter & Ollama |
 | **Local Sandbox Server** | Node.js + Express (`server.cjs`) |
 | **Mobile Compiler** | Gradle + Android SDK Platform 34 |
 

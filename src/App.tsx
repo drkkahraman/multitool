@@ -121,16 +121,29 @@ const TRANSLATIONS = {
     welcomeDesc: "Your intelligent personal assistant, live web code sandbox, and todo & calendar manager.",
     discoverFeatures: "Select Language & Start 🚀",
     exploreBtn: "Explore Features & Begin 🚀",
+    setupSkip: "Skip Setup ⏭️",
     featuresTitle: "What Can You Do? ⚡",
     featuresSub: "Core capabilities of the Multitool platform:",
-    feat1Title: "🛠️ Live Code & Web Sandbox",
-    feat1Desc: "Generate HTML, CSS, and JS with AI and preview your web creations live in the Sandbox.",
-    feat2Title: "✔️ To-Do List & Home Screen Widget",
-    feat2Desc: "Organize your tasks with priorities and launch the app instantly from your Android Home Screen.",
-    feat3Title: "📅 Smart Calendar & Personal Notifications",
-    feat3Desc: "Manage schedule events and receive personalized local device push reminders.",
-    feat4Title: "💬 AI Chat, Voice Dictation & File Analysis",
-    feat4Desc: "Chat with Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter & Ollama AI models.",
+    feat1Title: "🛠️ Self-Coding & Localhost Sandbox",
+    feat1Desc: "Edit source code, compile new APKs, and execute Localhost Node.js servers.",
+    feat1Bullet1: "⚡ Instant mobile APK compilation with Vite + Capacitor",
+    feat1Bullet2: "🖥 Start and test Express/Node.js servers locally",
+    feat1Bullet3: "🌐 Live HTML/JS web preview sandbox environment",
+    feat2Title: "🎤 Multi-AI & Voice Assistant",
+    feat2Desc: "Voice dictation & intelligent responses with Groq, DeepSeek, OpenAI, Gemini, & Ollama.",
+    feat2Bullet1: "🎤 Voice recognition and text-to-speech AI answers",
+    feat2Bullet2: "🧠 Support for Groq, DeepSeek, OpenAI, Gemini & OpenRouter",
+    feat2Bullet3: "🎭 Customizable Coder, Assistant & Persona modes",
+    feat3Title: "📅 Smart Calendar & Gallery Export",
+    feat3Desc: "Render daily and weekly agendas as JPEG images and save directly to Gallery.",
+    feat3Bullet1: "📅 Timeline, Weekly, and List agenda views",
+    feat3Bullet2: "🖼 Export Daily & Weekly Agendas as JPEG to Gallery",
+    feat3Bullet3: "🔔 Event reminders and smart local notifications",
+    feat4Title: "📝 Todos, Notes & Analytics",
+    feat4Desc: "Manage all notes, todo routines, and view productivity metrics in one place.",
+    feat4Bullet1: "📝 Save all notes to Gallery as JPEG with one tap",
+    feat4Bullet2: "📊 Productivity analytics and routine completion stats",
+    feat4Bullet3: "🔒 100% local, privacy-focused on-device storage",
     aiProviderTitle: "AI Provider Setup 🔑",
     aiProviderSub: "Configure your AI model backend. Select your preferred provider and API key.",
     nameLabel: "👤 Your Name",
@@ -264,7 +277,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Download & Install Update",
     btnDismissUpdate: "Later",
     updateCheckFailed: "Could not check for updates. Please check your network connection.",
-    upToDateMsg: "Your app is up to date (v1.0.1).",
+    upToDateMsg: "Your app is up to date (v1.0.2).",
     releaseNotesLabel: "Release Notes:",
     aboutDesc: "This app is a mobile assistant with Self-Coding AI and Localhost Node.js support (Multitool).",
     versionLabel: "Version",
@@ -402,8 +415,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Mint Emerald",
     themeOled: "✨ OLED Gold",
     themeDefaultLight: "☀️ Pure Light",
-    versionFullLabel: "Multitool AI • Version v1.0.1",
-    versionFooterLabel: "Multitool AI • Version 1.0.1",
+    versionFullLabel: "Multitool AI • Version v1.0.2",
+    versionFooterLabel: "Multitool AI • Version 1.0.2",
     prevMonthTitle: "Previous Month",
     nextMonthTitle: "Next Month",
     todayBtn: "Today",
@@ -487,7 +500,6 @@ const TRANSLATIONS = {
     consolePreviewTitle: "Console/JS Preview",
     setupIntroTagline: "Your pocket-sized AI dev companion: code, chat, automate, and build APKs right from your phone.",
     setupIntroCta: "Let's Get Started 🚀",
-    setupSkip: "Skip for now",
     setupStepLabel: "Step {n} of {total}",
     setupStepIntro: "Welcome",
     setupStepPersonalize: "Personalize",
@@ -511,6 +523,11 @@ const TRANSLATIONS = {
     setupPersonalizeSub: "Tell me your name and pick a language to get started.",
     downloadDayJpeg: "📥 Download Day (JPEG)",
     downloadWeekJpeg: "📥 Download Week (JPEG)",
+    downloadNoteJpeg: "📥 Save Note (JPEG)",
+    downloadAllNotesJpeg: "📥 Save All Notes (JPEG)",
+    noteCardTitle: "Personal Note",
+    notesOverviewTitle: "Notes Overview",
+    logNoteSavedGallery: "Note saved to gallery",
     agendaCardTitle: "Daily Agenda",
     weeklyAgendaTitle: "Weekly Agenda",
     agendaNoEventsCard: "No events scheduled for this day.",
@@ -523,16 +540,29 @@ const TRANSLATIONS = {
     welcomeDesc: "Akıllı kişisel asistanınız, canlı web sandbox ortamınız, yapılacaklar ve ajanda yöneticiniz.",
     discoverFeatures: "Dil Seçin & Başlayın 🚀",
     exploreBtn: "Yetenekleri Keşfet & Başla 🚀",
+    setupSkip: "Kurulumu Atla ⏭️",
     featuresTitle: "Neler Yapabilirsiniz? ⚡",
     featuresSub: "Multitool platformunun sunduğu temel yetenekler:",
-    feat1Title: "🛠️ Kod Yazma & Canlı Web Sandbox",
-    feat1Desc: "AI ile HTML, CSS ve JS kodları oluşturun, Sandbox ekranında canlı olarak çalıştırıp test edin.",
-    feat2Title: "✔️ Yapılacaklar Listesi & Rutinler",
-    feat2Desc: "Görevlerinizi ve günlük rutinlerinizi kolayca yönetin, durum özeti kartı ile takip edin.",
-    feat3Title: "📅 Akıllı Takvim & Zamanında Bildirimler",
-    feat3Desc: "Etkinliklerinizi yönetin ve süresi geldiğinde veya 30 dk önce kişiselleştirilmiş bildirim alın.",
-    feat4Title: "💬 AI Sohbet, Sesli Dikte & Dosya Analizi",
-    feat4Desc: "Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter ve Ollama modelleriyle sohbet edin.",
+    feat1Title: "🛠️ Self-Coding & Localhost Sandbox",
+    feat1Desc: "Kaynak kodunu düzenleyin, yeni APK derleyin ve Localhost Node.js sunucusu çalıştırın.",
+    feat1Bullet1: "⚡ Vite + Capacitor ile anında mobil APK derleme",
+    feat1Bullet2: "🖥 Express/Node.js sunucusu başlatma ve test etme",
+    feat1Bullet3: "🌐 Canlı HTML/JS web önizleme sandbox alanı",
+    feat2Title: "🎤 Çoklu AI & Sesli Asistan",
+    feat2Desc: "Groq, DeepSeek, OpenAI, Gemini ve Ollama ile sesli iletişim ve akıllı yanıtlar.",
+    feat2Bullet1: "🎤 Sesli mesaj tanıma ve Türkçe sesli yanıt",
+    feat2Bullet2: "🧠 Groq, DeepSeek, OpenAI, Gemini & OpenRouter desteği",
+    feat2Bullet3: "🎭 Yazılımcı, Asistan & Kodlama personası seçenekleri",
+    feat3Title: "📅 Akıllı Takvim & Galeriye Aktarım",
+    feat3Desc: "Zaman çizelgesi ve ajandanızı JPEG görsel formatında doğrudan cihaz galerisine kaydeder.",
+    feat3Bullet1: "📅 Zaman Çizelgesi, Haftalık ve Liste ajanda görünümleri",
+    feat3Bullet2: "🖼 Günlük ve Haftalık ajandayı JPEG olarak Galeriye Aktarma",
+    feat3Bullet3: "🔔 Hatırlatıcı bildirimleri ve etkinlik takibi",
+    feat4Title: "📝 Yapılacaklar, Notlar & Üretkenlik Analizi",
+    feat4Desc: "Notlarınızı, yapılacak rutinlerinizi ve günlük istatistiklerinizi tek yerden yönetin.",
+    feat4Bullet1: "📝 Tüm notları tek tıkla galeriye JPEG olarak kaydetme",
+    feat4Bullet2: "📊 Günlük tamamlama istatistikleri ve analizler",
+    feat4Bullet3: "🔒 %100 yerel ve gizlilik odaklı cihaz içi saklama",
     aiProviderTitle: "AI Sağlayıcısı Seçin 🔑",
     aiProviderSub: "Yapay zeka motorunuzu ve API anahtarınızı yapılandırın.",
     nameLabel: "👤 Adınız (İsminiz)",
@@ -666,7 +696,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Güncellemeyi İndir ve Kur",
     btnDismissUpdate: "Daha Sonra",
     updateCheckFailed: "Güncelleme kontrolü başarısız oldu. İnternet bağlantınızı kontrol edin.",
-    upToDateMsg: "Uygulamanız güncel (v1.0.1).",
+    upToDateMsg: "Uygulamanız güncel (v1.0.2).",
     releaseNotesLabel: "Yayın Notları:",
     aboutDesc: "Bu uygulama Self-Coding AI ve Localhost Node.js destekli mobil asistandır (Multitool).",
     versionLabel: "Sürüm",
@@ -674,14 +704,14 @@ const TRANSLATIONS = {
     buildLabel: "Derleme",
     databaseLabel: "Veritabanı",
     backupTitle: "Veri Yedekleme & Geri Yükleme",
-    backupDesc: "{t.backupDesc}",
+    backupDesc: "Tüm takvim, görev, sohbet ve sandbox verilerinizi JSON formatında yedekleyin veya içe aktarın.",
     exportBtn: "Dışa Aktar (Yedekle)",
     importBtn: "İçe Aktar",
     systemLogsTitle: "Sistem Logları",
     noLogs: "Log kaydı yok.",
     setupWizardTitle: "🚀 Kurulum Sihirbazı",
-    setupWizardDesc: "{t.setupWizardDesc}",
-    setupWizardRestartBtn: "{t.setupWizardRestartBtn}",
+    setupWizardDesc: "AI sağlayıcınızı ve varsayılan rolünüzü yeniden yapılandırmak için sihirbazı tekrar çalıştırın.",
+    setupWizardRestartBtn: "Kurulum Sihirbazını Yeniden Başlat",
     calendarTitle: "📅 Takvim & Program",
     scheduleLabel: "Programı",
     viewTimeline: "Akış",
@@ -725,7 +755,7 @@ const TRANSLATIONS = {
     sandboxTitle: "💻 Kod & Localhost Sandbox",
     previewTab: "Canlı Önizleme",
     livePreviewTitle: "Canlı Web Sandbox Önizlemesi",
-    sandboxFolderEmpty: "{t.sandboxFolderEmpty}",
+    sandboxFolderEmpty: "Klasör boş. AI burada dosya oluşturabilir veya siz yeni dosya açabilirsiniz.",
     newFileOpen: "Yeni Dosya Aç:",
     localhostServerBtn: "Localhost Sunucu (3005)",
     exportHtmlBtn: "Dışa Aktar (HTML)",
@@ -804,8 +834,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Nane Zümrüt",
     themeOled: "✨ OLED Altın",
     themeDefaultLight: "☀️ Saf Aydınlık",
-    versionFullLabel: "Multitool AI • Sürüm v1.0.1",
-    versionFooterLabel: "Multitool AI • Sürüm 1.0.1",
+    versionFullLabel: "Multitool AI • Sürüm v1.0.2",
+    versionFooterLabel: "Multitool AI • Sürüm 1.0.2",
     prevMonthTitle: "Önceki Ay",
     nextMonthTitle: "Sonraki Ay",
     todayBtn: "Bugün",
@@ -889,7 +919,6 @@ const TRANSLATIONS = {
     consolePreviewTitle: "Console/JS Önizleme",
     setupIntroTagline: "Cebindeki AI geliştirici asistanı: kodla, sohbet et, otomatikleştir ve APK'ı telefonundan derle.",
     setupIntroCta: "Başlayalım 🚀",
-    setupSkip: "Şimdilik atla",
     setupStepLabel: "Adım {n} / {total}",
     setupStepIntro: "Karşılama",
     setupStepPersonalize: "Kişiselleştir",
@@ -913,6 +942,11 @@ const TRANSLATIONS = {
     setupPersonalizeSub: "Başlamak için adını ve dilini seç.",
     downloadDayJpeg: "📥 Günü İndir (JPEG)",
     downloadWeekJpeg: "📥 Haftayı İndir (JPEG)",
+    downloadNoteJpeg: "📥 Galeriye Kaydet (JPEG)",
+    downloadAllNotesJpeg: "📥 Tüm Notları Kaydet (JPEG)",
+    noteCardTitle: "Kişisel Not",
+    notesOverviewTitle: "Notlar Özeti",
+    logNoteSavedGallery: "Not galeriye kaydedildi",
     agendaCardTitle: "Günlük Program",
     weeklyAgendaTitle: "Haftalık Program",
     agendaNoEventsCard: "Bu gün için etkinlik yok.",
@@ -926,15 +960,27 @@ const TRANSLATIONS = {
     discoverFeatures: "Sprache wählen & Starten 🚀",
     exploreBtn: "Funktionen erkunden & Starten 🚀",
     featuresTitle: "Was können Sie tun? ⚡",
-    featuresSub: "Kernfunktionen der Multitool-Plattform:",
-    feat1Title: "🛠️ Self-Coding & Live-Web-Sandbox",
-    feat1Desc: "Generieren Sie Code mit KI, starten Sie Express-Server und testen Sie sofort in Web-Vorschauen.",
-    feat2Title: "✔️ Aufgaben & Routinen",
-    feat2Desc: "Verwalten Sie Ihre Aufgaben und täglichen Routinen ganz einfach.",
-    feat3Title: "📅 Smarter Kalender & Benachrichtigungen",
-    feat3Desc: "Verwalten Sie Termine und erhalten Sie zeitnahe Erinnerungsbenachrichtigungen.",
-    feat4Title: "💬 KI-Chat & Modell-Unterstützung",
-    feat4Desc: "Chatten Sie mit Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter & Ollama.",
+    featuresSub: "Hauptfunktionen der Multitool-Plattform:",
+    feat1Title: "🛠️ Self-Coding & Localhost Sandbox",
+    feat1Desc: "Quellcode bearbeiten, neue APKs kompilieren und Localhost Node.js-Server ausführen.",
+    feat1Bullet1: "⚡ Sofortiger APK-Build mit Vite + Capacitor",
+    feat1Bullet2: "🖥 Express/Node.js-Server lokal starten und testen",
+    feat1Bullet3: "🌐 Live HTML/JS Web-Vorschau Sandbox",
+    feat2Title: "🎤 Multi-KI & Sprachassistent",
+    feat2Desc: "Sprachassistent mit Groq, DeepSeek, OpenAI, Gemini und Ollama.",
+    feat2Bullet1: "🎤 Spracherkennung und Sprachausgabe",
+    feat2Bullet2: "🧠 Unterstützung für Groq, DeepSeek, OpenAI, Gemini & OpenRouter",
+    feat2Bullet3: "🎭 Entwickler-, Assistenten- & Persona-Modi",
+    feat3Title: "📅 Smart Kalender & Galerie-Export",
+    feat3Desc: "Tages- und Wochenagenden als JPEG-Bilder direkt in die Galerie speichern.",
+    feat3Bullet1: "📅 Zeitachsen-, Wochen- und Listen-Agendansichten",
+    feat3Bullet2: "🖼 Tages- und Wochenagenda als JPEG in Galerie speichern",
+    feat3Bullet3: "🔔 Erinnerungen und intelligente Benachrichtigungen",
+    feat4Title: "📝 Aufgaben, Notizen & Analysen",
+    feat4Desc: "Verwalten Sie Notizen, Aufgaben und Produktivitätsstatistiken.",
+    feat4Bullet1: "📝 Alle Notizen mit einem Klick als JPEG exportieren",
+    feat4Bullet2: "📊 Produktivitätsanalysen und Fertigstellungsraten",
+    feat4Bullet3: "🔒 100% lokaler, datenschutzorientierter Speicher",
     aiProviderTitle: "KI-Anbieter Einrichtung 🔑",
     aiProviderSub: "Konfigurieren Sie Ihren KI-Anbieter und API-Schlüssel.",
     nameLabel: "👤 Ihr Name",
@@ -962,6 +1008,7 @@ const TRANSLATIONS = {
     nextBtn: "Weiter",
     backBtn: "Zurück",
     setupRestart: "Setup-Assistenten neustarten",
+    setupSkip: "Einrichtung überspringen ⏭️",
     notes: "Notizen",
     notesTitle: "📝 Meine Notizen",
     newNoteHeader: "Neue Notiz erstellen",
@@ -1068,7 +1115,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Update herunterladen & installieren",
     btnDismissUpdate: "Später",
     updateCheckFailed: "Update-Prüfung fehlgeschlagen. Bitte Netzverbindung prüfen.",
-    upToDateMsg: "Ihre App ist auf dem neuesten Stand (v1.0.1).",
+    upToDateMsg: "Ihre App ist auf dem neuesten Stand (v1.0.2).",
     releaseNotesLabel: "Versionshinweise:",
     aboutDesc: "Diese App ist ein mobiler Assistent mit Self-Coding KI und Localhost Node.js-Unterstützung (Multitool).",
     versionLabel: "Version",
@@ -1206,8 +1253,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Minz-Smaragd",
     themeOled: "✨ OLED Gold",
     themeDefaultLight: "☀️ Reines Licht",
-    versionFullLabel: "Multitool AI • Version v1.0.1",
-    versionFooterLabel: "Multitool AI • Version 1.0.1",
+    versionFullLabel: "Multitool AI • Version v1.0.2",
+    versionFooterLabel: "Multitool AI • Version 1.0.2",
     prevMonthTitle: "Vorheriger Monat",
     nextMonthTitle: "Nächster Monat",
     todayBtn: "Heute",
@@ -1291,7 +1338,6 @@ const TRANSLATIONS = {
     consolePreviewTitle: "Konsole/JS-Vorschau",
     setupIntroTagline: "Dein AI-Entwicklerbegleiter für die Hosentasche: code, chatte, automatisiere und baue APKs direkt vom Handy.",
     setupIntroCta: "Los geht's 🚀",
-    setupSkip: "Vorerst überspringen",
     setupStepLabel: "Schritt {n} von {total}",
     setupStepIntro: "Willkommen",
     setupStepPersonalize: "Personalisieren",
@@ -1315,6 +1361,11 @@ const TRANSLATIONS = {
     setupPersonalizeSub: "Nenne deinen Namen und wähle eine Sprache zum Starten.",
     downloadDayJpeg: "📥 Tag herunterladen (JPEG)",
     downloadWeekJpeg: "📥 Woche herunterladen (JPEG)",
+    downloadNoteJpeg: "📥 Notiz speichern (JPEG)",
+    downloadAllNotesJpeg: "📥 Alle Notizen speichern (JPEG)",
+    noteCardTitle: "Persönliche Notiz",
+    notesOverviewTitle: "Notizen-Übersicht",
+    logNoteSavedGallery: "Notiz in Galeriespeicher",
     agendaCardTitle: "Tagesprogramm",
     weeklyAgendaTitle: "Wochenprogramm",
     agendaNoEventsCard: "Für diesen Tag sind keine Ereignisse geplant.",
@@ -1328,15 +1379,27 @@ const TRANSLATIONS = {
     discoverFeatures: "Seleccionar idioma y comenzar 🚀",
     exploreBtn: "Explorar funciones y comenzar 🚀",
     featuresTitle: "¿Qué puedes hacer? ⚡",
-    featuresSub: "Capacidades principales de la plataforma Multitool:",
-    feat1Title: "🛠️ Auto-código y Sandbox web en vivo",
-    feat1Desc: "Genera código con IA, inicia servidores Express y prueba al instante en vistas previas web.",
-    feat2Title: "✔️ Tareas y Rutinas",
-    feat2Desc: "Organiza tus tareas y rutinas diarias fácilmente.",
-    feat3Title: "📅 Agenda inteligente y notificaciones",
-    feat3Desc: "Gestiona eventos y recibe recordatorios oportunos.",
-    feat4Title: "💬 Chat IA y modelos de lenguaje",
-    feat4Desc: "Chatea con modelos Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter y Ollama.",
+    featuresSub: "Funciones principales de la plataforma Multitool:",
+    feat1Title: "🛠️ IA de Auto-Código y Sandbox Localhost",
+    feat1Desc: "Edita código fuente, compila nuevas APKs y ejecuta servidores Localhost Node.js.",
+    feat1Bullet1: "⚡ Construcción instantánea de APKs con Vite + Capacitor",
+    feat1Bullet2: "🖥 Inicia y prueba servidores Express/Node.js localmente",
+    feat1Bullet3: "🌐 Entorno sandbox con vista previa HTML/JS en vivo",
+    feat2Title: "🎤 Asistente Multi-IA y de Voz",
+    feat2Desc: "Comunicación por voz con Groq, DeepSeek, OpenAI, Gemini y Ollama.",
+    feat2Bullet1: "🎤 Reconocimiento de voz y respuestas por voz",
+    feat2Bullet2: "🧠 Soporte para Groq, DeepSeek, OpenAI, Gemini y OpenRouter",
+    feat2Bullet3: "🎭 Personas personalizables: Programador y Asistente",
+    feat3Title: "📅 Calendario Inteligente y Exportación a Galería",
+    feat3Desc: "Guarda tus agendas diarias y semanales como imágenes JPEG en tu galería.",
+    feat3Bullet1: "📅 Vistas de agenda por Línea de tiempo, Semanal y Lista",
+    feat3Bullet2: "🖼 Guardar agendas en JPEG directamente a la Galería",
+    feat3Bullet3: "🔔 Recordatorios de eventos y notificaciones inteligentes",
+    feat4Title: "📝 Tareas, Notas y Analítica",
+    feat4Desc: "Gestiona tus notas, listas de tareas y analiza tus estadísticas.",
+    feat4Bullet1: "📝 Exporta todas tus notas a la Galería como JPEG",
+    feat4Bullet2: "📊 Estadísticas de productividad y tareas completadas",
+    feat4Bullet3: "🔒 Almacenamiento 100% local y enfocado en la privacidad",
     aiProviderTitle: "Configuración del proveedor de IA 🔑",
     aiProviderSub: "Configura tu motor de IA y tu clave API.",
     nameLabel: "👤 Tu nombre",
@@ -1364,6 +1427,7 @@ const TRANSLATIONS = {
     nextBtn: "Siguiente",
     backBtn: "Atrás",
     setupRestart: "Reiniciar asistente de configuración",
+    setupSkip: "Omitir configuración ⏭️",
     notes: "Notas",
     notesTitle: "📝 Mis Notas",
     newNoteHeader: "Crear nueva nota",
@@ -1470,7 +1534,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Descargar e instalar actualización",
     btnDismissUpdate: "Más tarde",
     updateCheckFailed: "Error al buscar actualizaciones. Compruebe su conexión a Internet.",
-    upToDateMsg: "Su aplicación está actualizada (v1.0.1).",
+    upToDateMsg: "Su aplicación está actualizada (v1.0.2).",
     releaseNotesLabel: "Notas de la versión:",
     aboutDesc: "Esta app es un asistente móvil con IA de Auto-Código y soporte Localhost Node.js (Multitool).",
     versionLabel: "Versión",
@@ -1608,8 +1672,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menta Esmeralda",
     themeOled: "✨ OLED Oro",
     themeDefaultLight: "☀️ Luz Pura",
-    versionFullLabel: "Multitool AI : Versión v1.0.1",
-    versionFooterLabel: "Multitool AI : Versión 1.0.1",
+    versionFullLabel: "Multitool AI : Versión v1.0.2",
+    versionFooterLabel: "Multitool AI : Versión 1.0.2",
     prevMonthTitle: "Mes anterior",
     nextMonthTitle: "Mes siguiente",
     todayBtn: "Hoy",
@@ -1693,7 +1757,6 @@ const TRANSLATIONS = {
     consolePreviewTitle: "Vista previa de Consola/JS",
     setupIntroTagline: "Tu compañero de desarrollo IA de bolsillo: programa, chatea, automatiza y compila APKs desde tu móvil.",
     setupIntroCta: "Empecemos 🚀",
-    setupSkip: "Saltar por ahora",
     setupStepLabel: "Paso {n} de {total}",
     setupStepIntro: "Bienvenida",
     setupStepPersonalize: "Personalizar",
@@ -1717,6 +1780,11 @@ const TRANSLATIONS = {
     setupPersonalizeSub: "Dime tu nombre y elige un idioma para empezar.",
     downloadDayJpeg: "📥 Descargar día (JPEG)",
     downloadWeekJpeg: "📥 Descargar semana (JPEG)",
+    downloadNoteJpeg: "📥 Guardar nota (JPEG)",
+    downloadAllNotesJpeg: "📥 Guardar todas las notas (JPEG)",
+    noteCardTitle: "Nota Personal",
+    notesOverviewTitle: "Resumen de Notas",
+    logNoteSavedGallery: "Nota guardada en la galería",
     agendaCardTitle: "Agenda del día",
     weeklyAgendaTitle: "Agenda semanal",
     agendaNoEventsCard: "No hay eventos programados para este día.",
@@ -1731,14 +1799,26 @@ const TRANSLATIONS = {
     exploreBtn: "Explorer les fonctionnalités & démarrer 🚀",
     featuresTitle: "Que pouvez-vous faire ? ⚡",
     featuresSub: "Fonctionnalités clés de la plateforme Multitool :",
-    feat1Title: "🛠️ Self-Coding & Sandbox Web en direct",
-    feat1Desc: "Générez du code avec l'IA, lancez des serveurs Express et testez en direct.",
-    feat2Title: "✔️ Tâches & Routines",
-    feat2Desc: "Gérez facilement vos tâches et vos routines quotidiennes.",
-    feat3Title: "📅 Agenda intelligent & Notifications",
-    feat3Desc: "Gérez vos événements et recevez des rappels en temps opportun.",
-    feat4Title: "💬 Chat IA & Modèles intégrés",
-    feat4Desc: "Discutez avec les modèles Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter & Ollama.",
+    feat1Title: "🛠️ IA Self-Coding et Sandbox Localhost",
+    feat1Desc: "Modifiez le code source, compilez de nouveaux APK et exécutez des serveurs Node.js.",
+    feat1Bullet1: "⚡ Compilation d'APK instantanée avec Vite + Capacitor",
+    feat1Bullet2: "🖥 Lancez et testez des serveurs Express/Node.js en local",
+    feat1Bullet3: "🌐 Environnement sandbox avec aperçu web HTML/JS en direct",
+    feat2Title: "🎤 Assistant Multi-IA & Vocal",
+    feat2Desc: "Communication vocale et réponses intelligentes avec Groq, DeepSeek, OpenAI, Gemini et Ollama.",
+    feat2Bullet1: "🎤 Reconnaissance vocale et synthèse vocale",
+    feat2Bullet2: "🧠 Prise en charge de Groq, DeepSeek, OpenAI, Gemini & OpenRouter",
+    feat2Bullet3: "🎭 Modes de personna personnalisables",
+    feat3Title: "📅 Calendrier Intelligent & Export Galerie",
+    feat3Desc: "Exportez vos agendas quotidiens et hebdomadaires en JPEG dans votre galerie.",
+    feat3Bullet1: "📅 Vues Chronologie, Hebdomadaire et Liste d'agenda",
+    feat3Bullet2: "🖼 Enregistrer l'agenda quotidien/hebdomadaire en JPEG dans la Galerie",
+    feat3Bullet3: "🔔 Rappels d'événements et notifications",
+    feat4Title: "📝 Tâches, Notes & Analytique",
+    feat4Desc: "Gérez vos notes, vos tâches et analysez votre productivité.",
+    feat4Bullet1: "📝 Exporter toutes vos notes en JPEG dans la Galerie",
+    feat4Bullet2: "📊 Statistiques de productivité et de réalisation des tâches",
+    feat4Bullet3: "🔒 Stockage 100% local et respectueux de la vie privée",
     aiProviderTitle: "Configuration du fournisseur IA 🔑",
     aiProviderSub: "Configurez votre moteur IA et votre clé API.",
     nameLabel: "👤 Votre nom",
@@ -1766,6 +1846,7 @@ const TRANSLATIONS = {
     nextBtn: "Suivant",
     backBtn: "Retour",
     setupRestart: "Redémarrer l'assistant de configuration",
+    setupSkip: "Passer la configuration ⏭️",
     notes: "Notes",
     notesTitle: "📝 Mes Notes",
     newNoteHeader: "Créer une nouvelle note",
@@ -1872,7 +1953,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Télécharger et installer la mise à jour",
     btnDismissUpdate: "Plus tard",
     updateCheckFailed: "Impossible de vérifier les mises à jour. Vérifiez votre connexion Internet.",
-    upToDateMsg: "Votre application est à jour (v1.0.1).",
+    upToDateMsg: "Votre application est à jour (v1.0.2).",
     releaseNotesLabel: "Notes de mise à jour :",
     aboutDesc: "Cette app est un assistant mobile avec IA Self-Coding et support Localhost Node.js (Multitool).",
     versionLabel: "Version",
@@ -2010,8 +2091,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menthe Émeraude",
     themeOled: "✨ OLED Or",
     themeDefaultLight: "☀️ Lumière Pure",
-    versionFullLabel: "Multitool AI : Version v1.0.1",
-    versionFooterLabel: "Multitool AI : Version 1.0.1",
+    versionFullLabel: "Multitool AI : Version v1.0.2",
+    versionFooterLabel: "Multitool AI : Version 1.0.2",
     prevMonthTitle: "Mois précédent",
     nextMonthTitle: "Mois suivant",
     todayBtn: "Aujourd'hui",
@@ -2095,7 +2176,6 @@ const TRANSLATIONS = {
     consolePreviewTitle: "Aperçu Console/JS",
     setupIntroTagline: "Ton compagnon de dev IA de poche: code, discute, automatise et compile des APKs depuis ton téléphone.",
     setupIntroCta: "C'est parti 🚀",
-    setupSkip: "Passer pour l'instant",
     setupStepLabel: "Étape {n} sur {total}",
     setupStepIntro: "Bienvenue",
     setupStepPersonalize: "Personnaliser",
@@ -2119,6 +2199,11 @@ const TRANSLATIONS = {
     setupPersonalizeSub: "Dis-moi ton nom et choisis une langue pour commencer.",
     downloadDayJpeg: "📥 Télécharger le jour (JPEG)",
     downloadWeekJpeg: "📥 Télécharger la semaine (JPEG)",
+    downloadNoteJpeg: "📥 Enregistrer la note (JPEG)",
+    downloadAllNotesJpeg: "📥 Enregistrer toutes les notes (JPEG)",
+    noteCardTitle: "Note Personnelle",
+    notesOverviewTitle: "Aperçu des Notes",
+    logNoteSavedGallery: "Note enregistrée dans la galerie",
     agendaCardTitle: "Agenda du jour",
     weeklyAgendaTitle: "Agenda semainier",
     agendaNoEventsCard: "Aucun événement prévu pour ce jour.",
@@ -2274,7 +2359,7 @@ const TRANSLATIONS = {
     btnDownloadUpdate: "⚡ Scarica e installa aggiornamento",
     btnDismissUpdate: "Più tardi",
     updateCheckFailed: "Impossibile controllare gli aggiornamenti. Verifica la connessione.",
-    upToDateMsg: "La tua app è aggiornata (v1.0.1).",
+    upToDateMsg: "La tua app è aggiornata (v1.0.2).",
     releaseNotesLabel: "Note di rilascio:",
     aboutDesc: "Questa app è un assistente mobile con IA Self-Coding e supporto Localhost Node.js (Multitool).",
     versionLabel: "Versione",
@@ -2412,8 +2497,8 @@ const TRANSLATIONS = {
     themeEmerald: "🌿 Menta Smeraldo",
     themeOled: "✨ OLED Oro",
     themeDefaultLight: "☀️ Luce Pura",
-    versionFullLabel: "Multitool AI • Versione v1.0.1",
-    versionFooterLabel: "Multitool AI • Versione 1.0.1",
+    versionFullLabel: "Multitool AI • Versione v1.0.2",
+    versionFooterLabel: "Multitool AI • Versione 1.0.2",
     prevMonthTitle: "Mese precedente",
     nextMonthTitle: "Mese successivo",
     todayBtn: "Oggi",
@@ -2521,6 +2606,11 @@ const TRANSLATIONS = {
     setupPersonalizeSub: "Dimmi il tuo nome e scegli una lingua per iniziare.",
     downloadDayJpeg: "📥 Scarica giornata (JPEG)",
     downloadWeekJpeg: "📥 Scarica settimana (JPEG)",
+    downloadNoteJpeg: "📥 Salva nota (JPEG)",
+    downloadAllNotesJpeg: "📥 Salva tutte le note (JPEG)",
+    noteCardTitle: "Nota Personale",
+    notesOverviewTitle: "Panoramica delle Note",
+    logNoteSavedGallery: "Nota salvata nella galleria",
     agendaCardTitle: "Agenda del giorno",
     weeklyAgendaTitle: "Agenda settimanale",
     agendaNoEventsCard: "Nessun evento programmato per questo giorno.",
@@ -2583,11 +2673,11 @@ export default function App() {
     const interval = setInterval(() => {
       const currentName = localStorage.getItem('multitool_user_name') || userName || (language === 'tr' ? 'Dostum' : 'Friend');
       const msg = language === 'tr' ? `Beni özledin mi, ${currentName}? ✨ Sohbet etmeye veya projelerini geliştirmeye devam edelim!` :
-                  language === 'de' ? `Hast du mich vermisst, ${currentName}? ✨ Lass uns chatten oder deine Projekte weiterentwickeln!` :
-                  language === 'es' ? `¿Me extrañaste, ${currentName}? ✨ ¡Sigamos chateando o desarrollando tus proyectos!` :
-                  language === 'fr' ? `Tu m'as manqué, ${currentName} ? ✨ Continuons à discuter ou à développer vos projets !` :
-                  language === 'it' ? `Ti sono mancato, ${currentName}? ✨ Continuiamo a chattare o a sviluppare i tuoi progetti!` :
-                  `Did you miss me, ${currentName}? ✨ Let's continue chatting or developing your projects!`;
+        language === 'de' ? `Hast du mich vermisst, ${currentName}? ✨ Lass uns chatten oder deine Projekte weiterentwickeln!` :
+          language === 'es' ? `¿Me extrañaste, ${currentName}? ✨ ¡Sigamos chateando o desarrollando tus proyectos!` :
+            language === 'fr' ? `Tu m'as manqué, ${currentName} ? ✨ Continuons à discuter ou à développer vos projets !` :
+              language === 'it' ? `Ti sono mancato, ${currentName}? ✨ Continuiamo a chattare o a sviluppare i tuoi progetti!` :
+                `Did you miss me, ${currentName}? ✨ Let's continue chatting or developing your projects!`;
       sendNotification('Multitool AI 🤖', msg);
     }, 2 * 60 * 60 * 1000);
 
@@ -2653,7 +2743,7 @@ export default function App() {
     releaseNotes: string;
     releaseUrl: string;
   }
-  const CURRENT_VERSION = '1.0.1';
+  const CURRENT_VERSION = '1.0.2';
   const [availableUpdate, setAvailableUpdate] = useState<UpdateInfo | null>(null);
   const [isCheckingUpdate, setIsCheckingUpdate] = useState<boolean>(false);
 
@@ -3261,14 +3351,14 @@ export default function App() {
       const totalHabits = habits.length;
 
       const title = language === 'tr' ? 'Multitool AI Durum Özeti 📊' :
-                    language === 'de' ? 'Multitool AI Statusübersicht 📊' :
-                    language === 'es' ? 'Resumen de Estado Multitool AI 📊' :
-                    language === 'fr' ? 'Résumé du Statut Multitool AI 📊' :
-                    language === 'it' ? 'Riepilogo Stato Multitool AI 📊' :
-                    'Multitool AI Status Summary 📊';
+        language === 'de' ? 'Multitool AI Statusübersicht 📊' :
+          language === 'es' ? 'Resumen de Estado Multitool AI 📊' :
+            language === 'fr' ? 'Résumé du Statut Multitool AI 📊' :
+              language === 'it' ? 'Riepilogo Stato Multitool AI 📊' :
+                'Multitool AI Status Summary 📊';
 
       const body = language === 'tr' ? `${currentName}, saatlik durum özeti: Görevler: ${completedCount}/${totalCount}, Rutinler: ${completedHabits}/${totalHabits}` :
-                   `${currentName}, hourly status summary: Tasks: ${completedCount}/${totalCount}, Routines: ${completedHabits}/${totalHabits}`;
+        `${currentName}, hourly status summary: Tasks: ${completedCount}/${totalCount}, Routines: ${completedHabits}/${totalHabits}`;
 
       sendNotification(title, body);
     }, 60 * 60 * 1000);
@@ -4029,11 +4119,11 @@ Lütfen kullanıcıya ${aiLangName} dilinde yanıt ver.`;
 
     const activeModel =
       provider === 'groq' ? groqModel :
-      provider === 'deepseek' ? deepseekModel :
-      provider === 'openai' ? openaiModel :
-      provider === 'gemini' ? geminiModel :
-      provider === 'openrouter' ? openrouterModel :
-      selectedModel;
+        provider === 'deepseek' ? deepseekModel :
+          provider === 'openai' ? openaiModel :
+            provider === 'gemini' ? geminiModel :
+              provider === 'openrouter' ? openrouterModel :
+                selectedModel;
     if (!activeModel) {
       setTimeout(() => {
         const errorMsg: Message = {
@@ -4314,7 +4404,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
         const remMin = typeof params.reminderMinutes === 'number' ? params.reminderMinutes : (params.reminderMinutes ? parseInt(params.reminderMinutes) : 0);
         const startDateStr = params.date || params.startDate || new Date().toISOString().split('T')[0];
         const endDateStr = params.endDate || startDateStr;
-        
+
         const createdEvents = [];
         const start = new Date(startDateStr);
         const end = new Date(endDateStr);
@@ -4693,12 +4783,12 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
         <div className="calendar-grid">
           {(language === 'tr' ? ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'] :
             language === 'de' ? ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'] :
-            language === 'es' ? ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'] :
-            language === 'fr' ? ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] :
-            language === 'it' ? ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'] :
-            ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']).map(d => (
-            <div key={d} className="calendar-day-label">{d}</div>
-          ))}
+              language === 'es' ? ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'] :
+                language === 'fr' ? ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] :
+                  language === 'it' ? ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'] :
+                    ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']).map(d => (
+                      <div key={d} className="calendar-day-label">{d}</div>
+                    ))}
           {days}
         </div>
       </div>
@@ -4841,7 +4931,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     // footer
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
     const countText = t.agendaEventsCount.replace('{n}', String(dayEvents.length));
-    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.0.1`, W / 2, H - 50);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.0.2`, W / 2, H - 50);
     ctx.textAlign = 'left';
 
     const filename = `multitool-agenda-${selectedCalendarDate}.jpg`;
@@ -5034,7 +5124,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     // footer
     ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
     const countText = t.agendaEventsCount.replace('{n}', String(totalEventsInWeek.length));
-    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.0.1`, W / 2, H - 40);
+    ctx.fillText(`${t.agendaGeneratedBy} • ${countText} • v1.0.2`, W / 2, H - 40);
     ctx.textAlign = 'left';
 
     const filename = `multitool-weekly-agenda-${selectedCalendarDate}.jpg`;
@@ -5088,6 +5178,400 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
       }, 'image/jpeg', 0.95);
     } catch (err: any) {
       addLog(`JPEG download error: ${err.message}`);
+    }
+  };
+
+  const downloadNoteAsJpeg = async (note: NoteItem) => {
+    const logoImg = await loadAppLogo();
+    const W = 1080;
+    const FONT = 'Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+    const dark = theme !== 'default';
+
+    const tmpCanvas = document.createElement('canvas');
+    const tmpCtx = tmpCanvas.getContext('2d');
+
+    const wrapText = (ctx: CanvasRenderingContext2D, text: string, maxWidth: number, font: string) => {
+      ctx.font = font;
+      const words = text.split(' ');
+      const lines: string[] = [];
+      let cur = '';
+      for (const w of words) {
+        const test = cur ? cur + ' ' + w : w;
+        if (ctx.measureText(test).width <= maxWidth) {
+          cur = test;
+        } else {
+          if (cur) lines.push(cur);
+          cur = w;
+        }
+      }
+      if (cur) lines.push(cur);
+      return lines.length ? lines : [''];
+    };
+
+    const cardW = W - 140;
+    const pad = 40;
+
+    let titleLines: string[] = [note.title || ''];
+    let contentLines: string[] = [];
+
+    if (tmpCtx) {
+      titleLines = wrapText(tmpCtx, note.title || '', cardW - pad * 2, `800 44px ${FONT}`);
+      const rawParagraphs = (note.content || '').split('\n');
+      for (const p of rawParagraphs) {
+        if (p.trim() === '') {
+          contentLines.push('');
+        } else {
+          const wrapped = wrapText(tmpCtx, p, cardW - pad * 2, `400 30px ${FONT}`);
+          contentLines.push(...wrapped);
+        }
+      }
+    }
+
+    const titleH = titleLines.length * 54;
+    const tagsH = (note.tags && note.tags.length > 0) ? 50 : 0;
+    const contentH = contentLines.length * 44;
+
+    const cardInnerH = pad + 44 + 20 + titleH + (tagsH ? tagsH + 16 : 0) + 24 + contentH + pad;
+    const H = Math.max(1350, 360 + cardInnerH + 140);
+
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    if (dark) { bg.addColorStop(0, '#0f172a'); bg.addColorStop(1, '#1e1b4b'); }
+    else { bg.addColorStop(0, '#ffffff'); bg.addColorStop(1, '#eef2ff'); }
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    const ink = dark ? '#f8fafc' : '#0f172a';
+    const sub = dark ? '#94a3b8' : '#475569';
+    const cardBg = dark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.035)';
+    const lineCol = dark ? 'rgba(255,255,255,0.1)' : 'rgba(15,23,42,0.08)';
+    const accentGrad = () => {
+      const g = ctx.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, '#3b82f6'); g.addColorStop(0.5, '#8b5cf6'); g.addColorStop(1, '#ec4899');
+      return g;
+    };
+
+    const roundRect = (x: number, y: number, w: number, h: number, rr: number) => {
+      ctx.beginPath();
+      ctx.moveTo(x + rr, y); ctx.lineTo(x + w - rr, y); ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+      ctx.lineTo(x + w, y + h - rr); ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+      ctx.lineTo(x + rr, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - rr);
+      ctx.lineTo(x, y + rr); ctx.quadraticCurveTo(x, y, x + rr, y);
+      ctx.closePath();
+    };
+
+    ctx.fillStyle = accentGrad(); ctx.fillRect(0, 0, W, 14);
+
+    const mkX = 70, mkY = 56, mkS = 64;
+    if (logoImg) {
+      ctx.save();
+      ctx.fillStyle = '#ffffff';
+      roundRect(mkX, mkY, mkS, mkS, 16);
+      ctx.fill();
+      ctx.drawImage(logoImg, mkX + 4, mkY + 4, mkS - 8, mkS - 8);
+      ctx.restore();
+    } else {
+      ctx.fillStyle = accentGrad();
+      roundRect(mkX, mkY, mkS, mkS, 16);
+      ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.font = `800 ${mkS * 0.5}px ${FONT}`;
+      ctx.fillText('M', mkX + mkS / 2 - ctx.measureText('M').width / 2, mkY + mkS / 2 + 2);
+    }
+
+    ctx.fillStyle = ink; ctx.font = `800 34px ${FONT}`; ctx.textBaseline = 'alphabetic';
+    ctx.fillText('Multitool AI', mkX + mkS + 18, mkY + mkS / 2 + 6);
+    ctx.fillStyle = sub; ctx.font = `700 18px ${FONT}`; ctx.textAlign = 'right';
+    ctx.fillText((t.noteCardTitle || 'Personal Note').toUpperCase(), W - 70, mkY + mkS / 2 + 6);
+    ctx.textAlign = 'left';
+
+    const dateObj = new Date(note.createdAt);
+    const dateStr = isNaN(dateObj.getTime()) ? note.createdAt : dateObj.toLocaleDateString(aiLocale, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    ctx.fillStyle = sub; ctx.font = `700 24px ${FONT}`;
+    ctx.fillText(dateStr, 70, 200);
+
+    ctx.strokeStyle = lineCol; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(70, 230); ctx.lineTo(W - 70, 230); ctx.stroke();
+
+    const cardX = 70;
+    const cardY = 270;
+    roundRect(cardX, cardY, cardW, cardInnerH, 24);
+    ctx.fillStyle = cardBg; ctx.fill();
+    ctx.strokeStyle = lineCol; ctx.lineWidth = 2; ctx.stroke();
+
+    ctx.font = `800 22px ${FONT}`;
+    const catText = note.category || t.catGeneral || 'Genel';
+    const catW = ctx.measureText(catText).width + 36;
+    const catX = cardX + pad, catY = cardY + pad;
+    ctx.fillStyle = accentGrad(); roundRect(catX, catY, catW, 40, 20); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.textBaseline = 'middle';
+    ctx.fillText(catText, catX + 18, catY + 21);
+    ctx.textBaseline = 'alphabetic';
+
+    ctx.fillStyle = ink; ctx.font = `800 44px ${FONT}`;
+    let ty = cardY + pad + 44 + 26;
+    for (const tl of titleLines) {
+      ctx.fillText(tl, cardX + pad, ty);
+      ty += 54;
+    }
+
+    if (note.tags && note.tags.length > 0) {
+      ty += 6;
+      let tagX = cardX + pad;
+      ctx.font = `700 20px ${FONT}`;
+      for (const tg of note.tags) {
+        const tagTxt = `#${tg}`;
+        const tagW = ctx.measureText(tagTxt).width + 24;
+        if (tagX + tagW > cardX + cardW - pad) {
+          tagX = cardX + pad;
+          ty += 40;
+        }
+        ctx.fillStyle = dark ? 'rgba(14, 165, 233, 0.2)' : 'rgba(14, 165, 233, 0.12)';
+        roundRect(tagX, ty - 22, tagW, 32, 16); ctx.fill();
+        ctx.fillStyle = dark ? '#38bdf8' : '#0284c7';
+        ctx.fillText(tagTxt, tagX + 12, ty);
+        tagX += tagW + 10;
+      }
+      ty += 34;
+    }
+
+    ctx.fillStyle = ink; ctx.font = `400 30px ${FONT}`;
+    ty += 20;
+    for (const cl of contentLines) {
+      if (cl === '') {
+        ty += 22;
+      } else {
+        ctx.fillText(cl, cardX + pad, ty);
+        ty += 44;
+      }
+    }
+
+    ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
+    ctx.fillText(`${t.agendaGeneratedBy} • ${t.notesTitle || 'Notlar'} • v1.0.2`, W / 2, H - 50);
+    ctx.textAlign = 'left';
+
+    const cleanTitle = (note.title || 'note').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 20);
+    const filename = `multitool-note-${cleanTitle}-${Date.now()}.jpg`;
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+
+    if (typeof (window as any).AndroidNative?.saveImageToGallery === 'function') {
+      (window as any).AndroidNative.saveImageToGallery(dataUrl, filename);
+      addLog(`${note.title || 'Not'} → ${t.logNoteSavedGallery || 'Galeriye Kaydedildi'} ✓`);
+      return;
+    }
+
+    try {
+      canvas.toBlob(async (blob) => {
+        let finalBlob = blob;
+        if (!finalBlob) {
+          const arr = dataUrl.split(',');
+          const bstr = atob(arr[1]);
+          let n = bstr.length;
+          const u8arr = new Uint8Array(n);
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+          }
+          finalBlob = new Blob([u8arr], { type: 'image/jpeg' });
+        }
+
+        const file = new File([finalBlob], filename, { type: 'image/jpeg' });
+
+        if (typeof (navigator as any).canShare === 'function' && (navigator as any).canShare({ files: [file] })) {
+          try {
+            await (navigator as any).share({
+              files: [file],
+              title: note.title || 'Note'
+            });
+            addLog(`${note.title || 'Not'} → Shared ✓`);
+            return;
+          } catch (shareErr: any) {
+            if (shareErr.name === 'AbortError') return;
+          }
+        }
+
+        const blobUrl = URL.createObjectURL(finalBlob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
+
+        addLog(`${note.title || 'Not'} → JPEG ✓`);
+      }, 'image/jpeg', 0.95);
+    } catch (err: any) {
+      addLog(`Note JPEG download error: ${err.message}`);
+    }
+  };
+
+  const downloadAllNotesAsJpeg = async (notesToExport: NoteItem[]) => {
+    if (notesToExport.length === 0) return;
+    const logoImg = await loadAppLogo();
+    const W = 1200, H = 1600;
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const FONT = 'Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+
+    const dark = theme !== 'default';
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    if (dark) { bg.addColorStop(0, '#0f172a'); bg.addColorStop(1, '#1e1b4b'); }
+    else { bg.addColorStop(0, '#ffffff'); bg.addColorStop(1, '#eef2ff'); }
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    const ink = dark ? '#f8fafc' : '#0f172a';
+    const sub = dark ? '#94a3b8' : '#475569';
+    const cardBg = dark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.035)';
+    const lineCol = dark ? 'rgba(255,255,255,0.1)' : 'rgba(15,23,42,0.08)';
+    const accentGrad = () => {
+      const g = ctx.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, '#3b82f6'); g.addColorStop(0.5, '#8b5cf6'); g.addColorStop(1, '#ec4899');
+      return g;
+    };
+
+    const roundRect = (x: number, y: number, w: number, h: number, rr: number) => {
+      ctx.beginPath();
+      ctx.moveTo(x + rr, y); ctx.lineTo(x + w - rr, y); ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+      ctx.lineTo(x + w, y + h - rr); ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+      ctx.lineTo(x + rr, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - rr);
+      ctx.lineTo(x, y + rr); ctx.quadraticCurveTo(x, y, x + rr, y);
+      ctx.closePath();
+    };
+
+    ctx.fillStyle = accentGrad(); ctx.fillRect(0, 0, W, 16);
+
+    const mkX = 70, mkY = 56, mkS = 64;
+    if (logoImg) {
+      ctx.save();
+      ctx.fillStyle = '#ffffff';
+      roundRect(mkX, mkY, mkS, mkS, 16);
+      ctx.fill();
+      ctx.drawImage(logoImg, mkX + 4, mkY + 4, mkS - 8, mkS - 8);
+      ctx.restore();
+    } else {
+      ctx.fillStyle = accentGrad();
+      roundRect(mkX, mkY, mkS, mkS, 16);
+      ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.font = `800 ${mkS * 0.5}px ${FONT}`;
+      ctx.fillText('M', mkX + mkS / 2 - ctx.measureText('M').width / 2, mkY + mkS / 2 + 2);
+    }
+
+    ctx.fillStyle = ink; ctx.font = `800 36px ${FONT}`; ctx.textBaseline = 'alphabetic';
+    ctx.fillText('Multitool AI', mkX + mkS + 20, mkY + mkS / 2 + 6);
+    ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'right';
+    ctx.fillText((t.notesOverviewTitle || 'Notes Overview').toUpperCase(), W - 70, mkY + mkS / 2 + 6);
+    ctx.textAlign = 'left';
+
+    ctx.fillStyle = ink; ctx.font = `900 52px ${FONT}`;
+    ctx.fillText(t.notesTitle || '📝 Notlarım', 70, 200);
+
+    ctx.strokeStyle = lineCol; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(70, 230); ctx.lineTo(W - 70, 230); ctx.stroke();
+
+    const wrap = (text: string, maxWidth: number, font: string) => {
+      ctx.font = font; const words = text.split(' '); const lines: string[] = []; let cur = '';
+      for (const w of words) { const test = cur ? cur + ' ' + w : w; if (ctx.measureText(test).width <= maxWidth) cur = test; else { if (cur) lines.push(cur); cur = w; } }
+      if (cur) lines.push(cur); return lines.length ? lines : [''];
+    };
+
+    let y = 270;
+    const cardX = 70, cardW = W - 140, pad = 24, gap = 16;
+    for (const n of notesToExport) {
+      const titleLines = wrap(n.title || '', cardW - pad * 2 - 120, `800 32px ${FONT}`);
+      const contentLines = wrap(n.content || '', cardW - pad * 2, `400 24px ${FONT}`).slice(0, 3);
+      const innerH = pad + 32 + titleLines.length * 38 + contentLines.length * 30 + pad;
+      if (y + innerH > H - 100) break;
+
+      roundRect(cardX, y, cardW, innerH, 18);
+      ctx.fillStyle = cardBg; ctx.fill();
+      ctx.strokeStyle = lineCol; ctx.lineWidth = 2; ctx.stroke();
+
+      ctx.font = `800 18px ${FONT}`;
+      const catText = n.category || t.catGeneral || 'Genel';
+      const catW = ctx.measureText(catText).width + 24;
+      ctx.fillStyle = accentGrad(); roundRect(cardX + pad, y + pad, catW, 32, 16); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.textBaseline = 'middle';
+      ctx.fillText(catText, cardX + pad + 12, y + pad + 16);
+      ctx.textBaseline = 'alphabetic';
+
+      ctx.fillStyle = ink; ctx.font = `800 32px ${FONT}`;
+      let ty = y + pad + 32 + 28;
+      for (const tl of titleLines) {
+        ctx.fillText(tl, cardX + pad, ty);
+        ty += 38;
+      }
+
+      ctx.fillStyle = sub; ctx.font = `400 24px ${FONT}`;
+      ty += 4;
+      for (const cl of contentLines) {
+        ctx.fillText(cl, cardX + pad, ty);
+        ty += 30;
+      }
+
+      y += innerH + gap;
+    }
+
+    ctx.fillStyle = sub; ctx.font = `700 20px ${FONT}`; ctx.textAlign = 'center';
+    ctx.fillText(`${t.agendaGeneratedBy} • ${notesToExport.length} ${t.notesTitle || 'Notlar'} • v1.0.2`, W / 2, H - 40);
+    ctx.textAlign = 'left';
+
+    const filename = `multitool-all-notes-${Date.now()}.jpg`;
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+
+    if (typeof (window as any).AndroidNative?.saveImageToGallery === 'function') {
+      (window as any).AndroidNative.saveImageToGallery(dataUrl, filename);
+      addLog(`Notlar → ${t.logNoteSavedGallery || 'Galeriye Kaydedildi'} ✓`);
+      return;
+    }
+
+    try {
+      canvas.toBlob(async (blob) => {
+        let finalBlob = blob;
+        if (!finalBlob) {
+          const arr = dataUrl.split(',');
+          const bstr = atob(arr[1]);
+          let n = bstr.length;
+          const u8arr = new Uint8Array(n);
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+          }
+          finalBlob = new Blob([u8arr], { type: 'image/jpeg' });
+        }
+
+        const file = new File([finalBlob], filename, { type: 'image/jpeg' });
+
+        if (typeof (navigator as any).canShare === 'function' && (navigator as any).canShare({ files: [file] })) {
+          try {
+            await (navigator as any).share({
+              files: [file],
+              title: t.notesTitle || 'Notes'
+            });
+            addLog(`Notes → Shared ✓`);
+            return;
+          } catch (shareErr: any) {
+            if (shareErr.name === 'AbortError') return;
+          }
+        }
+
+        const blobUrl = URL.createObjectURL(finalBlob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
+
+        addLog(`Notes → JPEG ✓`);
+      }, 'image/jpeg', 0.95);
+    } catch (err: any) {
+      addLog(`All Notes JPEG download error: ${err.message}`);
     }
   };
 
@@ -5280,7 +5764,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                   onClick={() => setAgentPersona(pKey)}
                   style={{
                     border: agentPersona === pKey ? 'none' : '1px solid var(--border-color)',
-                    background: agentPersona === pKey ? 'var(--primary)' : '#ffffff',
+                    background: agentPersona === pKey ? 'var(--primary)' : 'var(--bg-card)',
                     color: agentPersona === pKey ? '#ffffff' : 'var(--text-secondary)',
                     padding: '4px 10px',
                     borderRadius: 'var(--radius-pill)',
@@ -5301,7 +5785,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
             <div className="chat-messages">
               {messages.length === 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '16px', color: 'var(--text-secondary)', textAlign: 'center', padding: '16px' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: '#ffffff', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-sm)' }}>
+                  <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'var(--bg-card)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-sm)' }}>
                     <img src="/logo.png" alt="Multitool Logo" style={{ width: '42px', height: '42px', objectFit: 'contain' }} />
                   </div>
                   <div>
@@ -5437,22 +5921,67 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
             {renderCalendarWidget()}
 
             <div className="app-card">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '8px', marginBottom: '4px' }}>
-                <h4 style={{ fontSize: '13px', margin: 0, fontWeight: '800' }}>
-                  📆 {selectedCalendarDate} {t.scheduleLabel || 'Programı'}
-                </h4>
-                <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', borderRadius: 'var(--radius-xs)', padding: '2px', border: '1px solid var(--border-color)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px', marginBottom: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                  <h4 style={{ fontSize: '13.5px', margin: 0, fontWeight: '800', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>
+                    📆 {selectedCalendarDate} {t.scheduleLabel || 'Programı'}
+                  </h4>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                    <button
+                      onClick={downloadDayAsJpeg}
+                      title={t.downloadDayJpeg}
+                      style={{
+                        padding: '4px 8px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: 'rgba(99, 102, 241, 0.12)',
+                        color: 'var(--primary)',
+                        border: '1px solid var(--primary-glow)',
+                        borderRadius: 'var(--radius-xs)',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Download size={12} /> {t.downloadDayJpeg || 'Günü İndir'}
+                    </button>
+                    <button
+                      onClick={downloadWeekAsJpeg}
+                      title={t.downloadWeekJpeg}
+                      style={{
+                        padding: '4px 8px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: 'rgba(14, 165, 233, 0.12)',
+                        color: 'var(--accent-cyan)',
+                        border: '1px solid rgba(14, 165, 233, 0.3)',
+                        borderRadius: 'var(--radius-xs)',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Download size={12} /> {t.downloadWeekJpeg || 'Haftayı İndir'}
+                    </button>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', padding: '3px', gap: '4px', border: '1px solid var(--border-color)' }}>
                   <button
                     onClick={() => setCalendarViewMode('timeline')}
                     style={{
+                      flex: 1,
                       border: 'none',
-                      background: calendarViewMode === 'timeline' ? 'var(--primary-gradient)' : 'none',
-                      color: calendarViewMode === 'timeline' ? '#fff' : 'var(--text-secondary)',
-                      padding: '4px 8px',
-                      fontSize: '10.5px',
+                      background: calendarViewMode === 'timeline' ? 'var(--primary-gradient)' : 'transparent',
+                      color: calendarViewMode === 'timeline' ? '#ffffff' : 'var(--text-secondary)',
+                      padding: '5px 8px',
+                      fontSize: '11px',
                       borderRadius: 'var(--radius-xs)',
                       cursor: 'pointer',
-                      fontWeight: '700'
+                      fontWeight: '700',
+                      transition: 'all 0.15s ease'
                     }}
                   >
                     {t.viewTimeline || 'Akış'}
@@ -5460,14 +5989,16 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                   <button
                     onClick={() => setCalendarViewMode('weekly')}
                     style={{
+                      flex: 1,
                       border: 'none',
-                      background: calendarViewMode === 'weekly' ? 'var(--primary-gradient)' : 'none',
-                      color: calendarViewMode === 'weekly' ? '#fff' : 'var(--text-secondary)',
-                      padding: '4px 8px',
-                      fontSize: '10.5px',
+                      background: calendarViewMode === 'weekly' ? 'var(--primary-gradient)' : 'transparent',
+                      color: calendarViewMode === 'weekly' ? '#ffffff' : 'var(--text-secondary)',
+                      padding: '5px 8px',
+                      fontSize: '11px',
                       borderRadius: 'var(--radius-xs)',
                       cursor: 'pointer',
-                      fontWeight: '700'
+                      fontWeight: '700',
+                      transition: 'all 0.15s ease'
                     }}
                   >
                     {t.viewWeekly || 'Haftalık'}
@@ -5475,57 +6006,19 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                   <button
                     onClick={() => setCalendarViewMode('list')}
                     style={{
+                      flex: 1,
                       border: 'none',
-                      background: calendarViewMode === 'list' ? 'var(--primary-gradient)' : 'none',
-                      color: calendarViewMode === 'list' ? '#fff' : 'var(--text-secondary)',
-                      padding: '4px 8px',
-                      fontSize: '10.5px',
+                      background: calendarViewMode === 'list' ? 'var(--primary-gradient)' : 'transparent',
+                      color: calendarViewMode === 'list' ? '#ffffff' : 'var(--text-secondary)',
+                      padding: '5px 8px',
+                      fontSize: '11px',
                       borderRadius: 'var(--radius-xs)',
                       cursor: 'pointer',
-                      fontWeight: '700'
+                      fontWeight: '700',
+                      transition: 'all 0.15s ease'
                     }}
                   >
                     {t.viewList || 'Liste'}
-                  </button>
-                  <button
-                    onClick={downloadDayAsJpeg}
-                    title={t.downloadDayJpeg}
-                    style={{
-                      border: 'none',
-                      borderLeft: '1px solid var(--border-color)',
-                      background: 'none',
-                      color: 'var(--primary)',
-                      padding: '4px 8px',
-                      fontSize: '10.5px',
-                      borderRadius: 'var(--radius-xs)',
-                      cursor: 'pointer',
-                      fontWeight: '700',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '3px'
-                    }}
-                  >
-                    <Download size={12} /> {t.downloadDayJpeg || 'Günü İndir'}
-                  </button>
-                  <button
-                    onClick={downloadWeekAsJpeg}
-                    title={t.downloadWeekJpeg}
-                    style={{
-                      border: 'none',
-                      borderLeft: '1px solid var(--border-color)',
-                      background: 'none',
-                      color: 'var(--accent-cyan)',
-                      padding: '4px 8px',
-                      fontSize: '10.5px',
-                      borderRadius: 'var(--radius-xs)',
-                      cursor: 'pointer',
-                      fontWeight: '700',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '3px'
-                    }}
-                  >
-                    <Download size={12} /> {t.downloadWeekJpeg || 'Haftayı İndir'}
                   </button>
                 </div>
               </div>
@@ -6156,7 +6649,30 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
           <div className="screen-content">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '18px', fontWeight: '800' }}>{t.notesTitle || '📝 Notlarım'}</h3>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{t.catAll}: <strong>{notes.length}</strong></span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                {notes.length > 0 && (
+                  <button
+                    onClick={() => downloadAllNotesAsJpeg(filteredNotes)}
+                    title={t.downloadAllNotesJpeg || 'Tüm Notları Kaydet (JPEG)'}
+                    style={{
+                      border: '1px solid var(--primary-glow)',
+                      background: 'rgba(99, 102, 241, 0.15)',
+                      color: 'var(--primary)',
+                      padding: '4px 8px',
+                      fontSize: '11px',
+                      borderRadius: 'var(--radius-xs)',
+                      cursor: 'pointer',
+                      fontWeight: '700',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                  >
+                    <Download size={13} /> {t.downloadAllNotesJpeg || 'Tüm Notları Kaydet'}
+                  </button>
+                )}
+                <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{t.catAll}: <strong>{notes.length}</strong></span>
+              </div>
             </div>
 
             {/* Note Creation Form */}
@@ -6287,9 +6803,19 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                         </span>
                         <h4 style={{ fontSize: '14px', fontWeight: '800', margin: 0, color: 'var(--text-primary)' }}>{n.title}</h4>
                       </div>
-                      <button className="btn-icon" style={{ color: 'var(--danger)', width: '24px', height: '24px' }} onClick={() => handleDeleteNote(n.id)}>
-                        <Trash2 size={12} />
-                      </button>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <button
+                          className="btn-icon"
+                          style={{ color: 'var(--primary)', width: '26px', height: '26px' }}
+                          onClick={() => downloadNoteAsJpeg(n)}
+                          title={t.downloadNoteJpeg || 'Galeriye Kaydet (JPEG)'}
+                        >
+                          <Download size={12} />
+                        </button>
+                        <button className="btn-icon" style={{ color: 'var(--danger)', width: '26px', height: '26px' }} onClick={() => handleDeleteNote(n.id)}>
+                          <Trash2 size={12} />
+                        </button>
+                      </div>
                     </div>
                     <p style={{ fontSize: '12px', color: 'var(--text-secondary)', whiteSpace: 'pre-wrap', margin: 0, lineHeight: '1.4' }}>
                       {n.content}
@@ -6651,88 +7177,87 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               </div>
             ) : (
               <div className="code-editor-container">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type="text"
-                    className="form-input"
-                    value={currentFileName}
-                    onChange={(e) => setCurrentFileName(e.target.value)}
-                    style={{ flex: 1, padding: '6px 10px', fontSize: '12px', fontWeight: '800' }}
-                  />
-                  <select
-                    className="form-select"
-                    style={{ width: 'auto', padding: '6px 8px', fontSize: '11px' }}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (!val) return;
-                      const templates: Record<string, string> = {
-                        express: `const express = require('express');\nconst app = express();\nconst PORT = 3005;\n\napp.get('/api/test', (req, res) => {\n  res.json({ message: "Express Sunucusu Hazır!", time: new Date() });\n});\n\napp.listen(PORT, () => {\n  console.log(\`Sunucu http://localhost:\${PORT} adresinde çalışıyor\`);\n});`,
-                        react: `function Counter() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>\n      <h2>Sayaç: {count}</h2>\n      <button onClick={() => setCount(count + 1)}>Artır</button>\n    </div>\n  );\n}`,
-                        html: `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset="utf-8">\n  <title>Sandbox Sayfası</title>\n  <style>body { font-family: sans-serif; padding: 20px; background: #f8fafc; color: #0f172a; }</style>\n</head>\n<body>\n  <h2>Multitool Sandbox Sayfası</h2>\n  <p>Canlı önizleme hazır!</p>\n</body>\n</html>`
-                      };
-                      if (templates[val]) {
-                        setEditorContent(templates[val]);
-                        if (val === 'html') setCurrentFileName('index.html');
-                        if (val === 'express') setCurrentFileName('server.js');
-                      }
-                      e.target.value = '';
-                    }}
-                  >
-                    <option value="">{t.selectTemplate}</option>
-                    <option value="express">{t.expressTemplate}</option>
-                    <option value="react">{t.reactTemplate}</option>
-                    <option value="html">{t.htmlTemplate}</option>
-                  </select>
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    <button className="btn-icon" onClick={handleSaveFile} title={t.saveBtn}>
-                      <Layers size={16} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <input
+                      type="text"
+                      className="form-input"
+                      value={currentFileName}
+                      onChange={(e) => setCurrentFileName(e.target.value)}
+                      style={{ flex: '1 1 120px', minWidth: '100px', padding: '6px 10px', fontSize: '12px', fontWeight: '800' }}
+                    />
+                    <select
+                      className="form-select"
+                      style={{ flex: '1 1 140px', minWidth: '110px', padding: '6px 24px 6px 8px', fontSize: '11px' }}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (!val) return;
+                        const templates: Record<string, string> = {
+                          express: `const express = require('express');\nconst app = express();\nconst PORT = 3005;\n\napp.get('/api/test', (req, res) => {\n  res.json({ message: "Express Sunucusu Hazır!", time: new Date() });\n});\n\napp.listen(PORT, () => {\n  console.log(\`Sunucu http://localhost:\${PORT} adresinde çalışıyor\`);\n});`,
+                          react: `function Counter() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>\n      <h2>Sayaç: {count}</h2>\n      <button onClick={() => setCount(count + 1)}>Artır</button>\n    </div>\n  );\n}`,
+                          html: `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset="utf-8">\n  <title>Sandbox Sayfası</title>\n  <style>body { font-family: sans-serif; padding: 20px; background: #f8fafc; color: #0f172a; }</style>\n</head>\n<body>\n  <h2>Multitool Sandbox Sayfası</h2>\n  <p>Canlı önizleme hazır!</p>\n</body>\n</html>`
+                        };
+                        if (templates[val]) {
+                          setEditorContent(templates[val]);
+                          if (val === 'html') setCurrentFileName('index.html');
+                          if (val === 'express') setCurrentFileName('server.js');
+                        }
+                        e.target.value = '';
+                      }}
+                    >
+                      <option value="">{t.selectTemplate}</option>
+                      <option value="express">{t.expressTemplate}</option>
+                      <option value="react">{t.reactTemplate}</option>
+                      <option value="html">{t.htmlTemplate}</option>
+                    </select>
+                    <button className="btn-icon" onClick={handleSaveFile} title={t.saveBtn} style={{ flexShrink: 0, width: '32px', height: '32px' }}>
+                      <Layers size={15} />
                     </button>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', margin: '4px 0' }}>
                     <button
                       className="btn-primary"
                       onClick={handleExecuteCode}
                       disabled={isRunningCode}
-                      style={{ padding: '6px 10px', fontSize: '11px' }}
+                      style={{ padding: '6px 8px', fontSize: '11px', whiteSpace: 'nowrap' }}
                     >
                       {isRunningCode ? <RefreshCw size={13} className="spin" /> : <Play size={13} />} {t.runBtn}
                     </button>
+                    <button
+                      className="btn-primary"
+                      onClick={handleStartLocalhostServer}
+                      style={{ padding: '6px 8px', fontSize: '11px', background: 'rgba(14, 165, 233, 0.2)', border: '1px solid var(--accent-cyan)', color: 'var(--accent-cyan)', whiteSpace: 'nowrap' }}
+                    >
+                      <Server size={13} /> {t.localhostServerBtn}
+                    </button>
+                    <button
+                      className="btn-primary"
+                      onClick={() => {
+                        const blob = new Blob([editorContent], { type: 'text/html;charset=utf-8' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = currentFileName || 'multitool_project.html';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        alert(t.notificationSent);
+                      }}
+                      style={{ padding: '6px 8px', fontSize: '11px', background: 'rgba(217, 119, 6, 0.2)', border: '1px solid var(--accent-amber)', color: 'var(--accent-amber)', whiteSpace: 'nowrap' }}
+                    >
+                      <Download size={13} /> {t.exportHtmlBtn}
+                    </button>
+                    <button
+                      className="btn-primary"
+                      onClick={handleBuildApk}
+                      disabled={isBuildingApk}
+                      style={{ padding: '6px 8px', fontSize: '11px', background: 'rgba(16, 185, 129, 0.2)', border: '1px solid var(--accent-emerald)', color: 'var(--accent-emerald)', whiteSpace: 'nowrap' }}
+                    >
+                      {isBuildingApk ? <RefreshCw size={13} className="spin" /> : <Hammer size={13} />} {isBuildingApk ? t.buildingApk : t.buildApkBtn}
+                    </button>
                   </div>
-                </div>
-
-                { }
-                <div style={{ display: 'flex', gap: '8px', margin: '8px 0' }}>
-                  <button
-                    className="btn-primary"
-                    onClick={handleStartLocalhostServer}
-                    style={{ flex: 1, padding: '6px 10px', fontSize: '11px', background: 'rgba(14, 165, 233, 0.2)', border: '1px solid var(--accent-cyan)', color: 'var(--accent-cyan)' }}
-                  >
-                    <Server size={13} /> {t.localhostServerBtn}
-                  </button>
-                  <button
-                    className="btn-primary"
-                    onClick={() => {
-                      const blob = new Blob([editorContent], { type: 'text/html;charset=utf-8' });
-                      const url = URL.createObjectURL(blob);
-                      const a = document.createElement('a');
-                      a.href = url;
-                      a.download = currentFileName || 'multitool_project.html';
-                      document.body.appendChild(a);
-                      a.click();
-                      document.body.removeChild(a);
-                      URL.revokeObjectURL(url);
-                      alert(t.notificationSent);
-                    }}
-                    style={{ flex: 1, padding: '6px 10px', fontSize: '11px', background: 'rgba(217, 119, 6, 0.2)', border: '1px solid var(--accent-amber)', color: 'var(--accent-amber)' }}
-                  >
-                    <Download size={13} /> {t.exportHtmlBtn}
-                  </button>
-                  <button
-                    className="btn-primary"
-                    onClick={handleBuildApk}
-                    disabled={isBuildingApk}
-                    style={{ flex: 1, padding: '6px 10px', fontSize: '11px', background: 'rgba(16, 185, 129, 0.2)', border: '1px solid var(--accent-emerald)', color: 'var(--accent-emerald)' }}
-                  >
-                    {isBuildingApk ? <RefreshCw size={13} className="spin" /> : <Hammer size={13} />} {isBuildingApk ? t.buildingApk : t.buildApkBtn}
-                  </button>
                 </div>
 
                 <textarea
@@ -7024,7 +7549,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
                 {t.aboutDesc}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: 'var(--radius-xs)', marginBottom: '10px' }}>
-                <span>• {t.versionLabel}: <strong>v1.0.1</strong></span>
+                <span>• {t.versionLabel}: <strong>v1.0.2</strong></span>
                 <span>• {t.architectureLabel}: <strong>Self-Coding AI & Localhost Node.js</strong></span>
                 <span>• {t.buildLabel}: <strong>Vite + Capacitor</strong></span>
                 <span>• {t.databaseLabel}: <strong>LocalStorage & Express API</strong></span>
@@ -7110,8 +7635,20 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
     if (!isSetupOpen) return null;
 
     const t = (TRANSLATIONS as any)[language] || TRANSLATIONS.tr;
-    const TOTAL_STEPS = 8;
-    const STEP_LABELS = [t.setupStepIntro, t.setupStepPersonalize, t.setupStepFeatures, t.setupStepProvider, t.setupStepPersona, t.setupStepAppearance, t.setupStepReview, t.setupStepDone];
+    const TOTAL_STEPS = 11;
+    const STEP_LABELS = [
+      t.setupStepIntro,
+      t.setupStepPersonalize,
+      t.feat1Title,
+      t.feat2Title,
+      t.feat3Title,
+      t.feat4Title,
+      t.setupStepProvider,
+      t.setupStepPersona,
+      t.setupStepAppearance,
+      t.setupStepReview,
+      t.setupStepDone
+    ];
     const finishSetup = () => {
       localStorage.setItem('multitool_setup_completed', 'true');
       setIsSetupOpen(false);
@@ -7181,40 +7718,113 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(1)}>{t.backBtn}</button>
               <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(3)}>{t.nextBtn}</button>
             </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
           </div>
         )}
 
+        {/* Step 3: Feature 1 - Self-Coding & Localhost Sandbox */}
         {setupStep === 3 && (
           <div className="setup-slide" key="step-3">
-            <div style={{ textAlign: 'center', marginBottom: '4px' }}>
-              <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.featuresTitle}</h2>
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>{t.featuresSub}</p>
+            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+              <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '56px', height: '56px', borderRadius: '18px' }}>
+                <Hammer size={30} color="var(--primary)" />
+              </div>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.feat1Title}</h2>
+              <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '4px', maxWidth: '360px', margin: '4px auto 0 auto' }}>{t.feat1Desc}</p>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-              {[
-                { icon: <CodeIcon size={22} />, title: t.feat1Title, desc: t.feat1Desc },
-                { icon: <Mic size={22} />, title: t.feat2Title, desc: t.feat2Desc },
-                { icon: <CalendarIcon size={22} />, title: t.feat3Title, desc: t.feat3Desc },
-                { icon: <FileText size={22} />, title: t.feat4Title, desc: t.feat4Desc },
-              ].map((f, i) => (
-                <div key={i} className="setup-feature-card setup-feature-stagger" style={{ animationDelay: `${i * 0.08}s` }}>
-                  <div className="setup-icon-box">{f.icon}</div>
-                  <div>
-                    <h4 style={{ fontSize: '13.5px', fontWeight: '800', color: 'var(--text-primary)' }}>{f.title}</h4>
-                    <p style={{ fontSize: '11.5px', color: 'var(--text-secondary)', margin: 0 }}>{f.desc}</p>
-                  </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '380px' }}>
+              {[t.feat1Bullet1, t.feat1Bullet2, t.feat1Bullet3].map((b, i) => (
+                <div key={i} className="setup-feature-card" style={{ padding: '10px 14px', borderRadius: '12px' }}>
+                  <span style={{ fontSize: '12.5px', fontWeight: '600', color: 'var(--text-primary)' }}>{b}</span>
                 </div>
               ))}
             </div>
-            <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', marginTop: '6px' }}>
               <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(2)}>{t.backBtn}</button>
               <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(4)}>{t.nextBtn}</button>
             </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
           </div>
         )}
 
+        {/* Step 4: Feature 2 - Multi-AI & Voice Assistant */}
         {setupStep === 4 && (
           <div className="setup-slide" key="step-4">
+            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+              <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '56px', height: '56px', borderRadius: '18px' }}>
+                <Mic size={30} color="var(--accent-cyan)" />
+              </div>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.feat2Title}</h2>
+              <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '4px', maxWidth: '360px', margin: '4px auto 0 auto' }}>{t.feat2Desc}</p>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '380px' }}>
+              {[t.feat2Bullet1, t.feat2Bullet2, t.feat2Bullet3].map((b, i) => (
+                <div key={i} className="setup-feature-card" style={{ padding: '10px 14px', borderRadius: '12px' }}>
+                  <span style={{ fontSize: '12.5px', fontWeight: '600', color: 'var(--text-primary)' }}>{b}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', marginTop: '6px' }}>
+              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(3)}>{t.backBtn}</button>
+              <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(5)}>{t.nextBtn}</button>
+            </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
+          </div>
+        )}
+
+        {/* Step 5: Feature 3 - Smart Calendar & Gallery Export */}
+        {setupStep === 5 && (
+          <div className="setup-slide" key="step-5">
+            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+              <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '56px', height: '56px', borderRadius: '18px' }}>
+                <CalendarIcon size={30} color="var(--accent-amber)" />
+              </div>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.feat3Title}</h2>
+              <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '4px', maxWidth: '360px', margin: '4px auto 0 auto' }}>{t.feat3Desc}</p>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '380px' }}>
+              {[t.feat3Bullet1, t.feat3Bullet2, t.feat3Bullet3].map((b, i) => (
+                <div key={i} className="setup-feature-card" style={{ padding: '10px 14px', borderRadius: '12px' }}>
+                  <span style={{ fontSize: '12.5px', fontWeight: '600', color: 'var(--text-primary)' }}>{b}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', marginTop: '6px' }}>
+              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(4)}>{t.backBtn}</button>
+              <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(6)}>{t.nextBtn}</button>
+            </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
+          </div>
+        )}
+
+        {/* Step 6: Feature 4 - Todos, Notes & Analytics */}
+        {setupStep === 6 && (
+          <div className="setup-slide" key="step-6">
+            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+              <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '56px', height: '56px', borderRadius: '18px' }}>
+                <FileText size={30} color="var(--accent-rose)" />
+              </div>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.feat4Title}</h2>
+              <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '4px', maxWidth: '360px', margin: '4px auto 0 auto' }}>{t.feat4Desc}</p>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '380px' }}>
+              {[t.feat4Bullet1, t.feat4Bullet2, t.feat4Bullet3].map((b, i) => (
+                <div key={i} className="setup-feature-card" style={{ padding: '10px 14px', borderRadius: '12px' }}>
+                  <span style={{ fontSize: '12.5px', fontWeight: '600', color: 'var(--text-primary)' }}>{b}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', marginTop: '6px' }}>
+              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(5)}>{t.backBtn}</button>
+              <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(7)}>{t.nextBtn}</button>
+            </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
+          </div>
+        )}
+
+        {/* Step 7: AI Provider */}
+        {setupStep === 7 && (
+          <div className="setup-slide" key="step-7">
             <div style={{ textAlign: 'center' }}>
               <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '50px', height: '50px' }}>
                 <Cpu size={26} />
@@ -7371,7 +7981,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
 
               {provider === 'ollama' && (
                 <div className="form-group">
-                  <label className="form-label">{t.ollamaUrlLabel || 'Ollama URL'}</label>
+                  <label className="form-label">{t.ollamaEndpointLabel || 'Ollama Sunucu Adresi'}</label>
                   <input
                     type="text"
                     className="form-input"
@@ -7383,55 +7993,50 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               )}
             </div>
 
-            <div style={{ display: 'flex', gap: '10px', width: '100%', marginTop: '12px' }}>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', marginTop: '10px' }}>
               <button
                 className="btn-secondary"
                 style={{ flex: 1, padding: '12px' }}
-                onClick={() => setSetupStep(3)}
+                onClick={() => setSetupStep(6)}
               >
                 {t.backBtn}
               </button>
               <button
                 className="btn-primary"
                 style={{ flex: 1, padding: '12px' }}
-                onClick={() => setSetupStep(5)}
+                onClick={() => setSetupStep(8)}
               >
                 {t.nextBtn}
               </button>
             </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
           </div>
         )}
 
-        {setupStep === 5 && (
-          <div className="setup-slide" key="step-5">
+        {/* Step 8: Persona */}
+        {setupStep === 8 && (
+          <div className="setup-slide" key="step-8">
             <div style={{ textAlign: 'center' }}>
-              <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '50px', height: '50px' }}>
-                <Sparkles size={26} />
-              </div>
-              <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-primary)' }}>
-                {t.personaTitle}
-              </h2>
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-                {t.personaSub}
-              </p>
+              <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '50px', height: '50px' }}><Sparkles size={26} /></div>
+              <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.personaTitle}</h2>
+              <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>{t.personaSub}</p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxHeight: '220px', overflowY: 'auto', paddingRight: '4px' }}>
               {(Object.keys(PERSONAS) as Array<keyof typeof PERSONAS>).map((pKey) => (
                 <button
                   key={pKey}
                   type="button"
                   style={{
-                    padding: '14px 12px',
-                    borderRadius: '14px',
-                    border: `2px solid ${agentPersona === pKey ? 'var(--primary)' : 'var(--border-color)'}`,
-                    background: agentPersona === pKey ? 'rgba(37, 99, 235, 0.08)' : '#ffffff',
+                    padding: '10px 12px',
+                    borderRadius: 'var(--radius-sm)',
+                    border: agentPersona === pKey ? '2px solid var(--primary)' : '1px solid var(--border-color)',
+                    background: agentPersona === pKey ? 'var(--bg-card-hover)' : 'var(--bg-card)',
                     cursor: 'pointer',
                     textAlign: 'left',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '4px',
-                    boxShadow: agentPersona === pKey ? 'var(--shadow-sm)' : 'none'
                   }}
                   onClick={() => setAgentPersona(pKey)}
                 >
@@ -7445,23 +8050,25 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               <button
                 className="btn-secondary"
                 style={{ flex: 1, padding: '12px' }}
-                onClick={() => setSetupStep(4)}
+                onClick={() => setSetupStep(7)}
               >
                 {t.backBtn}
               </button>
               <button
                 className="btn-primary"
                 style={{ flex: 1, padding: '12px' }}
-                onClick={() => setSetupStep(6)}
+                onClick={() => setSetupStep(9)}
               >
                 {t.nextBtn}
               </button>
             </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
           </div>
         )}
 
-        {setupStep === 6 && (
-          <div className="setup-slide" key="step-6">
+        {/* Step 9: Appearance */}
+        {setupStep === 9 && (
+          <div className="setup-slide" key="step-9">
             <div style={{ textAlign: 'center' }}>
               <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '50px', height: '50px' }}><Palette size={26} /></div>
               <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.appearanceTitle}</h2>
@@ -7476,14 +8083,16 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               ))}
             </div>
             <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(5)}>{t.backBtn}</button>
-              <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(7)}>{t.nextBtn}</button>
+              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(8)}>{t.backBtn}</button>
+              <button className="btn-primary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(10)}>{t.nextBtn}</button>
             </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
           </div>
         )}
 
-        {setupStep === 7 && (
-          <div className="setup-slide" key="step-7">
+        {/* Step 10: Review */}
+        {setupStep === 10 && (
+          <div className="setup-slide" key="step-10">
             <div style={{ textAlign: 'center' }}>
               <div className="setup-icon-box" style={{ margin: '0 auto 8px auto', width: '50px', height: '50px' }}><CheckCircle2 size={26} /></div>
               <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-primary)' }}>{t.reviewTitle}</h2>
@@ -7497,14 +8106,16 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               <div className="setup-review-row"><span className="label"><Palette size={14} /> {t.reviewThemeLbl}</span><span className="value">{themeLabel(theme)}</span></div>
             </div>
             <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(6)}>{t.backBtn}</button>
-              <button className="btn-primary setup-gradient-btn" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(8)}>{t.reviewLooksGood}</button>
+              <button className="btn-secondary" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(9)}>{t.backBtn}</button>
+              <button className="btn-primary setup-gradient-btn" style={{ flex: 1, padding: '12px' }} onClick={() => setSetupStep(11)}>{t.reviewLooksGood}</button>
             </div>
+            <button className="setup-skip-link" onClick={finishSetup} style={{ marginTop: '8px' }}>{t.setupSkip}</button>
           </div>
         )}
 
-        {setupStep === 8 && (
-          <div className="setup-slide" key="step-8" style={{ textAlign: 'center', position: 'relative' }}>
+        {/* Step 11: Complete */}
+        {setupStep === 11 && (
+          <div className="setup-slide" key="step-11" style={{ textAlign: 'center', position: 'relative' }}>
             {[...Array(12)].map((_, i) => (
               <span key={i} className="setup-confetti" style={{ left: `${8 + i * 7}%`, background: ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#22c55e'][i % 5], ['--cx' as any]: `${(i % 2 === 0 ? -1 : 1) * (18 + (i * 3))}px` }} />
             ))}
@@ -7758,7 +8369,7 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
       { }
       <div className="app-header">
         <div className="app-title-container">
-          <div className="app-logo" style={{ background: '#ffffff', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="app-logo" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src="/logo.png" alt="Logo" style={{ width: '22px', height: '22px', objectFit: 'contain' }} />
           </div>
           <span className="app-title">Multitool Agent</span>
@@ -7777,7 +8388,8 @@ Etkinlik eklerken veya hatırlatıcı oluştururken bugünün yerel tarihini (${
               alignItems: 'center',
               gap: '4px',
               borderRadius: 'var(--radius-xs)',
-              fontWeight: '700'
+              fontWeight: '700',
+              whiteSpace: 'nowrap'
             }}
             title={t.downloadApkTitle}
           >
