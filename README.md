@@ -3,27 +3,27 @@
 [![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
-[![Backend](https://img.shields.io/badge/backend-Appwrite%20Cloud-fd366e.svg)](https://appwrite.io)
+[![Backend](https://img.shields.io/badge/backend-Express%20Cloud%20Server-6366f1.svg)](https://dorukk.dev/multitool-cloud)
 [![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
 
-**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, Multitool Cloud authentication (Appwrite), social friend addition, notification alerts, shared calendars, private accounts, automated agenda and task management, automated GitHub releases update detection, modular setup wizard, gallery JPEG exports, and self-compiling Android APK capabilities directly on-device.
+**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, Multitool Cloud authentication (Express API), social friend addition, notification alerts, shared calendars, private accounts, automated agenda and task management, automated GitHub releases update detection, modular setup wizard, gallery JPEG exports, and self-compiling Android APK capabilities directly on-device.
 
 ---
 
 ## ✨ Key Features
 
-### ☁️ 1. Multitool Cloud & Appwrite Authentication (New in v1.2.0)
-* **Secure Authentication**: Register and log in using email & password powered by Appwrite Cloud.
-* **Cros-Device Session Sync**: Easily maintain cloud session state across web and Android mobile applications.
+### ☁️ 1. Multitool Cloud Express Authentication (v1.2.0)
+* **Secure Authentication**: Register and log in using email/username & password powered by Multitool Cloud Express server (`https://dorukk.dev/multitool-cloud`).
+* **Cross-Device Session Sync**: Maintain cloud session state across web and Android mobile applications.
 
-### 👥 2. Friends System & Notification Badges (New in v1.2.0)
-* **Add Friends by Email**: Send friend requests to other Multitool users directly by email.
+### 👥 2. Friends System & Notification Badges (v1.2.0)
+* **Add Friends by Email**: Send friend requests to other Multitool users directly by email or username.
 * **Notification Alerts**: Live red badge indicator on the top app header `Cloud` icon when pending friend requests arrive.
 * **Request Management**: Accept or reject incoming requests with one tap.
 
-### 🔒 3. Private Account & Calendar Sharing Controls (New in v1.2.0)
+### 🔒 3. Private Account & Calendar Sharing Controls (v1.2.0)
 * **Private Account Toggle (🔒 Hesabı Gizli Yap)**: Protect your account and hide from public search/friend recommendations.
-* **Shared Calendars (📅 Takvimimi Paylaş)**: Allow connected friends to view shared agenda events seamlessly.
+* **Shared Calendars (📅 Takvimimi Paylaş)**: Allow connected friends to view shared agenda events seamlessly in real time.
 
 ### 🚀 4. Automated GitHub Release Updates
 * **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.2.0`.
@@ -91,12 +91,12 @@
 | Component | Technology Used |
 | :--- | :--- |
 | **Frontend Framework** | React 19 + TypeScript + Vite |
-| **Cloud & Auth Backend** | Appwrite Cloud (`appwrite` SDK) |
+| **Cloud & Auth Backend** | Multitool Cloud Express (`https://dorukk.dev/multitool-cloud`) |
 | **Mobile Runtime** | Capacitor v8 (Native Android Bridge) |
 | **Styling & UI** | Vanilla CSS (Theme Tokens & Mobile Grid Constraints) |
 | **Icon Set** | Lucide React |
 | **AI Backend Engines** | Groq Cloud, DeepSeek, OpenAI, Gemini, OpenRouter & Ollama |
-| **Local Sandbox Server** | Node.js + Express (`server.cjs`) |
+| **Local Sandbox Server** | Node.js + Express (`cloud-server/server.js`) |
 | **Mobile Compiler** | Gradle + Android SDK Platform 34 |
 
 ---
@@ -106,7 +106,6 @@
 ### Prerequisites
 * Node.js (v18+)
 * npm or yarn
-* Appwrite Cloud account (or local Appwrite instance)
 * Android Studio & SDK (for local APK compilation)
 
 ### 1. Clone the Repository
@@ -116,25 +115,28 @@ cd multitool
 ```
 
 ### 2. Configure Environment Variables
-Copy `.env.example` to `.env` and fill in your Appwrite details:
+Copy `.env.example` to `.env`:
 ```bash
 cp .env.example .env
 ```
 Example `.env`:
 ```env
-VITE_APPWRITE_PROJECT_ID="YOUR_APPWRITE_PROJECT_ID"
-VITE_APPWRITE_PROJECT_NAME="Multitool Cloud"
-VITE_APPWRITE_ENDPOINT="https://fra.cloud.appwrite.io/v1"
+VITE_CLOUD_SERVER_URL="https://dorukk.dev/multitool-cloud"
+VITE_CLOUD_API_KEY="mtc_sk_24fe2f8b30d8ea5943a45e5c4cac5193054b"
 ```
 
-### 3. Install Dependencies
+### 3. Install Dependencies & Start App
 ```bash
 npm install
+npm run dev
 ```
 
-### 4. Start Development Server
+### 4. Self-Hosted Cloud Server (Optional)
+To run your own backend instance:
 ```bash
-npm run dev
+cd cloud-server
+npm install
+npm start
 ```
 
 ---
@@ -154,3 +156,4 @@ The compiled APK will automatically be generated and copied to your Desktop (`/h
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
