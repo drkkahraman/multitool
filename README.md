@@ -1,6 +1,6 @@
-# 🛠️ Multitool AI Agent (v1.2.2)
+# 🛠️ Multitool AI Agent (v1.2.3)
 
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/drkkahraman/multitool)
+[![Version](https://img.shields.io/badge/version-1.2.3-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
 [![Backend](https://img.shields.io/badge/backend-Express%20Cloud%20Server-6366f1.svg)](https://dorukk.dev/multitool-cloud)
@@ -11,13 +11,13 @@
 
 ---
 
-## ✨ Key Features (v1.2.2)
+## ✨ Key Features (v1.2.3)
 
-### 🚀 1. 100% Pure & Ad-Free Experience (v1.2.2)
+### 🚀 1. 100% Pure & Ad-Free Experience (v1.2.3)
 * **Zero Interruptions**: All ad networks, background ad timers, banner popups, and video offers have been completely removed.
 * **Maximum Performance**: Streamlined runtime without ad SDK overhead for faster app initialization and smooth user interactions.
 
-### 🤖 2. Zero-Configuration Default AI Model (v1.2.2)
+### 🤖 2. Zero-Configuration Default AI Model (v1.2.3)
 * **Instant Out-of-the-Box AI**: Ships pre-configured with the `qwen/qwen3.7-27b` model and built-in API access key via Groq.
 * **No Mandatory Setup**: Users can start chatting immediately upon opening the app without needing to acquire or type an API key.
 * **Customizable via Settings**: Full flexibility to switch providers (DeepSeek, Gemini, OpenAI, Ollama, OpenRouter) or scan models anytime from Settings.
@@ -44,7 +44,7 @@
 * **Notification Alerts**: Live red badge indicator on the top app header `Cloud` icon when pending friend requests arrive.
 
 ### 🚀 7. Automated GitHub Release Updates
-* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.2.2`.
+* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.2.3`.
 * **In-App Release Modal**: Displays version release notes and a direct *"⚡ Download & Install Update"* button.
 
 ### 📥 8. High-Resolution JPEG Agenda & Note Exports to Gallery
