@@ -12,9 +12,7 @@ export const APPWRITE_PROJECT_NAME = 'Multitool Cloud';
 const PRIMARY_URL = (import.meta.env.VITE_CLOUD_SERVER_URL || 'https://dorukk.dev/multitool-cloud').replace(/\/$/, '');
 const FALLBACK_URLS = [
     PRIMARY_URL,
-    'https://dorukk.dev/multitool-cloud',
-    'http://92.249.61.108:3077',
-    'http://dorukk.dev:3077'
+    'https://dorukk.dev/multitool-cloud'
 ].filter((v, i, a) => Boolean(v) && a.indexOf(v) === i);
 
 const API_KEY = import.meta.env.VITE_CLOUD_API_KEY || 'mtc_sk_24fe2f8b30d8ea5943a45e5c4cac5193054b';
@@ -32,7 +30,13 @@ function setToken(token: string | null) {
 async function _fetchCandidate(path: string, options: RequestInit): Promise<Response> {
     for (const baseUrl of FALLBACK_URLS) {
         try {
-            const res = await fetch(baseUrl + path, options);
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000);
+            const res = await fetch(baseUrl + path, {
+                ...options,
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
             return res;
         } catch {
             // try next fallback

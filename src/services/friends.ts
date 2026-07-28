@@ -42,9 +42,7 @@ const SHARED_CALENDAR_KEY = 'multitool_cloud_shared_events';
 const PRIMARY_URL = (import.meta.env.VITE_CLOUD_SERVER_URL || 'https://dorukk.dev/multitool-cloud').replace(/\/$/, '');
 const FALLBACK_URLS = [
     PRIMARY_URL,
-    'https://dorukk.dev/multitool-cloud',
-    'http://92.249.61.108:3077',
-    'http://dorukk.dev:3077'
+    'https://dorukk.dev/multitool-cloud'
 ].filter((v, i, a) => Boolean(v) && a.indexOf(v) === i);
 
 const API_KEY = import.meta.env.VITE_CLOUD_API_KEY || 'mtc_sk_24fe2f8b30d8ea5943a45e5c4cac5193054b';
@@ -62,7 +60,13 @@ async function _api(path: string, method: string = 'GET', body?: any): Promise<a
     let res: Response | null = null;
     for (const baseUrl of FALLBACK_URLS) {
         try {
-            res = await fetch(baseUrl + path, opts);
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000);
+            res = await fetch(baseUrl + path, {
+                ...opts,
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
             if (res) break;
         } catch {
             // try next fallback
@@ -105,14 +109,22 @@ export const friendsService = {
         }
     },
 
-    // Sunucudan arkadaşları çek ve yerel önbelleği güncelle
+    // Sunucudan arkadaşları çek ve yerel önbelleği güncelle (yerel arkadaşları koruyarak birleştir)
     async getFriendsAsync(userEmail?: string): Promise<UserFriend[]> {
         if (!userEmail) return this.getFriends();
         try {
             const data = await _api('/api/friends?email=' + encodeURIComponent(norm(userEmail)));
-            const friends: UserFriend[] = data.friends || [];
-            localStorage.setItem(FRIENDS_STORAGE_KEY, JSON.stringify(friends));
-            return friends;
+            const serverFriends: UserFriend[] = data.friends || [];
+            const localFriends = this.getFriends();
+            
+            const merged = [...serverFriends];
+            for (const lf of localFriends) {
+                if (!merged.some(sf => norm(sf.email) === norm(lf.email))) {
+                    merged.push(lf);
+                }
+            }
+            localStorage.setItem(FRIENDS_STORAGE_KEY, JSON.stringify(merged));
+            return merged;
         } catch (e) {
             console.warn('Sunucudan arkadaşlar alınamadı, yerel önbellek kullanılıyor:', e);
             return this.getFriends();
@@ -188,7 +200,8 @@ export const friendsService = {
                     localStorage.setItem(REQUESTS_STORAGE_KEY, JSON.stringify(localRequests));
                     const friends = this.getFriends();
                     if (!friends.some(f => norm(f.email) === norm(req.senderEmail))) {
-                        friends.push({ id: 'friend_' + Date.now(), name: req.senderName, email: req.senderEmail, shareCalendar: true });
+                        const friendName = req.senderName || req.senderEmail.split('@')[0] || req.senderEmail;
+                        friends.push({ id: 'friend_' + Date.now(), name: friendName, email: req.senderEmail, shareCalendar: true });
                         localStorage.setItem(FRIENDS_STORAGE_KEY, JSON.stringify(friends));
                     }
                 }
@@ -256,15 +269,66 @@ export const friendsService = {
         return true;
     },
 
-    // Arkadaşın paylaştığı takvim etkinliklerini getir
-    async getFriendCalendarEvents(friendEmail: string): Promise<SharedCalendarEvent[]> {
+    // Arkadaşın paylaştığı takvim etkinliklerini getir (viewerEmail ile özel paylaşımları da kapsar)
+    async getFriendCalendarEvents(friendEmail: string, viewerEmail?: string): Promise<SharedCalendarEvent[]> {
         if (!friendEmail) return [];
         try {
-            const data = await _api('/api/calendar/' + encodeURIComponent(norm(friendEmail)));
+            const url = '/api/calendar/' + encodeURIComponent(norm(friendEmail)) + (viewerEmail ? '?viewerEmail=' + encodeURIComponent(norm(viewerEmail)) : '');
+            const data = await _api(url);
             return data.events || [];
         } catch (e) {
             console.warn('Arkadaş takvimi alınamadı:', e);
             return [];
+        }
+    },
+
+    // Belirli bir arkadaşa özel gün / hafta / ay / tüm takvimi paylaş
+    async shareTargetedCalendar(
+        ownerEmail: string,
+        ownerName: string,
+        targetFriendEmail: string,
+        scope: 'day' | 'week' | 'month' | 'all',
+        targetDate: string,
+        events: any[]
+    ): Promise<{ success: boolean; message?: string }> {
+        if (!ownerEmail || !targetFriendEmail) return { success: false, message: 'Geçersiz kullanıcı bilgisi' };
+        try {
+            await _api('/api/calendar/share', 'POST', {
+                ownerEmail: norm(ownerEmail),
+                ownerName: ownerName || ownerEmail.split('@')[0],
+                targetFriendEmail: norm(targetFriendEmail),
+                scope,
+                targetDate: targetDate || '',
+                events
+            });
+            return { success: true };
+        } catch (e: any) {
+            console.warn('Hedefli takvim paylaşılamadı:', e);
+            return { success: false, message: e.message || 'Paylaşım başarısız' };
+        }
+    },
+
+    // Aktif paylaşımları getir (gönderilen / alınan)
+    async getActiveShares(userEmail: string): Promise<{ sent: any[]; received: any[] }> {
+        if (!userEmail) return { sent: [], received: [] };
+        try {
+            const data = await _api('/api/calendar/shares/active?email=' + encodeURIComponent(norm(userEmail)));
+            return { sent: data.sent || [], received: data.received || [] };
+        } catch (e) {
+            console.warn('Aktif paylaşımlar alınamadı:', e);
+            return { sent: [], received: [] };
+        }
+    },
+
+    // Paylaşımı Sil
+    async deleteShare(shareId: string): Promise<boolean> {
+        if (!shareId) return false;
+        try {
+            await _api('/api/calendar/share/' + encodeURIComponent(shareId), 'DELETE');
+            return true;
+        } catch (e) {
+            console.warn('Paylaşım silinemedi:', e);
+            return false;
         }
     },
 

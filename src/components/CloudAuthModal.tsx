@@ -83,7 +83,23 @@ const TRANSLATIONS: Record<string, any> = {
         msgSent: "{email} adresine arkadaş isteği gönderildi!",
         msgMutualAccepted: "Karşılıklı istek algılandı, arkadaşlığınız oluşturuldu!",
         msgSavedLocalOnly: "İstek yerel olarak kaydedildi ama bulut rölesi şu an yanıt vermiyor.",
-        msgNetworkError: "Sunucuyla iletişim kurulamadı. Bağlantınızı kontrol edin."
+        msgNetworkError: "Sunucuyla iletişim kurulamadı. Bağlantınızı kontrol edin.",
+        targetedShareTitle: "📅 Day / Week / Month Share",
+        targetedShareSub: "Share a specific day, week, or month with a friend.",
+        selectFriendDropdown: "Select Friend...",
+        shareScopeLabel: "Sharing Scope",
+        scopeDay: "📅 Day",
+        scopeWeek: "🗓️ Week",
+        scopeMonth: "📆 Month",
+        scopeAll: "🌐 All",
+        targetDateLabel: "Date",
+        sendShareBtn: "🚀 Share Calendar",
+        matchingEventsMsg: "events will be included",
+        activeSharesTitle: "MY ACTIVE SHARES",
+        noActiveShares: "No targeted calendar shares yet.",
+        revokeShareBtn: "Cancelar",
+        shareSuccessAlert: "¡Rango del calendario compartido con éxito!",
+        selectFriendFirst: "Por favor selecciona un amigo para compartir.",
     },
     en: {
         subtitle: "Appwrite Secure Cloud Account",
@@ -137,7 +153,23 @@ const TRANSLATIONS: Record<string, any> = {
         msgSent: "Friend request sent to {email}!",
         msgMutualAccepted: "Mutual request detected — you are now friends!",
         msgSavedLocalOnly: "Request saved locally, but the cloud relay is not responding right now.",
-        msgNetworkError: "Could not reach the server. Check your connection."
+        msgNetworkError: "Could not reach the server. Check your connection.",
+        targetedShareTitle: "📅 Compartir Día / Semana / Mes",
+        targetedShareSub: "Comparte un día, semana o mes específico con un amigo.",
+        selectFriendDropdown: "Seleccionar amigo...",
+        shareScopeLabel: "Alcance",
+        scopeDay: "📅 Día",
+        scopeWeek: "🗓️ Semana",
+        scopeMonth: "📆 Mes",
+        scopeAll: "🌐 Todo",
+        targetDateLabel: "Fecha",
+        sendShareBtn: "🚀 Compartir calendario",
+        matchingEventsMsg: "eventos incluidos",
+        activeSharesTitle: "COMPARTIDOS ACTIVOS",
+        noActiveShares: "Aún no has compartido rangos de calendario.",
+        revokeShareBtn: "Revoke",
+        shareSuccessAlert: "Calendar range successfully shared!",
+        selectFriendFirst: "Please select a friend to share the calendar with.",
     },
     de: {
         subtitle: "Appwrite Sicheres Cloud-Konto",
@@ -191,7 +223,23 @@ const TRANSLATIONS: Record<string, any> = {
         msgSent: "Freundschaftsanfrage an {email} gesendet!",
         msgMutualAccepted: "Gegenseitige Anfrage erkannt — Sie sind jetzt Freunde!",
         msgSavedLocalOnly: "Anfrage lokal gespeichert, aber das Cloud-Relay reagiert gerade nicht.",
-        msgNetworkError: "Server konnte nicht erreicht werden. Verbindung prüfen."
+        msgNetworkError: "Server konnte nicht erreicht werden. Verbindung prüfen.",
+        targetedShareTitle: "📅 Tag / Woche / Monat teilen",
+        targetedShareSub: "Teilen Sie einen bestimmten Tag, eine Woche oder einen Monat.",
+        selectFriendDropdown: "Freund auswählen...",
+        shareScopeLabel: "Umfang",
+        scopeDay: "📅 Tag",
+        scopeWeek: "🗓️ Woche",
+        scopeMonth: "📆 Monat",
+        scopeAll: "🌐 Alle",
+        targetDateLabel: "Datum",
+        sendShareBtn: "🚀 Kalender teilen",
+        matchingEventsMsg: "Termine werden enthalten sein",
+        activeSharesTitle: "AKTIVE FREIGABEN",
+        noActiveShares: "Noch keine gezielten Freigaben.",
+        revokeShareBtn: "Widerrufen",
+        shareSuccessAlert: "Kalenderbereich erfolgreich geteilt!",
+        selectFriendFirst: "Bitte wählen Sie einen Freund aus.",
     },
     es: {
         subtitle: "Cuenta segura en la nube de Appwrite",
@@ -245,7 +293,23 @@ const TRANSLATIONS: Record<string, any> = {
         msgSent: "¡Solicitud de amistad enviada a {email}!",
         msgMutualAccepted: "Solicitud mutua detectada — ¡ahora son amigos!",
         msgSavedLocalOnly: "Solicitud guardada localmente, pero el relay en la nube no responde ahora.",
-        msgNetworkError: "No se pudo contactar con el servidor. Revisa tu conexión."
+        msgNetworkError: "No se pudo contactar con el servidor. Revisa tu conexión.",
+        targetedShareTitle: "📅 Compartir Día / Semana / Mes",
+        targetedShareSub: "Comparte un día, semana o mes específico con un amigo.",
+        selectFriendDropdown: "Seleccionar amigo...",
+        shareScopeLabel: "Alcance",
+        scopeDay: "📅 Diario",
+        scopeWeek: "🗓️ Semanal",
+        scopeMonth: "📆 Mensual",
+        scopeAll: "🌐 Todo el calendario",
+        targetDateLabel: "Seleccionar fecha",
+        sendShareBtn: "🚀 Enviar calendario",
+        matchingEventsMsg: "eventos incluidos",
+        activeSharesTitle: "MIS COMPARTIDOS ACTIVOS",
+        noActiveShares: "Aún no has compartido un rango de calendario con ningún amigo.",
+        revokeShareBtn: "Cancelar",
+        shareSuccessAlert: "¡Rango del calendario compartido con éxito!",
+        selectFriendFirst: "Por favor selecciona un amigo para compartir.",
     },
     fr: {
         subtitle: "Compte Appwrite Cloud Sécurisé",
@@ -299,7 +363,23 @@ const TRANSLATIONS: Record<string, any> = {
         msgSent: "Demande d'amitié envoyée à {email} !",
         msgMutualAccepted: "Demande mutuelle détectée — vous êtes maintenant amis !",
         msgSavedLocalOnly: "Demande enregistrée localement, mais le relais cloud ne répond pas pour le moment.",
-        msgNetworkError: "Impossible de joindre le serveur. Vérifiez votre connexion."
+        msgNetworkError: "Impossible de joindre le serveur. Vérifiez votre connexion.",
+        targetedShareTitle: "📅 Partage Jour / Semaine / Mois",
+        targetedShareSub: "Partagez un jour, une semaine ou un mois spécifique.",
+        selectFriendDropdown: "Sélectionner un ami...",
+        shareScopeLabel: "Portée",
+        scopeDay: "📅 Jour",
+        scopeWeek: "🗓️ Semaine",
+        scopeMonth: "📆 Mois",
+        scopeAll: "🌐 Tous",
+        targetDateLabel: "Date",
+        sendShareBtn: "🚀 Partager le calendrier",
+        matchingEventsMsg: "événements inclus",
+        activeSharesTitle: "PARTAGES ACTIFS",
+        noActiveShares: "Aucun partage ciblé pour le moment.",
+        revokeShareBtn: "Révoquer",
+        shareSuccessAlert: "Plage de calendrier partagée avec succès !",
+        selectFriendFirst: "Veuillez sélectionner un ami.",
     },
     it: {
         subtitle: "Account Appwrite Cloud Sicuro",
@@ -353,7 +433,23 @@ const TRANSLATIONS: Record<string, any> = {
         msgSent: "Richiesta di amicizia inviata a {email}!",
         msgMutualAccepted: "Richiesta reciproca rilevata — ora siete amici!",
         msgSavedLocalOnly: "Richiesta salvata localmente, ma il relay cloud non risponde ora.",
-        msgNetworkError: "Impossibile contattare il server. Controlla la connessione."
+        msgNetworkError: "Impossibile contattare il server. Controlla la connessione.",
+        targetedShareTitle: "📅 Condividi Giorno / Settimana / Mese",
+        targetedShareSub: "Condividi un giorno, una settimana o un mese specifico.",
+        selectFriendDropdown: "Seleziona amico...",
+        shareScopeLabel: "Ambito",
+        scopeDay: "📅 Giorno",
+        scopeWeek: "🗓️ Settimana",
+        scopeMonth: "📆 Mese",
+        scopeAll: "🌐 Tutti",
+        targetDateLabel: "Data",
+        sendShareBtn: "🚀 Condividi calendario",
+        matchingEventsMsg: "eventi inclusi",
+        activeSharesTitle: "CONDIVISIONI ATTIVE",
+        noActiveShares: "Nessuna condivisione mirata al momento.",
+        revokeShareBtn: "Revoca",
+        shareSuccessAlert: "Fascia di calendario condivisa con successo!",
+        selectFriendFirst: "Seleziona un amico per condividere.",
     }
 };
 
@@ -383,10 +479,90 @@ export const CloudAuthModal: React.FC<CloudAuthModalProps> = ({ isOpen, onClose,
     const [selectedFriendCalendar, setSelectedFriendCalendar] = useState<{ friend: UserFriend; events: SharedCalendarEvent[] } | null>(null);
     const [friendCalendarLoading, setFriendCalendarLoading] = useState<boolean>(false);
 
+    // Targeted Sharing State
+    const [selectedFriendForShare, setSelectedFriendForShare] = useState<string>('');
+    const [shareScope, setShareScope] = useState<'day' | 'week' | 'month' | 'all'>('day');
+    const [shareTargetDate, setShareTargetDate] = useState<string>(() => new Date().toISOString().split('T')[0]);
+    const [activeSentShares, setActiveSentShares] = useState<any[]>([]);
+    const [shareSubmitLoading, setShareSubmitLoading] = useState<boolean>(false);
+
+    const getWeekRange = (dateStr: string) => {
+        const d = new Date(dateStr);
+        const day = d.getDay();
+        const diffToMon = (day === 0 ? -6 : 1 - day);
+        const mon = new Date(d);
+        mon.setDate(d.getDate() + diffToMon);
+        const sun = new Date(mon);
+        sun.setDate(mon.getDate() + 6);
+        return {
+            start: mon.toISOString().split('T')[0],
+            end: sun.toISOString().split('T')[0]
+        };
+    };
+
+    const getMatchingEvents = () => {
+        try {
+            const raw = localStorage.getItem('multitool_calendar');
+            const events: any[] = raw ? JSON.parse(raw) : [];
+            if (shareScope === 'all') return events;
+            if (shareScope === 'day') return events.filter(e => e.date === shareTargetDate);
+            if (shareScope === 'month') {
+                const monthPrefix = shareTargetDate.slice(0, 7);
+                return events.filter(e => e.date && e.date.startsWith(monthPrefix));
+            }
+            if (shareScope === 'week') {
+                const { start, end } = getWeekRange(shareTargetDate);
+                return events.filter(e => e.date >= start && e.date <= end);
+            }
+            return events;
+        } catch {
+            return [];
+        }
+    };
+
+    const loadActiveShares = async (userEmail?: string) => {
+        const email = userEmail || currentUser?.email;
+        if (email) {
+            const { sent } = await friendsService.getActiveShares(email);
+            setActiveSentShares(sent);
+        }
+    };
+
+    const handleSendTargetedShare = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!currentUser) return;
+        if (!selectedFriendForShare) {
+            setFriendActionMsg({ type: 'error', text: t.selectFriendFirst });
+            return;
+        }
+        setShareSubmitLoading(true);
+        const matchingEvts = getMatchingEvents();
+        const res = await friendsService.shareTargetedCalendar(
+            currentUser.email,
+            currentUser.name || currentUser.email.split('@')[0],
+            selectedFriendForShare,
+            shareScope,
+            shareTargetDate,
+            matchingEvts
+        );
+        setShareSubmitLoading(false);
+        if (res.success) {
+            setFriendActionMsg({ type: 'success', text: t.shareSuccessAlert });
+            loadActiveShares(currentUser.email);
+        } else {
+            setFriendActionMsg({ type: 'error', text: res.message || 'Hata oluştu' });
+        }
+    };
+
+    const handleRevokeShare = async (shareId: string) => {
+        await friendsService.deleteShare(shareId);
+        if (currentUser?.email) loadActiveShares(currentUser.email);
+    };
+
     const handleViewFriendCalendar = async (friend: UserFriend) => {
         setSelectedFriendCalendar({ friend, events: [] });
         setFriendCalendarLoading(true);
-        const evts = await friendsService.getFriendCalendarEvents(friend.email);
+        const evts = await friendsService.getFriendCalendarEvents(friend.email, currentUser?.email);
         setSelectedFriendCalendar({ friend, events: evts });
         setFriendCalendarLoading(false);
     };
@@ -428,6 +604,7 @@ export const CloudAuthModal: React.FC<CloudAuthModalProps> = ({ isOpen, onClose,
             ]);
             setPendingRequests(frReqs);
             setFriends(friends);
+            loadActiveShares(activeUser.email);
         } else {
             setFriends(friendsService.getFriends());
             setPendingRequests([]);
@@ -955,6 +1132,138 @@ export const CloudAuthModal: React.FC<CloudAuthModalProps> = ({ isOpen, onClose,
                                         <UserPlus size={15} /> {t.addBtn}
                                     </button>
                                 </form>
+
+                                {/* GÜN / HAFTA / AY ÖZEL TAKVİM PAYLAŞIMI */}
+                                <div style={{
+                                    backgroundColor: 'var(--bg-secondary)',
+                                    border: '1px solid var(--border-color)',
+                                    borderRadius: 'var(--radius-md)',
+                                    padding: '14px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '12px'
+                                }}>
+                                    <div>
+                                        <h4 style={{ margin: 0, fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                            <CalendarIcon size={15} color="var(--primary)" /> {t.targetedShareTitle}
+                                        </h4>
+                                        <p style={{ margin: '3px 0 0 0', fontSize: '11.5px', color: 'var(--text-muted)' }}>
+                                            {t.targetedShareSub}
+                                        </p>
+                                    </div>
+
+                                    <form onSubmit={handleSendTargetedShare} style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', boxSizing: 'border-box' }}>
+                                        {/* Arkadaş Seçimi */}
+                                        <select
+                                            className="form-input"
+                                            value={selectedFriendForShare}
+                                            onChange={e => setSelectedFriendForShare(e.target.value)}
+                                            style={{ padding: '9px 10px', fontSize: '12.5px', borderRadius: 'var(--radius-sm)', width: '100%', boxSizing: 'border-box' }}
+                                            required
+                                        >
+                                            <option value="">{t.selectFriendDropdown}</option>
+                                            {friends.map(f => (
+                                                <option key={f.id} value={f.email}>{f.name} ({f.email})</option>
+                                            ))}
+                                        </select>
+
+                                        {/* Kapsam Seçimi */}
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px', width: '100%', boxSizing: 'border-box' }}>
+                                            {(['day', 'week', 'month', 'all'] as const).map(sc => (
+                                                <button
+                                                    key={sc}
+                                                    type="button"
+                                                    onClick={() => setShareScope(sc)}
+                                                    style={{
+                                                        padding: '7px 2px',
+                                                        fontSize: '11.5px',
+                                                        fontWeight: shareScope === sc ? 800 : 500,
+                                                        borderRadius: 'var(--radius-sm)',
+                                                        border: shareScope === sc ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                                                        backgroundColor: shareScope === sc ? 'var(--primary-glow)' : 'var(--bg-card)',
+                                                        color: shareScope === sc ? 'var(--primary)' : 'var(--text-muted)',
+                                                        cursor: 'pointer',
+                                                        textAlign: 'center',
+                                                        whiteSpace: 'nowrap',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis',
+                                                        minWidth: 0
+                                                    }}
+                                                >
+                                                    {sc === 'day' ? t.scopeDay : sc === 'week' ? t.scopeWeek : sc === 'month' ? t.scopeMonth : t.scopeAll}
+                                                </button>
+                                            ))}
+                                        </div>
+
+                                        {/* Tarih Seçimi (Tüm Takvim Haricinde) */}
+                                        {shareScope !== 'all' && (
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%', boxSizing: 'border-box' }}>
+                                                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{t.targetDateLabel}:</span>
+                                                <input
+                                                    type="date"
+                                                    className="form-input"
+                                                    value={shareTargetDate}
+                                                    onChange={e => setShareTargetDate(e.target.value)}
+                                                    style={{ padding: '7px 10px', fontSize: '12px', flex: 1, minWidth: 0, boxSizing: 'border-box' }}
+                                                    required
+                                                />
+                                            </div>
+                                        )}
+
+                                        {/* Etkinlik Sayısı Önizlemesi */}
+                                        <div style={{ padding: '6px 8px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--bg-card)', border: '1px dashed var(--border-color)', textAlign: 'center' }}>
+                                            <span style={{ fontSize: '11.5px', color: 'var(--primary)', fontWeight: 700 }}>
+                                                ⚡ {getMatchingEvents().length} {t.matchingEventsMsg}
+                                            </span>
+                                        </div>
+
+                                        {/* Tam Genişlik Paylaş Butonu (Taşma Önleyici) */}
+                                        <button
+                                            type="submit"
+                                            className="btn-primary"
+                                            disabled={shareSubmitLoading || !selectedFriendForShare}
+                                            style={{
+                                                width: '100%',
+                                                padding: '11px',
+                                                fontSize: '13px',
+                                                fontWeight: 700,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '6px',
+                                                boxSizing: 'border-box'
+                                            }}
+                                        >
+                                            {shareSubmitLoading ? <Loader2 size={16} className="spin" /> : t.sendShareBtn}
+                                        </button>
+                                    </form>
+
+                                    {/* Aktif Gönderilen Paylaşımlar */}
+                                    {activeSentShares.length > 0 && (
+                                        <div style={{ marginTop: '6px', display: 'flex', flexDirection: 'column', gap: '6px', borderTop: '1px dashed var(--border-color)', paddingTop: '8px' }}>
+                                            <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--text-muted)' }}>{t.activeSharesTitle}</span>
+                                            {activeSentShares.map(sh => (
+                                                <div key={sh.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 8px', borderRadius: '4px', backgroundColor: 'var(--bg-card)', fontSize: '11.5px' }}>
+                                                    <div style={{ minWidth: 0, flex: 1 }}>
+                                                        <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>➡️ {sh.targetFriendEmail}</span>
+                                                        <span style={{ marginLeft: '6px', color: 'var(--primary)', fontWeight: 600 }}>
+                                                            ({sh.scope === 'day' ? t.scopeDay : sh.scope === 'week' ? t.scopeWeek : sh.scope === 'month' ? t.scopeMonth : t.scopeAll} {sh.targetDate ? '• ' + sh.targetDate : ''})
+                                                        </span>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRevokeShare(sh.id)}
+                                                        className="btn-icon"
+                                                        style={{ width: '24px', height: '24px', color: 'var(--danger)' }}
+                                                        title={t.revokeShareBtn}
+                                                    >
+                                                        <UserX size={13} />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
 
                                 {friendActionMsg && (
                                     <div style={{

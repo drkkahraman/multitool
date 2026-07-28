@@ -19,7 +19,7 @@ const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data.json');
 const API_KEY = process.env.MULTITOOL_API_KEY || 'mt_cloud_default_key';
 
 // ---- Veri katmanı ----
-const emptyData = () => ({ users: [], sessions: [], requests: [], friendships: [], calendar: {} });
+const emptyData = () => ({ users: [], sessions: [], requests: [], friendships: [], calendar: {}, shares: [] });
 
 function loadData() {
     try {
@@ -31,7 +31,8 @@ function loadData() {
                 sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
                 requests: Array.isArray(parsed.requests) ? parsed.requests : [],
                 friendships: Array.isArray(parsed.friendships) ? parsed.friendships : [],
-                calendar: (parsed.calendar && typeof parsed.calendar === 'object') ? parsed.calendar : {}
+                calendar: (parsed.calendar && typeof parsed.calendar === 'object') ? parsed.calendar : {},
+                shares: Array.isArray(parsed.shares) ? parsed.shares : []
             };
         }
     } catch (e) {
@@ -367,13 +368,113 @@ app.delete('/api/requests/:id', auth, async (req, res) => {
 });
 
 // --- Paylaşılan takvim ---
+// --- Paylaşılan takvim ---
 app.get('/api/calendar/:email', auth, (req, res) => {
     const email = norm(req.params.email);
+    const viewerEmail = norm(req.query.viewerEmail);
     const data = loadData();
-    res.json({ events: data.calendar[email] || [] });
+
+    const generalEvents = data.calendar[email] || [];
+    const targetedShares = (data.shares || []).filter(sh => 
+        norm(sh.ownerEmail) === email && 
+        (!viewerEmail || norm(sh.targetFriendEmail) === viewerEmail || norm(sh.targetFriendEmail) === 'all')
+    );
+
+    let allEvents = [...generalEvents];
+    targetedShares.forEach(sh => {
+        if (Array.isArray(sh.events)) {
+            sh.events.forEach(evt => {
+                if (!allEvents.some(e => e.id === evt.id || (e.title === evt.title && e.date === evt.date))) {
+                    allEvents.push(evt);
+                }
+            });
+        }
+    });
+
+    res.json({ events: allEvents, shares: targetedShares });
 });
 
-// Kullanıcının tüm paylaşılan etkinliklerini değiştir (replace)
+// Belirli bir arkadaşa özel gün/hafta/ay/tümü takvim paylaşımı gönder
+app.post('/api/calendar/share', auth, async (req, res) => {
+    const { ownerEmail, ownerName, targetFriendEmail, scope, targetDate, events } = req.body || {};
+    if (!ownerEmail || !targetFriendEmail || !Array.isArray(events)) {
+        return res.status(400).json({ error: 'Eksik veya hatalı parametreler' });
+    }
+
+    const O = norm(ownerEmail);
+    const T = norm(targetFriendEmail);
+
+    const result = await withLock(() => {
+        const data = loadData();
+        if (!Array.isArray(data.shares)) data.shares = [];
+
+        // Eski aynı kapsamdaki paylaşımı güncelle veya yenisini ekle
+        const existingIdx = data.shares.findIndex(s => 
+            norm(s.ownerEmail) === O && 
+            norm(s.targetFriendEmail) === T && 
+            s.scope === (scope || 'all') &&
+            s.targetDate === (targetDate || '')
+        );
+
+        const shareItem = {
+            id: newId('share'),
+            ownerEmail: O,
+            ownerName: ownerName || O.split('@')[0],
+            targetFriendEmail: T,
+            scope: scope || 'all',
+            targetDate: targetDate || '',
+            events: events.map(evt => ({
+                id: evt.id || newId('evt'),
+                userEmail: O,
+                userName: ownerName || O.split('@')[0],
+                title: evt.title || '',
+                date: evt.date || '',
+                time: evt.time || '',
+                description: evt.description || '',
+                createdAt: evt.createdAt || new Date().toISOString()
+            })),
+            createdAt: new Date().toISOString()
+        };
+
+        if (existingIdx !== -1) {
+            data.shares[existingIdx] = shareItem;
+        } else {
+            data.shares.push(shareItem);
+        }
+
+        saveData(data);
+        return { ok: true, share: shareItem };
+    });
+
+    res.json(result);
+});
+
+// Bir kullanıcının yaptığı ve aldığı aktif paylaşımları getir
+app.get('/api/calendar/shares/active', auth, (req, res) => {
+    const email = norm(req.query.email);
+    if (!email) return res.status(400).json({ error: 'email gerekli' });
+    const data = loadData();
+
+    const sent = (data.shares || []).filter(s => norm(s.ownerEmail) === email);
+    const received = (data.shares || []).filter(s => norm(s.targetFriendEmail) === email || norm(s.targetFriendEmail) === 'all');
+
+    res.json({ sent, received });
+});
+
+// Paylaşımı Sil
+app.delete('/api/calendar/share/:id', auth, async (req, res) => {
+    const id = req.params.id;
+    const result = await withLock(() => {
+        const data = loadData();
+        const before = (data.shares || []).length;
+        data.shares = (data.shares || []).filter(s => s.id !== id);
+        if (data.shares.length < before) saveData(data);
+        return { ok: true };
+    });
+    res.json(result);
+});
+
+// Kullanıcının tüm genel paylaşılan etkinliklerini değiştir (replace)
 app.put('/api/calendar/:email', auth, async (req, res) => {
     const email = norm(req.params.email);
     const { userName, events, shareCalendar } = req.body || {};

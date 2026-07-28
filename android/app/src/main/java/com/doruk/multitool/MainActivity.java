@@ -1,13 +1,17 @@
 package com.doruk.multitool;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
@@ -32,6 +36,10 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
         // Expose AndroidNative interface to JS
         this.bridge.getWebView().addJavascriptInterface(new WebAppInterface(this), "AndroidNative");
 
+        WebSettings webSettings = this.bridge.getWebView().getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+
         // Grant WebChromeClient permissions for audio/media capture
         this.bridge.getWebView().setWebChromeClient(new android.webkit.WebChromeClient() {
             @Override
@@ -42,6 +50,23 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
 
         // Request Notification Permission on Android 13+ (API 33+)
         requestNotificationPermissionNative();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // Prevent WebView from freezing JS setInterval timers when app is backgrounded
+        if (this.bridge != null && this.bridge.getWebView() != null) {
+            this.bridge.getWebView().resumeTimers();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (this.bridge != null && this.bridge.getWebView() != null) {
+            this.bridge.getWebView().resumeTimers();
+        }
     }
 
     @Override
@@ -160,20 +185,78 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
                     );
                     channel.setDescription("Multitool Asistan Hatırlatıcıları");
                     channel.enableVibration(true);
+                    channel.enableLights(true);
+                    channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
                     if (notificationManager != null) {
                         notificationManager.createNotificationChannel(channel);
                     }
                 }
 
+                Intent intent = new Intent(mContext, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                int pendingFlags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        ? PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                        : PendingIntent.FLAG_UPDATE_CURRENT;
+                PendingIntent pendingIntent = PendingIntent.getActivity(mContext, (int) System.currentTimeMillis(), intent, pendingFlags);
+
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, channelId)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(title)
                         .setContentText(message)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setDefaults(NotificationCompat.DEFAULT_ALL)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        .setContentIntent(pendingIntent)
                         .setAutoCancel(true);
 
                 if (notificationManager != null) {
                     notificationManager.notify((int) System.currentTimeMillis(), builder.build());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @JavascriptInterface
+        public void scheduleLocalNotification(int id, String title, String message, long triggerAtMillis) {
+            try {
+                AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(mContext, NotificationReceiver.class);
+                intent.putExtra("title", title);
+                intent.putExtra("message", message);
+                intent.putExtra("notificationId", id);
+
+                int pendingFlags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        ? PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                        : PendingIntent.FLAG_UPDATE_CURRENT;
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, id, intent, pendingFlags);
+
+                if (alarmManager != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                    } else {
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @JavascriptInterface
+        public void cancelLocalNotification(int id) {
+            try {
+                AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(mContext, NotificationReceiver.class);
+                int pendingFlags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        ? PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                        : PendingIntent.FLAG_UPDATE_CURRENT;
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, id, intent, pendingFlags);
+                if (alarmManager != null) {
+                    alarmManager.cancel(pendingIntent);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
