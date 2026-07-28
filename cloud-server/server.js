@@ -116,6 +116,9 @@ function authUser(req, res, next) {
 }
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+app.get('/app-ads.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, 'app-ads.txt'));
+});
 
 // Tarayıcıdan açılınca anlamlı bir durum sayfası
 app.get('/', (req, res) => {

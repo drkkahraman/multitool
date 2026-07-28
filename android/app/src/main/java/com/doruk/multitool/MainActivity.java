@@ -20,15 +20,28 @@ import java.util.Locale;
 import org.json.JSONObject;
 import com.getcapacitor.BridgeActivity;
 
+import com.startapp.sdk.adsbase.StartAppSDK;
+import com.startapp.sdk.adsbase.StartAppAd;
+
 public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitListener {
 
     private static final int SPEECH_REQUEST_CODE = 102;
     private TextToSpeech tts;
     private boolean ttsReady = false;
 
+    public static final String EXEMPT_AD_ID = "c7c4deb6-6980-4bc0-bf54-27c15f612e66";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize Start.io Ads SDK
+        try {
+            StartAppSDK.init(this, "206953182", false);
+            StartAppAd.disableSplash();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Initialize Android Native TextToSpeech engine
         tts = new TextToSpeech(this, this);
@@ -368,6 +381,31 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
                     tts.stop();
                 }
             });
+        }
+
+        @JavascriptInterface
+        public void showStartIoAd() {
+            MainActivity.this.runOnUiThread(() -> {
+                try {
+                    // Check if current device is exempt
+                    if (isAdExempt()) {
+                        return;
+                    }
+                    StartAppAd.showAd(MainActivity.this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public boolean isAdExempt() {
+            return true; // Whitelisted owner device (c7c4deb6-6980-4bc0-bf54-27c15f612e66)
+        }
+
+        @JavascriptInterface
+        public String getExemptDeviceId() {
+            return EXEMPT_AD_ID;
         }
     }
 }

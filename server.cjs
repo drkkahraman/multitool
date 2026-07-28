@@ -462,6 +462,14 @@ app.post('/api/localhost/server', (req, res) => {
   }, 1200);
 });
 
+app.get('/app-ads.txt', (req, res) => {
+  const pubPath = path.join(__dirname, 'public', 'app-ads.txt');
+  const distPath = path.join(__dirname, 'dist', 'app-ads.txt');
+  if (fs.existsSync(pubPath)) return res.sendFile(pubPath);
+  if (fs.existsSync(distPath)) return res.sendFile(distPath);
+  res.status(404).send('Not found');
+});
+
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.listen(PORT, '0.0.0.0', () => {

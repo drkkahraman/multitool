@@ -65,6 +65,11 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <!-- Start.io Ads Integration -->
+        <meta-data
+            android:name="com.startapp.sdk.APPLICATION_ID"
+            android:value="206953182" />
     </application>
 
     <!-- Permissions -->
