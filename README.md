@@ -4,24 +4,23 @@
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
 [![Backend](https://img.shields.io/badge/backend-Express%20Cloud%20Server-6366f1.svg)](https://dorukk.dev/multitool-cloud)
+[![Ads](https://img.shields.io/badge/ads-100%25%20Ad--Free-brightgreen.svg)](https://github.com/drkkahraman/multitool)
 [![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
 
-**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, Multitool Cloud authentication (Express API), social friend addition, targeted calendar sharing (day, week, month), closed-app system notifications, automated agenda and task management, automated GitHub release update detection, Start.io advertising network integration, zero-config default AI execution, modular setup wizard, gallery JPEG exports, and self-compiling Android APK capabilities directly on-device.
+**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, Multitool Cloud authentication (Express API), social friend addition, targeted calendar sharing (day, week, month), closed-app system notifications, automated agenda and task management, automated GitHub release update detection, 100% ad-free experience, zero-config default AI execution, modular setup wizard, gallery JPEG exports, and self-compiling Android APK capabilities directly on-device.
 
 ---
 
 ## ✨ Key Features (v1.2.2)
 
-### 🤖 1. Zero-Configuration Default AI Model (v1.2.2)
-* **Instant Out-of-the-Box AI**: Ships pre-configured with the `qwen/qwen3.7-27b` model and built-in API access key.
+### 🚀 1. 100% Pure & Ad-Free Experience (v1.2.2)
+* **Zero Interruptions**: All ad networks, background ad timers, banner popups, and video offers have been completely removed.
+* **Maximum Performance**: Streamlined runtime without ad SDK overhead for faster app initialization and smooth user interactions.
+
+### 🤖 2. Zero-Configuration Default AI Model (v1.2.2)
+* **Instant Out-of-the-Box AI**: Ships pre-configured with the `qwen/qwen3.7-27b` model and built-in API access key via Groq.
 * **No Mandatory Setup**: Users can start chatting immediately upon opening the app without needing to acquire or type an API key.
 * **Customizable via Settings**: Full flexibility to switch providers (DeepSeek, Gemini, OpenAI, Ollama, OpenRouter) or scan models anytime from Settings.
-
-### 📢 2. Start.io Advertising Network & `app-ads.txt` Integration (v1.2.2)
-* **Start.io SDK Integration**: Integrated `com.startapp:inapp-sdk:5.1.0` in Android Native (`MainActivity.java`) for interstitial and banner ad delivery.
-* **Authorized `app-ads.txt` Route**: Automatically serves the full Start.io publisher compliance file at `/app-ads.txt` across all web and cloud endpoints.
-* **Action-Based & Periodic Ads**: Non-intrusive 5-minute periodic ad timer and action-triggered ad events (e.g. building an APK or exporting data).
-* **VIP Developer Ad-Exemption**: Built-in whitelist system exempting developer testing devices (`c7c4deb6-6980-4bc0-bf54-27c15f612e66`) from ad rendering.
 
 ### 📅 3. Granular Targeted Calendar Sharing
 * **Targeted Friend Scope**: Share specific calendar timeframes with individual friends instead of blanket sharing.
@@ -65,7 +64,7 @@
 | **Frontend Framework** | React 19 + TypeScript + Vite |
 | **Cloud & Auth Backend** | Multitool Cloud Express (`https://dorukk.dev/multitool-cloud` / `92.249.61.108`) |
 | **Mobile Runtime** | Capacitor v8 (Native Android Bridge & AlarmManager) |
-| **Ad Network** | Start.io Native SDK v5.1.0 + `/app-ads.txt` Route |
+| **Experience** | 100% Ad-Free Clean UX |
 | **Styling & UI** | Vanilla CSS (Theme Tokens & Mobile Grid Constraints) |
 | **AI Backend Engines** | Groq (`qwen/qwen3.7-27b` default), DeepSeek, OpenAI, Gemini, OpenRouter & Ollama |
 | **Mobile Compiler** | Gradle + Android SDK Platform 34 |
@@ -112,7 +111,7 @@ To compile the Multitool app into an Android APK:
 # Automated Build Script
 bash build_apk.sh
 ```
-The compiled APK will automatically be generated and copied to your Desktop (`/home/doruk/Desktop/multitool.apk`).
+The compiled APK will automatically be generated and copied to your Desktop (`/home/doruk/Masaüstü/multitool.apk`).
 
 ---
 
