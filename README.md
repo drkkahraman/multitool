@@ -1,4 +1,4 @@
-# 🛠️ Multitool AI Agent (v1.2.3)
+# 🛠️ Multitool AI Agent (1.2.3)
 
 [![Version](https://img.shields.io/badge/version-1.2.3-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
