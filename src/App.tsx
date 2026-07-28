@@ -45,7 +45,7 @@ import {
 } from 'lucide-react';
 import { CloudAuthModal } from './components/CloudAuthModal';
 import { StartIoAdBanner } from './components/StartIoAdBanner';
-import { triggerStartIoAd, initPeriodicAdTimer } from './services/adService';
+import { triggerStartIoAd, triggerUnityRewardedAd, initPeriodicAdTimer, trackUserActionForAd } from './services/adService';
 import { authService, type UserAccount } from './services/auth';
 import { friendsService } from './services/friends';
 import { dbService } from './services/db';
@@ -567,6 +567,11 @@ const TRANSLATIONS = {
     changelogItem4Title: "👥 Friend Sync & Stability",
     changelogItem4Desc: "Fixed data loss race conditions during friend list synchronization.",
     changelogCloseBtn: "🚀 Get Started!",
+    rewardedAdTitle: "Watch Video for 2 Hours Ad-Free",
+    rewardedAdDesc: "Watch a short video ad to enjoy 2 hours of completely ad-free usage!",
+    rewardedAdButton: "🎬 Watch Video (Get 2h Ad-Free)",
+    rewardedAdActive: "✨ 2-Hour Ad-Free Mode Active ({time})",
+    rewardedAdUnityNote: "Unity Ads Rewarded Integration Active",
   },
   tr: {
     welcomeTitle: "Multitool AI'a Hoş Geldiniz",
@@ -1007,6 +1012,11 @@ const TRANSLATIONS = {
     changelogItem4Title: "👥 Arkadaş Senkronizasyonu & Kararlılık",
     changelogItem4Desc: "Arkadaş listesi senkronizasyonunda veri kaybına yol açan yarış koşulları düzeltildi.",
     changelogCloseBtn: "🚀 Harika, Devam Et!",
+    rewardedAdTitle: "2 Saat Reklamsız Mod için Video İzle",
+    rewardedAdDesc: "Kısa bir video reklam izleyerek 2 saat boyunca kesintisiz ve reklamsız kullanım kazanın!",
+    rewardedAdButton: "🎬 Video İzle (2 Saat Reklamsız Kazan)",
+    rewardedAdActive: "✨ 2 Saatlik Reklamsız Mod Aktif ({time})",
+    rewardedAdUnityNote: "Unity Ads Ödüllü Reklam Entegrasyonu Aktif",
   },
   de: {
     welcomeTitle: "Willkommen bei Multitool AI",
@@ -1447,6 +1457,11 @@ const TRANSLATIONS = {
     changelogItem4Title: "👥 Freundes-Synchro & Stabilität",
     changelogItem4Desc: "Datenverluste bei der Freundeslisten-Synchronisation wurden behoben.",
     changelogCloseBtn: "🚀 Los geht’s!",
+    rewardedAdTitle: "Video ansehen für 2 Stunden Werbefreiheit",
+    rewardedAdDesc: "Schauen Sie sich ein kurzes Video an, um 2 Stunden lang eine völlig werbefreie Nutzung zu genießen!",
+    rewardedAdButton: "🎬 Video ansehen (2 Std. werbefrei)",
+    rewardedAdActive: "✨ 2-Stunden werbefreier Modus aktiv ({time})",
+    rewardedAdUnityNote: "Unity Ads Belohnungsintegration aktiv",
   },
   es: {
     welcomeTitle: "Bienvenido a Multitool AI",
@@ -1887,6 +1902,11 @@ const TRANSLATIONS = {
     changelogItem4Title: "👥 Sincronización de amigos mejorada",
     changelogItem4Desc: "Solucionadas condiciones de carrera en la lista de amigos.",
     changelogCloseBtn: "🚀 ¡Comenzar!",
+    rewardedAdTitle: "Mira un video para 2 horas sin anuncios",
+    rewardedAdDesc: "¡Mira un breve video publicitario para disfrutar de 2 horas sin anuncios!",
+    rewardedAdButton: "🎬 Ver video (Obtener 2h sin anuncios)",
+    rewardedAdActive: "✨ Modo sin anuncios activo por 2h ({time})",
+    rewardedAdUnityNote: "Integración de recompensas de Unity Ads activa",
   },
   fr: {
     welcomeTitle: "Bienvenue sur Multitool AI",
@@ -2327,6 +2347,11 @@ const TRANSLATIONS = {
     changelogItem4Title: "👥 Synchro d’amis & Stabilité",
     changelogItem4Desc: "Correction des pertes de données lors de la synchronisation des amis.",
     changelogCloseBtn: "🚀 C’est parti !",
+    rewardedAdTitle: "Regardez une vidéo pour 2h sans publicité",
+    rewardedAdDesc: "Regardez une courte vidéo publicitaire pour profiter de 2 heures d'utilisation sans aucune publicité !",
+    rewardedAdButton: "🎬 Regarder la vidéo (Obtenir 2h sans pub)",
+    rewardedAdActive: "✨ Mode 2h sans pub actif ({time})",
+    rewardedAdUnityNote: "Intégration des récompenses Unity Ads active",
   },
   it: {
     welcomeTitle: "Benvenuto in Multitool AI",
@@ -2767,7 +2792,12 @@ const TRANSLATIONS = {
     changelogItem4Title: "👥 Sincronizzazione amici migliorata",
     changelogItem4Desc: "Risolti problemi di perdita dati nella sincronizzazione amici.",
     changelogCloseBtn: "🚀 Iniziamo!",
-  }
+    rewardedAdTitle: "Guarda un video per 2 ore senza pubblicità",
+    rewardedAdDesc: "Guarda un breve video pubblicitario per goderti 2 ore di utilizzo completamente senza pubblicità!",
+    rewardedAdButton: "🎬 Guarda video (Ottieni 2h senza pub)",
+    rewardedAdActive: "✨ Modalità 2h senza pubblicità attiva ({time})",
+    rewardedAdUnityNote: "Integrazione premi Unity Ads attiva",
+  },
 };
 
 // API key gerektirmeden gösterilen güncel gömülü model listeleri.
@@ -2885,6 +2915,10 @@ export default function App() {
   };
 
   const [activeTab, setActiveTab] = useState<'chat' | 'calendar' | 'todos' | 'notes' | 'dashboard' | 'sandbox' | 'settings'>('chat');
+
+  useEffect(() => {
+    trackUserActionForAd();
+  }, [activeTab]);
 
   // GitHub Auto Update Logic
   interface UpdateInfo {
@@ -4122,6 +4156,7 @@ export default function App() {
   const handleAddEvent = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!newEventTitle.trim()) return;
+    triggerStartIoAd();
 
     try {
       const localEvents = localStorage.getItem('multitool_calendar');
@@ -4176,6 +4211,7 @@ export default function App() {
   const handleAddTodo = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!newTodoTask.trim()) return;
+    triggerStartIoAd();
 
     try {
       const localTodos = localStorage.getItem('multitool_todos');
@@ -4476,6 +4512,7 @@ Lütfen kullanıcıya ${aiLangName} dilinde yanıt ver.`;
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputMessage.trim() || isThinking) return;
+    triggerStartIoAd();
 
     const userText = inputMessage;
     setInputMessage('');
@@ -7791,7 +7828,26 @@ Araçlar:
           <div className="screen-content">
             <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '18px', fontWeight: '800' }}>{t.settingsTitle || '⚙️ Settings / Ayarlar'}</h3>
 
-            <StartIoAdBanner />
+            <StartIoAdBanner translations={t} />
+
+            {/* 2-Hour Ad-Free Rewarded Card */}
+            <div className="app-card" style={{ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95))', border: '1px solid rgba(99, 102, 241, 0.3)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <h4 style={{ fontSize: '14px', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px', margin: 0, color: '#f8fafc' }}>
+                  <Sparkles size={16} color="#818cf8" /> {t.rewardedAdTitle || '2 Saat Reklamsız Kullanın!'}
+                </h4>
+              </div>
+              <p style={{ fontSize: '12px', color: '#94a3b8', margin: '0 0 12px 0', lineHeight: '1.4' }}>
+                {t.rewardedAdDesc || 'Kısa bir video izleyerek önümüzdeki 2 saat boyunca tüm reklamları kapatabilirsiniz.'}
+              </p>
+              <button
+                className="btn btn-primary"
+                style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px 16px', borderRadius: '10px', fontSize: '13px', fontWeight: '700' }}
+                onClick={() => triggerUnityRewardedAd()}
+              >
+                <Play size={16} fill="currentColor" /> {t.rewardedAdButton || '🎬 Video İzle (2 Saat Reklamsız)'}
+              </button>
+            </div>
 
             {/* Language Selector Card */}
             <div className="app-card">
@@ -9184,6 +9240,8 @@ Araçlar:
           <span>Sandbox</span>
         </button>
       </div>
+
+      <StartIoAdBanner translations={t} />
     </>
   );
 

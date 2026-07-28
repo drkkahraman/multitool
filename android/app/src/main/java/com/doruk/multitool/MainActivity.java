@@ -19,9 +19,15 @@ import android.speech.tts.TextToSpeech;
 import java.util.Locale;
 import org.json.JSONObject;
 import com.getcapacitor.BridgeActivity;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.startapp.sdk.adsbase.StartAppSDK;
-import com.startapp.sdk.adsbase.StartAppAd;
+import com.unity3d.ads.UnityAds;
+import com.unity3d.ads.IUnityAdsInitializationListener;
+import com.unity3d.ads.IUnityAdsShowListener;
+import com.unity3d.ads.IUnityAdsLoadListener;
+import com.unity3d.ads.UnityAdsShowOptions;
+import com.unity3d.ads.UnityAdsLoadOptions;
 
 public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitListener {
 
@@ -29,19 +35,99 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
     private TextToSpeech tts;
     private boolean ttsReady = false;
 
+    public static final String UNITY_GAME_ID = "4829774";
+    public static final String TEST_GAME_ID = "4829774"; // Official Unity Ads Test Game ID
+    public static final String INTERSTITIAL_PLACEMENT_ID = "Interstitial_Android";
+    public static final String REWARDED_PLACEMENT_ID = "Rewarded_Android";
     public static final String EXEMPT_AD_ID = "c7c4deb6-6980-4bc0-bf54-27c15f612e66";
+
+    private void initUnityAdsSDK(String gameId) {
+        if (UnityAds.isInitialized()) {
+            Log.d("UnityAds", "Unity Ads SDK already initialized.");
+            return;
+        }
+        UnityAds.initialize(getApplicationContext(), gameId, true, new IUnityAdsInitializationListener() {
+            @Override
+            public void onInitializationComplete() {
+                Log.d("UnityAds", "Unity Ads SDK initialized with Game ID: " + gameId);
+                UnityAdsLoadOptions loadOpts = new UnityAdsLoadOptions();
+                UnityAds.load(INTERSTITIAL_PLACEMENT_ID, loadOpts, null);
+                UnityAds.load("video", loadOpts, null);
+                UnityAds.load(REWARDED_PLACEMENT_ID, loadOpts, null);
+                UnityAds.load("rewardedVideo", loadOpts, null);
+            }
+
+            @Override
+            public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+                Log.e("UnityAds", "Unity Ads Init Failed (" + gameId + "): " + message);
+            }
+        });
+    }
+
+    private void tryLoadAndShow(String primaryPlacement, String secondaryPlacement, IUnityAdsShowListener showListener) {
+        if (!UnityAds.isInitialized()) {
+            Log.d("UnityAds", "SDK not initialized yet, initializing now...");
+            UnityAds.initialize(getApplicationContext(), UNITY_GAME_ID, true, new IUnityAdsInitializationListener() {
+                @Override
+                public void onInitializationComplete() {
+                    tryLoadAndShowInternal(primaryPlacement, secondaryPlacement, showListener);
+                }
+
+                @Override
+                public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+                    MainActivity.this.runOnUiThread(() -> {
+                        Toast.makeText(MainActivity.this, "Reklam Servisi Başlatılamadı: " + message, Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+            return;
+        }
+
+        tryLoadAndShowInternal(primaryPlacement, secondaryPlacement, showListener);
+    }
+
+    private void tryLoadAndShowInternal(String primaryPlacement, String secondaryPlacement, IUnityAdsShowListener showListener) {
+        UnityAdsLoadOptions loadOptions = new UnityAdsLoadOptions();
+        UnityAdsShowOptions showOptions = new UnityAdsShowOptions();
+
+        UnityAds.load(primaryPlacement, loadOptions, new IUnityAdsLoadListener() {
+            @Override
+            public void onUnityAdsAdLoaded(String placementId) {
+                Log.d("UnityAds", "Primary placement loaded: " + placementId + ". Showing now...");
+                MainActivity.this.runOnUiThread(() -> {
+                    UnityAds.show(MainActivity.this, placementId, showOptions, showListener);
+                });
+            }
+
+            @Override
+            public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                Log.w("UnityAds", "Primary load failed (" + placementId + "): " + message + ". Trying secondary: " + secondaryPlacement);
+                UnityAds.load(secondaryPlacement, loadOptions, new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String p2) {
+                        Log.d("UnityAds", "Secondary placement loaded: " + p2 + ". Showing now...");
+                        MainActivity.this.runOnUiThread(() -> {
+                            UnityAds.show(MainActivity.this, p2, showOptions, showListener);
+                        });
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String p2, UnityAds.UnityAdsLoadError error2, String message2) {
+                        Log.e("UnityAds", "Secondary load failed (" + p2 + "): " + message2);
+                        MainActivity.this.runOnUiThread(() -> {
+                            Toast.makeText(MainActivity.this, "Reklam Yüklenemedi: " + message2, Toast.LENGTH_LONG).show();
+                        });
+                    }
+                });
+            }
+        });
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize Start.io Ads SDK
-        try {
-            StartAppSDK.init(this, "206953182", false);
-            StartAppAd.disableSplash();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Ads disabled completely
 
         // Initialize Android Native TextToSpeech engine
         tts = new TextToSpeech(this, this);
@@ -384,28 +470,39 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
         }
 
         @JavascriptInterface
+        public void showUnityInterstitialAd() {
+            // Ads disabled completely
+        }
+
+        @JavascriptInterface
+        public void showUnityRewardedAd() {
+            // Ads disabled completely
+        }
+
+        @JavascriptInterface
         public void showStartIoAd() {
-            MainActivity.this.runOnUiThread(() -> {
-                try {
-                    // Check if current device is exempt
-                    if (isAdExempt()) {
-                        return;
-                    }
-                    StartAppAd.showAd(MainActivity.this);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            // Ads disabled completely
         }
 
         @JavascriptInterface
         public boolean isAdExempt() {
-            return true; // Whitelisted owner device (c7c4deb6-6980-4bc0-bf54-27c15f612e66)
+            return true;
         }
 
         @JavascriptInterface
         public String getExemptDeviceId() {
             return EXEMPT_AD_ID;
+        }
+
+        private void dispatchJsEvent(String eventName) {
+            MainActivity.this.runOnUiThread(() -> {
+                try {
+                    String script = "window.dispatchEvent(new CustomEvent('" + eventName + "'));";
+                    MainActivity.this.bridge.getWebView().evaluateJavascript(script, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 }

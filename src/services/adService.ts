@@ -1,63 +1,38 @@
 /**
- * Start.io Ad Service with VIP Device Exemption & 5-Minute Auto Timer
- * App ID: 206953182
- * Exempt Device ID (No Ads): c7c4deb6-6980-4bc0-bf54-27c15f612e66
+ * Unity Ads Service for Multitool
+ * Ads Completely Removed
  */
 
-export const START_IO_APP_ID = '206953182';
-export const EXEMPT_DEVICE_ID = 'c7c4deb6-6980-4bc0-bf54-27c15f612e66';
+export const UNITY_GAME_ID = '4829774';
+export const INTERSTITIAL_PLACEMENT_ID = 'Interstitial_Android';
+export const REWARDED_PLACEMENT_ID = 'Rewarded_Android';
 
-let adTimer: any = null;
+export const isAdExempt = (): boolean => true;
+export const getAdFreeUntil = (): number => Infinity;
+export const isAdFreeActive = (): boolean => true;
+export const grantTwoHoursAdFree = (): number => Infinity;
+export const getRemainingAdFreeTimeFormatted = (): string => 'Sınırsız';
 
-// Determine if the current device/user is exempt from ads
-export const isAdExempt = (): boolean => {
-  if (typeof window !== 'undefined') {
-    if ((window as any).AndroidNative?.isAdExempt) {
-      return (window as any).AndroidNative.isAdExempt();
-    }
-    const currentDeviceId = localStorage.getItem('multitool_device_ad_id') || EXEMPT_DEVICE_ID;
-    return currentDeviceId === EXEMPT_DEVICE_ID;
-  }
-  return true;
+// Trigger Unity Interstitial Ad (Disabled)
+export const triggerUnityInterstitialAd = (): void => {
+  // Ads completely disabled
 };
 
-// Trigger Start.io Ad (Bypassed completely for exempt device)
-export const triggerStartIoAd = (forceManual: boolean = false): void => {
-  // If device is exempt and not forced manually for testing, skip ads completely
-  if (isAdExempt() && !forceManual) {
-    console.log(`[Start.io] Ad bypassed for exempt device ID: ${EXEMPT_DEVICE_ID}`);
-    return;
-  }
+// Legacy alias
+export const triggerStartIoAd = triggerUnityInterstitialAd;
 
-  try {
-    if (typeof window !== 'undefined' && (window as any).AndroidNative?.showStartIoAd) {
-      (window as any).AndroidNative.showStartIoAd();
-    } else {
-      console.log(`[Start.io] Web Ad Triggered for regular user (App ID: ${START_IO_APP_ID})`);
-      window.dispatchEvent(new CustomEvent('show-startio-web-ad'));
-    }
-  } catch (e) {
-    console.error('Error triggering Start.io ad:', e);
-  }
+// Trigger Unity Rewarded Ad (Disabled)
+export const triggerUnityRewardedAd = (): void => {
+  // Ads completely disabled
 };
 
-// Initialize 5-minute periodic ad timer (300,000 ms) for non-exempt users
+export const trackUserActionForAd = (): void => {
+  // Action counter reserved
+};
+
+// Initialize periodic ad timer (Disabled)
 export const initPeriodicAdTimer = (): void => {
-  if (adTimer) clearInterval(adTimer);
-
-  // Do not run timer if current user is exempt
-  if (isAdExempt()) {
-    console.log(`[Start.io Timer] Periodic 5-min ads disabled for exempt device: ${EXEMPT_DEVICE_ID}`);
-    return;
-  }
-
-  console.log('[Start.io Timer] Periodic 5-minute ad timer initialized for regular users.');
-  
-  // 5 Minutes = 5 * 60 * 1000 = 300000ms
-  adTimer = setInterval(() => {
-    console.log('[Start.io Timer] 5 minutes elapsed. Triggering periodic ad...');
-    triggerStartIoAd();
-  }, 300000);
+  // Periodic ad timer disabled completely
 };
 
 export const getAppAdsTxtUrl = (): string => {
