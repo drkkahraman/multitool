@@ -22,12 +22,12 @@ import com.getcapacitor.BridgeActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.unity3d.ads.UnityAds;
-import com.unity3d.ads.IUnityAdsInitializationListener;
-import com.unity3d.ads.IUnityAdsShowListener;
-import com.unity3d.ads.IUnityAdsLoadListener;
-import com.unity3d.ads.UnityAdsShowOptions;
-import com.unity3d.ads.UnityAdsLoadOptions;
+import com.startapp.sdk.adsbase.StartAppSDK;
+import com.startapp.sdk.adsbase.StartAppAd;
+import com.startapp.sdk.adsbase.Ad;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
+import com.startapp.sdk.adsbase.adlisteners.VideoListener;
 
 public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitListener {
 
@@ -35,99 +35,22 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
     private TextToSpeech tts;
     private boolean ttsReady = false;
 
-    public static final String UNITY_GAME_ID = "4829774";
-    public static final String TEST_GAME_ID = "4829774"; // Official Unity Ads Test Game ID
-    public static final String INTERSTITIAL_PLACEMENT_ID = "Interstitial_Android";
-    public static final String REWARDED_PLACEMENT_ID = "Rewarded_Android";
     public static final String EXEMPT_AD_ID = "c7c4deb6-6980-4bc0-bf54-27c15f612e66";
-
-    private void initUnityAdsSDK(String gameId) {
-        if (UnityAds.isInitialized()) {
-            Log.d("UnityAds", "Unity Ads SDK already initialized.");
-            return;
-        }
-        UnityAds.initialize(getApplicationContext(), gameId, true, new IUnityAdsInitializationListener() {
-            @Override
-            public void onInitializationComplete() {
-                Log.d("UnityAds", "Unity Ads SDK initialized with Game ID: " + gameId);
-                UnityAdsLoadOptions loadOpts = new UnityAdsLoadOptions();
-                UnityAds.load(INTERSTITIAL_PLACEMENT_ID, loadOpts, null);
-                UnityAds.load("video", loadOpts, null);
-                UnityAds.load(REWARDED_PLACEMENT_ID, loadOpts, null);
-                UnityAds.load("rewardedVideo", loadOpts, null);
-            }
-
-            @Override
-            public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
-                Log.e("UnityAds", "Unity Ads Init Failed (" + gameId + "): " + message);
-            }
-        });
-    }
-
-    private void tryLoadAndShow(String primaryPlacement, String secondaryPlacement, IUnityAdsShowListener showListener) {
-        if (!UnityAds.isInitialized()) {
-            Log.d("UnityAds", "SDK not initialized yet, initializing now...");
-            UnityAds.initialize(getApplicationContext(), UNITY_GAME_ID, true, new IUnityAdsInitializationListener() {
-                @Override
-                public void onInitializationComplete() {
-                    tryLoadAndShowInternal(primaryPlacement, secondaryPlacement, showListener);
-                }
-
-                @Override
-                public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
-                    MainActivity.this.runOnUiThread(() -> {
-                        Toast.makeText(MainActivity.this, "Reklam Servisi Başlatılamadı: " + message, Toast.LENGTH_SHORT).show();
-                    });
-                }
-            });
-            return;
-        }
-
-        tryLoadAndShowInternal(primaryPlacement, secondaryPlacement, showListener);
-    }
-
-    private void tryLoadAndShowInternal(String primaryPlacement, String secondaryPlacement, IUnityAdsShowListener showListener) {
-        UnityAdsLoadOptions loadOptions = new UnityAdsLoadOptions();
-        UnityAdsShowOptions showOptions = new UnityAdsShowOptions();
-
-        UnityAds.load(primaryPlacement, loadOptions, new IUnityAdsLoadListener() {
-            @Override
-            public void onUnityAdsAdLoaded(String placementId) {
-                Log.d("UnityAds", "Primary placement loaded: " + placementId + ". Showing now...");
-                MainActivity.this.runOnUiThread(() -> {
-                    UnityAds.show(MainActivity.this, placementId, showOptions, showListener);
-                });
-            }
-
-            @Override
-            public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
-                Log.w("UnityAds", "Primary load failed (" + placementId + "): " + message + ". Trying secondary: " + secondaryPlacement);
-                UnityAds.load(secondaryPlacement, loadOptions, new IUnityAdsLoadListener() {
-                    @Override
-                    public void onUnityAdsAdLoaded(String p2) {
-                        Log.d("UnityAds", "Secondary placement loaded: " + p2 + ". Showing now...");
-                        MainActivity.this.runOnUiThread(() -> {
-                            UnityAds.show(MainActivity.this, p2, showOptions, showListener);
-                        });
-                    }
-
-                    @Override
-                    public void onUnityAdsFailedToLoad(String p2, UnityAds.UnityAdsLoadError error2, String message2) {
-                        Log.e("UnityAds", "Secondary load failed (" + p2 + "): " + message2);
-                        MainActivity.this.runOnUiThread(() -> {
-                            Toast.makeText(MainActivity.this, "Reklam Yüklenemedi: " + message2, Toast.LENGTH_LONG).show();
-                        });
-                    }
-                });
-            }
-        });
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Ads disabled completely
+        // Start.io Ads SDK Initialization
+        try {
+            StartAppSDK.init(this, "206953182", false);
+            StartAppAd.disableSplash();
+            long now = System.currentTimeMillis();
+            StartAppSDK.setUserConsent(this, "pas", now, true);
+            StartAppSDK.setUserConsent(this, "pns", now, true);
+        } catch (Exception e) {
+            Log.e("StartIo", "Start.io init/consent failed: " + e.getMessage());
+        }
 
         // Initialize Android Native TextToSpeech engine
         tts = new TextToSpeech(this, this);
@@ -471,22 +394,112 @@ public class MainActivity extends BridgeActivity implements TextToSpeech.OnInitL
 
         @JavascriptInterface
         public void showUnityInterstitialAd() {
-            // Ads disabled completely
+            showStartIoAd();
+        }
+
+        private void showLoadedStartIoAd(StartAppAd startAd) {
+            startAd.showAd(new AdDisplayListener() {
+                @Override
+                public void adHidden(Ad ad) {
+                    dispatchJsEvent("startio-reward-earned");
+                    dispatchJsEvent("startio-ad-closed");
+                }
+
+                @Override
+                public void adDisplayed(Ad ad) {
+                    dispatchJsEvent("startio-ad-shown");
+                }
+
+                @Override
+                public void adClicked(Ad ad) {}
+
+                @Override
+                public void adNotDisplayed(Ad ad) {
+                    Log.w("StartIo", "Start.io ad not displayed, granting reward fallback.");
+                    dispatchJsEvent("startio-reward-earned");
+                    dispatchJsEvent("startio-ad-closed");
+                }
+            });
         }
 
         @JavascriptInterface
         public void showUnityRewardedAd() {
-            // Ads disabled completely
+            MainActivity.this.runOnUiThread(() -> {
+                try {
+                    StartAppAd rewardedAd = new StartAppAd(MainActivity.this);
+                    rewardedAd.setVideoListener(new VideoListener() {
+                        @Override
+                        public void onVideoCompleted() {
+                            Log.d("StartIo", "Start.io Video completed.");
+                            dispatchJsEvent("startio-reward-earned");
+                        }
+                    });
+
+                    // 1. Önce REWARDED_VIDEO modunda reklam yükle
+                    rewardedAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                        @Override
+                        public void onReceiveAd(Ad ad) {
+                            Log.d("StartIo", "Start.io REWARDED_VIDEO loaded.");
+                            showLoadedStartIoAd(rewardedAd);
+                        }
+
+                        @Override
+                        public void onFailedToReceiveAd(Ad ad) {
+                            Log.w("StartIo", "Start.io REWARDED_VIDEO no-fill, trying AUTOMATED mode...");
+                            // 2. REWARDED_VIDEO dolgusu yoksa AUTOMATED modunda (Video / Interstitial) dene
+                            StartAppAd fallbackAd = new StartAppAd(MainActivity.this);
+                            fallbackAd.setVideoListener(new VideoListener() {
+                                @Override
+                                public void onVideoCompleted() {
+                                    dispatchJsEvent("startio-reward-earned");
+                                }
+                            });
+                            fallbackAd.loadAd(StartAppAd.AdMode.FULLPAGE, new AdEventListener() {
+                                @Override
+                                public void onReceiveAd(Ad ad2) {
+                                    Log.d("StartIo", "Start.io AUTOMATED ad loaded.");
+                                    showLoadedStartIoAd(fallbackAd);
+                                }
+
+                                @Override
+                                public void onFailedToReceiveAd(Ad ad2) {
+                                    Log.w("StartIo", "Start.io direct showAd fallback...");
+                                    // 3. Doğrudan StartAppAd.showAd göster
+                                    boolean shown = StartAppAd.showAd(MainActivity.this);
+                                    if (!shown) {
+                                        Log.e("StartIo", "No Start.io ads available at all. Granting reward fallback.");
+                                        MainActivity.this.runOnUiThread(() -> {
+                                            Toast.makeText(MainActivity.this, "Reklam servisi yanıt vermedi, 2 saatlik reklamsız modunuz aktifleştirildi!", Toast.LENGTH_SHORT).show();
+                                        });
+                                    }
+                                    dispatchJsEvent("startio-reward-earned");
+                                    dispatchJsEvent("startio-ad-closed");
+                                }
+                            });
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.e("StartIo", "showRewarded failed: " + e.getMessage());
+                    dispatchJsEvent("startio-reward-earned");
+                    dispatchJsEvent("startio-ad-closed");
+                }
+            });
         }
 
         @JavascriptInterface
         public void showStartIoAd() {
-            // Ads disabled completely
+            MainActivity.this.runOnUiThread(() -> {
+                try {
+                    StartAppAd.showAd(MainActivity.this);
+                } catch (Exception e) {
+                    Log.e("StartIo", "showAd failed: " + e.getMessage());
+                }
+            });
         }
 
         @JavascriptInterface
         public boolean isAdExempt() {
-            return true;
+            return false;
         }
 
         @JavascriptInterface

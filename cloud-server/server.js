@@ -18,6 +18,17 @@ const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data.json');
 // Basit API anahtarı koruması (app tarafında da aynı key gönderilir)
 const API_KEY = process.env.MULTITOOL_API_KEY || 'mt_cloud_default_key';
 
+// VIP kullanıcılar — reklamlardan muaf. E-posta büyük/küçük harf duyarsız eşleşir.
+const VIP_EMAILS = new Set([
+    'ebrumetek@gmail.com',
+    'akbulutk@gmail.com',
+    'drkkahraman@gmail.com'
+].map(e => e.trim().toLowerCase()));
+
+function isVipEmail(email) {
+    return VIP_EMAILS.has(norm(email));
+}
+
 // ---- Veri katmanı ----
 const emptyData = () => ({ users: [], sessions: [], requests: [], friendships: [], calendar: {}, shares: [] });
 
@@ -111,7 +122,7 @@ function authUser(req, res, next) {
     if (!session) return res.status(401).json({ error: 'geçersiz oturum' });
     const user = data.users.find(u => norm(u.email) === norm(session.email));
     if (!user) return res.status(401).json({ error: 'kullanıcı bulunamadı' });
-    req.user = { id: user.id, email: user.email, name: user.name };
+    req.user = { id: user.id, email: user.email, name: user.name, vip: isVipEmail(user.email) };
     next();
 }
 
@@ -162,7 +173,7 @@ app.post('/api/auth/register', auth, async (req, res) => {
         const token = makeToken();
         data.sessions.push({ token, email: E, createdAt: new Date().toISOString() });
         saveData(data);
-        return { token, user: { id: user.id, email: user.email, name: user.name } };
+        return { token, user: { id: user.id, email: user.email, name: user.name, vip: isVipEmail(user.email) } };
     });
     if (result.error) return res.status(400).json({ error: result.error });
     res.json(result);
@@ -182,7 +193,7 @@ app.post('/api/auth/login', auth, async (req, res) => {
         const token = makeToken();
         data.sessions.push({ token, email: E, createdAt: new Date().toISOString() });
         saveData(data);
-        return { token, user: { id: user.id, email: user.email, name: user.name } };
+        return { token, user: { id: user.id, email: user.email, name: user.name, vip: isVipEmail(user.email) } };
     });
     if (result.error) return res.status(401).json({ error: result.error });
     res.json(result);

@@ -4,6 +4,7 @@ export interface UserAccount {
     id: string;
     email: string;
     name: string;
+    vip?: boolean;
 }
 
 // Appwrite kaldırıldı; header başlığında gösterilen proje adı sabit olarak korunur.

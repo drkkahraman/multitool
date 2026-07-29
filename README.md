@@ -1,23 +1,25 @@
-# 🛠️ Multitool AI Agent (1.2.3)
+# 🛠️ Multitool AI Agent (v1.2.4)
 
-[![Version](https://img.shields.io/badge/version-1.2.3-blue.svg)](https://github.com/drkkahraman/multitool)
+[![Version](https://img.shields.io/badge/version-1.2.4-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
 [![Backend](https://img.shields.io/badge/backend-Express%20Cloud%20Server-6366f1.svg)](https://dorukk.dev/multitool-cloud)
-[![Ads](https://img.shields.io/badge/ads-100%25%20Ad--Free-brightgreen.svg)](https://github.com/drkkahraman/multitool)
+[![Ads](https://img.shields.io/badge/ads-Start.io%20Ads-purple.svg)](https://github.com/drkkahraman/multitool)
 [![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
 
-**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, Multitool Cloud authentication (Express API), social friend addition, targeted calendar sharing (day, week, month), closed-app system notifications, automated agenda and task management, automated GitHub release update detection, 100% ad-free experience, zero-config default AI execution, modular setup wizard, gallery JPEG exports, and self-compiling Android APK capabilities directly on-device.
+**Multitool AI Agent** is an intelligent mobile assistant featuring autonomous self-coding, live Node.js server execution, Multitool Cloud authentication (Express API), social friend addition, targeted calendar sharing (day, week, month), closed-app system notifications, automated agenda and task management, automated GitHub release update detection, Start.io native ad integration with 2-hour ad-free rewarded unlocks, zero-config default AI execution, modular setup wizard, gallery JPEG exports, and self-compiling Android APK capabilities directly on-device.
 
 ---
 
-## ✨ Key Features (v1.2.3)
+## ✨ Key Features (v1.2.4)
 
-### 🚀 1. 100% Pure & Ad-Free Experience (v1.2.3)
-* **Zero Interruptions**: All ad networks, background ad timers, banner popups, and video offers have been completely removed.
-* **Maximum Performance**: Streamlined runtime without ad SDK overhead for faster app initialization and smooth user interactions.
+### 🎬 1. Native Start.io Ad Integration & Rewarded Unlocks (v1.2.4)
+* **Start.io Engine**: Powered exclusively by Start.io native SDK (`App ID: 206953182`).
+* **Rewarded Video Unlocks**: Watch rewarded video ads to unlock a **2-hour completely ad-free window**.
+* **Multi-Tier Fallback Protection**: Automatic failover (`REWARDED_VIDEO` ➔ `FULLPAGE` ➔ direct fallback) guarantees smooth operation with zero ad loading error popups.
+* **Clean UI Guarantee**: Zero persistent bottom banners for an unobstructed user experience.
 
-### 🤖 2. Zero-Configuration Default AI Model (v1.2.3)
+### 🤖 2. Zero-Configuration Default AI Model
 * **Instant Out-of-the-Box AI**: Ships pre-configured with the `qwen/qwen3.7-27b` model and built-in API access key via Groq.
 * **No Mandatory Setup**: Users can start chatting immediately upon opening the app without needing to acquire or type an API key.
 * **Customizable via Settings**: Full flexibility to switch providers (DeepSeek, Gemini, OpenAI, Ollama, OpenRouter) or scan models anytime from Settings.
@@ -44,7 +46,7 @@
 * **Notification Alerts**: Live red badge indicator on the top app header `Cloud` icon when pending friend requests arrive.
 
 ### 🚀 7. Automated GitHub Release Updates
-* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.2.3`.
+* **Auto-Check on Launch**: Automatically queries GitHub API (`drkkahraman/multitool`) for versions newer than `v1.2.4`.
 * **In-App Release Modal**: Displays version release notes and a direct *"⚡ Download & Install Update"* button.
 
 ### 📥 8. High-Resolution JPEG Agenda & Note Exports to Gallery
@@ -64,7 +66,7 @@
 | **Frontend Framework** | React 19 + TypeScript + Vite |
 | **Cloud & Auth Backend** | Multitool Cloud Express (`https://dorukk.dev/multitool-cloud` / `92.249.61.108`) |
 | **Mobile Runtime** | Capacitor v8 (Native Android Bridge & AlarmManager) |
-| **Experience** | 100% Ad-Free Clean UX |
+| **Ad Engine** | Start.io Native SDK |
 | **Styling & UI** | Vanilla CSS (Theme Tokens & Mobile Grid Constraints) |
 | **AI Backend Engines** | Groq (`qwen/qwen3.7-27b` default), DeepSeek, OpenAI, Gemini, OpenRouter & Ollama |
 | **Mobile Compiler** | Gradle + Android SDK Platform 34 |
