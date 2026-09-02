@@ -1,6 +1,6 @@
 # 🛠️ Multitool AI Agent (v1.3.3.2)
 
-[![Version](https://img.shields.io/badge/version-1.2.4-blue.svg)](https://github.com/drkkahraman/multitool)
+[![Version](https://img.shields.io/badge/version-1.3.3.1-blue.svg)](https://github.com/drkkahraman/multitool)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green.svg)](https://capacitorjs.com)
 [![Framework](https://img.shields.io/badge/framework-React%2019%20%7C%20Vite%20%7C%20Capacitor-orange.svg)](https://vitejs.dev)
 [![Backend](https://img.shields.io/badge/backend-Express%20Cloud%20Server-6366f1.svg)](https://dorukk.dev/multitool-cloud)
