@@ -11,7 +11,7 @@ desktop_apk="/home/doruk/Desktop/multitool.apk"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
 export PATH="$JAVA_HOME/bin:$PATH"
 
-mkdir -p "$SDK_DIR"
+mkdir -p "$SDK_DIR" 
 mkdir -p "$TMP_DIR"
 
 if [ ! -f "$SDK_DIR/cmdline-tools/latest/bin/sdkmanager" ]; then
